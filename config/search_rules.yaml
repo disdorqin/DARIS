@@ -1,0 +1,51 @@
+# DARIS 文献检索规则配置
+# 适配模型：MTGNN / TimesNet / XGBoost
+
+search_config:
+  # 三模型专属检索关键词
+  keywords:
+    - "MTGNN 时序预测"
+    - "TimesNet 长时序"
+    - "XGBoost 时序特征工程"
+    - "时空序列预测"
+    - "多变量时序预测"
+  
+  # API 配置
+  api_sources:
+    - name: Semantic Scholar
+      enabled: true
+      priority: 1
+    - name: arXiv
+      enabled: true
+      priority: 2
+    - name: Google Scholar
+      enabled: true
+      priority: 3
+
+  # 文献过滤规则
+  filter_rules:
+    year_range:
+      start: 2021
+      end: 2026
+    min_citations: 20
+    venue_types:
+      - 顶刊
+      - 核心期刊
+    exclude_types:
+      - 综述
+      - meta 分析
+      - 教学案例
+    max_results: 50
+    deduplicate: true
+
+  # 异常处理配置
+  error_handling:
+    api_failure:
+      action: switch_source
+      max_retries: 3
+    download_failure:
+      action: skip_after_retries
+      max_retries: 3
+    zotero_sync_failure:
+      action: alert_after_retries
+      max_retries: 5

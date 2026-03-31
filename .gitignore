@@ -1,0 +1,68 @@
+# ==================== 隐私配置 ====================
+.env
+*.pem
+*.key
+credentials.json
+secrets/
+
+# ==================== 训练模型 ====================
+*.pth
+*.pt
+*.h5
+*.pkl
+*.ckpt
+models/
+checkpoints/
+
+# ==================== 大体积数据 ====================
+*.csv
+*.parquet
+*.feather
+data/raw/
+data/processed/
+*.zip
+*.tar.gz
+
+# ==================== 日志文件 ====================
+*.log
+logs/
+tensorboard/
+runs/
+
+# ==================== 缓存文件 ====================
+__pycache__/
+*.pyc
+*.pyo
+.cache/
+.ipynb_checkpoints
+.vscode/
+.idea/
+
+# ==================== 临时文件 ====================
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==================== 实验结果（可选） ====================
+# experiment/raw_results/
+# experiment/large_outputs/
+
+# ==================== Python 环境 ====================
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ==================== Jupyter ====================
+.ipynb_checkpoints
+.jupyter/
+
+# ==================== Obsidian ====================
+# 仅忽略临时文件，知识库内容需保留
+.obsidian/plugins/
+.obsidian/workspace.json
