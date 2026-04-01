@@ -2,6 +2,9 @@
 # 适配模型：MTGNN / TimesNet / XGBoost
 
 search_config:
+  # 滚雪球检索深度配置
+  pasa_snowball_depth: 2  # 参考文献追溯深度（0=禁用，1=仅直接引用，2=两层引用）
+  
   # 三模型专属检索关键词
   keywords:
     - "MTGNN 时序预测"
