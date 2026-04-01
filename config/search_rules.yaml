@@ -12,18 +12,30 @@ search_config:
     - "XGBoost 时序特征工程"
     - "时空序列预测"
     - "多变量时序预测"
+    - "power load forecasting"
+    - "time series forecasting"
+    - "spatiotemporal forecasting"
   
   # API 配置
   api_sources:
-    - name: Semantic Scholar
-      enabled: true
-      priority: 1
     - name: arXiv
       enabled: true
+      priority: 1
+      api_type: "arxiv"
+      api_url: "https://api.arxiv.org"
+      max_results: 50
+      request_interval: 3  # 强制间隔 3 秒，防封禁
+    - name: Semantic Scholar
+      enabled: false  # 待 API 密钥配置
       priority: 2
-    - name: Google Scholar
+    - name: 学校图书馆 (Selenium)
       enabled: true
       priority: 3
+      platforms:
+        - CNKI
+        - ScienceDirect
+        - Nature
+      download_path: "literature/pdf/"
 
   # 文献过滤规则
   filter_rules:
