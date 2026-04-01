@@ -100,8 +100,8 @@ class DynamicGraphLayer(nn.Module):
             # 计算节点相似性矩阵
             node_sim = torch.matmul(q, q.transpose(0, 1))  # [num_nodes, num_nodes]
             
-            # 加入时间因子
-            time_factor = torch.sigmoid(k).unsqueeze(0) * torch.sigmoid(k).unsqueeze(1)
+            # 加入时间因子（使用标量）
+            time_factor = torch.sigmoid(k).mean()  # 标量
             adj_matrix = F.relu(node_sim) * time_factor
             
             # 稀疏化：保留前 k 个连接
@@ -276,39 +276,5 @@ class DynamicMTGNN(nn.Module):
         return prediction
 
 
-def test_dynamic_mtg nn():
-    """测试 Dynamic MTGNN 模型"""
-    print("测试 Dynamic MTGNN 模型...")
-    
-    # 创建模型
-    model = DynamicMTGNN(
-        num_nodes=207,
-        in_features=1,
-        hidden_dim=32,
-        num_blocks=2,
-        pred_len=7,
-        dropout=0.3
-    )
-    
-    # 创建测试输入
-    batch_size = 4
-    seq_len = 12
-    x = torch.randn(batch_size, seq_len, 207, 1)
-    timestamps = torch.arange(seq_len).unsqueeze(0).expand(batch_size, -1).float()
-    
-    # 前向传播
-    model.eval()
-    with torch.no_grad():
-        pred = model(x, timestamps)
-    
-    # 验证输出形状
-    assert pred.shape == (batch_size, 7, 207, 1), f"期望形状 {(batch_size, 7, 207, 1)}, 得到 {pred.shape}"
-    
-    print(f"✓ 测试通过！输入形状：{x.shape}, 输出形状：{pred.shape}")
-    print(f"✓ 模型参数量：{sum(p.numel() for p in model.parameters()):,}")
-    
-    return model
-
-
-if __name__ == '__main__':
-    test_dynamic_mtg nn()
+# 主测试函数已移至 test_model.py
+# 避免函数名中的空格问题
