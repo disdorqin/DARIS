@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-04-02 21:56:25",
+  "innovation": {
+    "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+    "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+    "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+    "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+  },
+  "results": {
+    "XGBoost": {
+      "baseline": {
+        "MAE": 35.546630859375,
+        "RMSE": 55.607320311858444,
+        "R2": 0.9012383222579956
+      },
+      "optimized": {
+        "MAE": 37.33539581298828,
+        "RMSE": 56.72344376239533,
+        "R2": 0.8972693085670471
+      }
+    },
+    "TimesNet": {
+      "baseline": {
+        "MAE": 72.25719451904297,
+        "RMSE": 108.53672963420033,
+        "R2": 0.623748779296875
+      },
+      "optimized": {
+        "MAE": 71.93363952636719,
+        "RMSE": 98.01032809894322,
+        "R2": 0.6935248374938965
+      }
+    },
+    "MTGNN": {
+      "baseline": {
+        "MAE": 86.3272933959961,
+        "RMSE": 123.08445160361443,
+        "R2": 0.5161275863647461
+      },
+      "optimized": {
+        "MAE": 86.038818359375,
+        "RMSE": 111.02803524054184,
+        "R2": 0.6067063808441162
+      }
+    }
+  },
+  "improvement": {
+    "XGBoost": {
+      "MAE_improve_%": -5.032164540965254,
+      "RMSE_improve_%": -2.0071520157371534,
+      "R2_gain": -0.003969013690948486
+    },
+    "TimesNet": {
+      "MAE_improve_%": 0.44778239015425675,
+      "RMSE_improve_%": 9.698469422041809,
+      "R2_gain": 0.06977605819702148
+    },
+    "MTGNN": {
+      "MAE_improve_%": 0.3341643474188586,
+      "RMSE_improve_%": 9.795239127277831,
+      "R2_gain": 0.09057879447937012
+    }
+  },
+  "stage3_notes": {
+    "XGBoost": [
+      "code/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+    ],
+    "TimesNet": [
+      "code/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+    ],
+    "MTGNN": [
+      "code/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+    ]
+  }
+}

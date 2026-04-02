@@ -1,9 +1,12 @@
 # ==================== 隐私配置 ====================
 .env
+1_config/base/.env.backup
 *.pem
 *.key
 credentials.json
 secrets/
+*password*
+*secret*
 
 # ==================== 训练模型 ====================
 *.pth
@@ -11,8 +14,10 @@ secrets/
 *.h5
 *.pkl
 *.ckpt
+*.onnx
 models/
 checkpoints/
+6_experiment_execution/best_model/
 
 # ==================== 大体积数据 ====================
 *.csv
@@ -28,6 +33,9 @@ data/processed/
 logs/
 tensorboard/
 runs/
+7_monitor_system/system_log/
+7_monitor_system/error_log/
+7_monitor_system/alert_history/
 
 # ==================== 缓存文件 ====================
 __pycache__/
@@ -45,6 +53,7 @@ __pycache__/
 *~
 .DS_Store
 Thumbs.db
+~$*.docx
 
 # ==================== 实验结果（可选） ====================
 # experiment/raw_results/
@@ -65,5 +74,8 @@ build/
 # ==================== Obsidian ====================
 # 仅忽略临时文件，知识库内容需保留
 .obsidian/plugins/
-.obsidian/workspace.json"chrome-win32/"  
-"code/chromedriver-win32/"  
+.obsidian/workspace.json
+
+# ==================== Browser/Driver ====================
+chrome-win32/
+code/chromedriver-win32/

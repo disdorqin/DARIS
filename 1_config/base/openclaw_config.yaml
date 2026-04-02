@@ -1,0 +1,53 @@
+﻿version: "3.0"
+project: DARIS
+runtime:
+  scheduler: openclaw
+  openclaw_cli: openclaw.cmd
+  openclaw_data_path: E:/Openclaw/data
+  openclaw_link_path: C:/Users/37813/.openclaw
+  memory_path: 8_knowledge_asset/iteration_memory
+api_bindings:
+  llm:
+    primary:
+      provider: openai
+      api_key_env: OPENAI_API_KEY
+      base_url_env: OPENAI_BASE_URL
+    fallback:
+      - provider: anthropic
+        api_key_env: ANTHROPIC_API_KEY
+      - provider: deepseek
+        api_key_env: DEEPSEEK_API_KEY
+  academic:
+    semantic_scholar_api_key_env: SEMANTIC_SCHOLAR_API_KEY
+    arxiv_api_key_env: ARXIV_API_KEY
+  zotero:
+    zotero_api_key_env: ZOTERO_API_KEY
+    zotero_user_id_env: ZOTERO_USER_ID
+    zotero_library_type_env: ZOTERO_LIBRARY_TYPE
+    zotero_collection_env: ZOTERO_COLLECTION_NAME
+tools:
+  git:
+    enabled: true
+  zotero:
+    enabled: true
+  aliyun_ssh:
+    enabled: true
+  obsidian:
+    enabled: true
+orchestration:
+  stages:
+    - research_definition
+    - literature_research
+    - innovation_mining
+    - code_implementation
+    - cloud_tuning
+    - asset_sedimentation
+  retry:
+    max_attempts: 3
+    backoff_seconds: 10
+  rollback:
+    enabled_env_key: AUTO_ROLLBACK_ENABLED
+validation:
+  require_stage_gate: true
+  require_traceable_logs: true
+  require_prompt_versioning: true

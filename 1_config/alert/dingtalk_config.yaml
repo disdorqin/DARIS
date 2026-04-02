@@ -1,0 +1,11 @@
+﻿enabled: true
+webhook_url_env: WEBHOOK_URL
+secret_env: DINGTALK_SECRET
+at_mobiles_env: DINGTALK_AT_MOBILES
+send_policy:
+  emergency: immediate
+  warning: scheduled
+  notice: stage_end
+message_template:
+  title: "DARIS v3 Alert"
+  body: "[{level}] stage={stage} agent={agent} action={action} result={result} duration={duration}s"
