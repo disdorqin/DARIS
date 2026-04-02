@@ -65,4 +65,5 @@ build/
 # ==================== Obsidian ====================
 # 仅忽略临时文件，知识库内容需保留
 .obsidian/plugins/
-.obsidian/workspace.json
+.obsidian/workspace.json"chrome-win32/"  
+"code/chromedriver-win32/"  
