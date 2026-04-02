@@ -17,11 +17,11 @@ import sys
 import argparse
 from pathlib import Path
 
-# 添加项目根目录到路径
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+# 添加 code 目录到路径
+code_dir = Path(__file__).parent
+sys.path.insert(0, str(code_dir))
 
-from code.crawler.literature_crawler import (
+from crawler.literature_crawler import (
     LiteratureCrawler,
     CNKI_CONFIG,
     GOOGLE_SCHOLAR_CONFIG
@@ -32,13 +32,15 @@ def run_crawler(
     keywords,
     source='google',
     max_results=5,
-    headless=False
+    headless=False,
+    cnki_login=False
 ):
     """运行文献爬取器"""
     
     # 选择搜索配置
     if source.lower() == 'cnki':
         config = CNKI_CONFIG
+        cnki_login = True
         print("\n" + "=" * 60)
         print("使用 CNKI 搜索（需要校园网/机构订阅）")
         print("=" * 60)
@@ -51,7 +53,8 @@ def run_crawler(
     # 使用上下文管理器运行
     with LiteratureCrawler(
         headless=headless,
-        max_results_per_keyword=max_results
+        max_results_per_keyword=max_results,
+        cnki_login=cnki_login
     ) as crawler:
         
         # 执行爬取
@@ -102,6 +105,8 @@ def main():
                         help='每个关键词最大结果数')
     parser.add_argument('--headless', action='store_true',
                         help='无头模式（不显示浏览器）')
+    parser.add_argument('--cnki-login', action='store_true',
+                        help='CNKI 登录模式（使用.env 中的学校账号）')
     
     args = parser.parse_args()
     
@@ -109,7 +114,8 @@ def main():
         keywords=args.keywords,
         source=args.source,
         max_results=args.max_results,
-        headless=args.headless
+        headless=args.headless,
+        cnki_login=args.cnki_login or args.source == 'cnki'
     )
 
 

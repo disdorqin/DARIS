@@ -51,7 +51,8 @@ class LiteratureCrawler:
         self,
         headless: bool = False,
         wait_time: int = 10,
-        max_results_per_keyword: int = 10
+        max_results_per_keyword: int = 10,
+        cnki_login: bool = False
     ):
         """
         初始化爬取器
@@ -60,14 +61,20 @@ class LiteratureCrawler:
             headless: 是否无头模式（默认 False，方便调试）
             wait_time: 显式等待时间（秒）
             max_results_per_keyword: 每个关键词最大结果数
+            cnki_login: 是否登录 CNKI（默认 False）
         """
         self.headless = headless
         self.wait_time = wait_time
         self.max_results = max_results_per_keyword
+        self.cnki_login = cnki_login
         
         # 输出目录
         self.output_dir = Path('literature/crawled')
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 从.env 读取 CNKI 账号密码
+        self.cnki_username = os.getenv('SCHOOL_USERNAME', '')
+        self.cnki_password = os.getenv('SCHOOL_PASSWORD', '')
         
         # 初始化浏览器
         self.driver = self._init_driver()
@@ -95,12 +102,64 @@ class LiteratureCrawler:
         chrome_options.add_argument('--window-size=1920,1080')
         chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
         
-        # 使用 WebDriver Manager 自动管理驱动
-        service = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        # 使用项目目录中的 ChromeDriver
+        driver_path = Path(__file__).parent.parent / 'chromedriver-win32' / 'chromedriver.exe'
+        if driver_path.exists():
+            service = Service(str(driver_path))
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+            logger.info(f"Chrome WebDriver 初始化成功（使用本地 ChromeDriver: {driver_path}）")
+        else:
+            # 回退到 webdriver-manager
+            service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+            logger.info("Chrome WebDriver 初始化成功（webdriver-manager 自动管理）")
         
-        logger.info("Chrome WebDriver 初始化成功")
         return driver
+    
+    def cnki_login_check(self):
+        """CNKI 登录检查"""
+        if self.cnki_username and self.cnki_password:
+            logger.info(f"使用学号 {self.cnki_username} 登录 CNKI...")
+            self._login_cnki()
+        else:
+            logger.warning("未在.env 中配置 SCHOOL_USERNAME 和 SCHOOL_PASSWORD")
+    
+    def _login_cnki(self):
+        """登录 CNKI 知网"""
+        try:
+            # 访问 CNKI 登录页面
+            self.driver.get('https://auth.cnki.net/login')
+            time.sleep(3)
+            
+            # 等待登录表单加载
+            username_input = WebDriverWait(self.driver, self.wait_time).until(
+                EC.presence_of_element_located((By.NAME, 'username'))
+            )
+            
+            # 输入学号
+            username_input.clear()
+            username_input.send_keys(self.cnki_username)
+            time.sleep(1)
+            
+            # 输入密码
+            password_input = self.driver.find_element(By.NAME, 'password')
+            password_input.clear()
+            password_input.send_keys(self.cnki_password)
+            time.sleep(1)
+            
+            # 点击登录
+            login_button = self.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"], .login-btn')
+            login_button.click()
+            time.sleep(5)  # 等待登录完成
+            
+            # 检查登录状态
+            if 'auth' not in self.driver.current_url.lower():
+                logger.info("✓ CNKI 登录成功")
+            else:
+                logger.warning("⚠ CNKI 登录失败，请检查账号密码")
+                
+        except Exception as e:
+            logger.error(f"CNKI 登录失败：{e}")
     
     def crawl_keyword(
         self,
@@ -139,25 +198,16 @@ class LiteratureCrawler:
         }
         
         try:
-            # 访问搜索页面
-            self.driver.get(search_url)
-            time.sleep(3)  # 等待页面加载
-            
-            # 输入关键词
-            search_input = WebDriverWait(self.driver, self.wait_time).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, search_input_selector))
-            )
-            search_input.clear()
-            search_input.send_keys(keyword)
-            time.sleep(1)
-            
-            # 点击搜索
-            search_button = self.driver.find_element(By.CSS_SELECTOR, search_button_selector)
-            search_button.click()
-            time.sleep(3)  # 等待搜索结果
+            # 直接访问搜索结果页面（避免页面元素查找失败）
+            search_url_with_query = f"{search_url}&q={keyword.replace(' ', '+')}"
+            logger.info(f"访问搜索 URL: {search_url_with_query}")
+            self.driver.get(search_url_with_query)
+            time.sleep(5)  # 等待页面加载
             
             # 获取搜索结果列表
             articles = self._parse_search_results(result_selectors)
+            
+            logger.info(f"解析到 {len(articles)} 篇文献")
             
             # 逐个访问详情页获取摘要
             for i, article in enumerate(articles[:self.max_results]):
@@ -174,15 +224,18 @@ class LiteratureCrawler:
                         logger.warning(f"  [{i+1}/{len(articles)}] 详情页爬取失败")
                 else:
                     result['articles'].append(article)
+                    logger.info(f"  [{i+1}/{len(articles)}] 已收录：{article.get('title', 'Unknown')[:50]}...")
                 
                 # 礼貌延迟
-                time.sleep(2)
+                time.sleep(1)
             
             self.stats['success_count'] += len(result['articles'])
             logger.info(f"✓ 关键词 '{keyword}' 爬取完成，共 {len(result['articles'])} 篇")
             
         except Exception as e:
             logger.error(f"✗ 关键词 '{keyword}' 爬取失败：{e}")
+            import traceback
+            logger.error(traceback.format_exc())
             self.stats['failed_keywords'].append(keyword)
             self.stats['failed_count'] += 1
         
@@ -284,6 +337,10 @@ class LiteratureCrawler:
             logger.info(f"进度：[{i+1}/{len(keywords)}]")
             logger.info(f"{'='*60}")
             
+            # 如果是 CNKI 且需要登录
+            if search_config.get('login_url') and self.cnki_login:
+                self.cnki_login_check()
+            
             result = self.crawl_keyword(
                 keyword=keyword,
                 search_url=search_config['search_url'],
@@ -343,6 +400,7 @@ class LiteratureCrawler:
 # CNKI 配置（需要机构订阅）
 CNKI_CONFIG = {
     'search_url': 'https://www.cnki.net/',
+    'login_url': 'https://auth.cnki.net/login',
     'search_input_selector': '#txt',
     'search_button_selector': '#btn',
     'result_selectors': {
@@ -356,15 +414,15 @@ CNKI_CONFIG = {
 
 # Google Scholar 配置
 GOOGLE_SCHOLAR_CONFIG = {
-    'search_url': 'https://scholar.google.com/',
+    'search_url': 'https://scholar.google.com/scholar?hl=zh-CN&as_sdt=0%2C5',
     'search_input_selector': '#gs_hp_tsi',
     'search_button_selector': '#gs_hp_btn',
     'result_selectors': {
-        'article_list': '.gs_r, .gs_fl',
-        'title': '.gs_rt a, h3 a',
-        'authors': '.gs_a',
-        'journal': '.gs_a',
-        'abstract': '.gs_rs'
+        'article_list': 'div.gs_r.gs_or.gs_scl',
+        'title': 'h3.gs_rt a',
+        'authors': 'div.gs_a',
+        'journal': 'div.gs_a',
+        'abstract': 'div.gs_rs'
     }
 }
 
