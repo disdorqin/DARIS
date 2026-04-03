@@ -88,7 +88,7 @@ def train_eval_timesnet(df, optimized: bool) -> Dict[str, float]:
         epochs=10 if optimized else 6,
         batch_size=128,
         lr=8e-4 if optimized else 1e-3,
-        lambda_phy=0.122,
+        lambda_phy=0.1222,
     )
 
     pred = _train_model(data, cfg, optimized)

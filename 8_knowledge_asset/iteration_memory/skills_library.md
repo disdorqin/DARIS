@@ -120,3 +120,47 @@
   - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
 - reusable_capability_iterations:
   - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
+
+### [2026-04-03 10:38:47] 预清理阶段
+- core_skills:
+  - 全目录预览 + 安全白名单清理
+  - 清理报告双格式落盘
+- pitfalls:
+  - 避免误删核心配置和科研资产
+- optimizations:
+  - 仅对显式冗余模式执行删除
+- evidence:
+  - 8_knowledge_asset/final_report/cleanup_report_20260403_103847.md
+
+### [2026-04-03 10:52:25] 标杆项目集成阶段
+- core_skills:
+  - 仓库三次重试克隆
+  - 四步校验: 克隆/复现/适配/可用性
+- pitfalls:
+  - 仓库地址漂移导致克隆失败
+  - 探针文件路径不稳定导致误判
+- optimizations:
+  - 配置化候选仓库地址
+  - 统一适配文档模板自动生成
+- evidence:
+  - 8_knowledge_asset/final_report/benchmark_integration_20260403_105225.md
+
+### [2026-04-03 10:58:41] 轮次1执行阶段
+- core_skills:
+  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
+- pitfalls:
+  - API 不可用时需降级且保持输出结构稳定
+- optimizations:
+  - 将全量测试日志固定重定向到 tuning_log
+- evidence:
+  - 6_experiment_execution\tuning_log\auto_full_pipeline_stdout.log
+
+### [2026-04-03 10:58:41] Round 1 深度复盘
+- bottlenecks:
+  - 标杆项目中存在 9 个非阻断失败项，影响能力完全落地率。
+- root_causes:
+  - 部分仓库地址不可用或网络不可达。
+- optimization_paths:
+  - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
+- reusable_capability_iterations:
+  - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
