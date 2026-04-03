@@ -342,3 +342,23 @@
   - 继续强化阶段内指标门禁，缩短无效迭代。
 - reusable_capability_iterations:
   - 保持阶段日志与能力沉淀同步写入 skills 知识库。
+
+### [2026-04-03 11:30:48] 轮次1执行阶段
+- core_skills:
+  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
+- pitfalls:
+  - API 不可用时需降级且保持输出结构稳定
+- optimizations:
+  - 将全量测试日志固定重定向到 tuning_log
+- evidence:
+  - skipped_by_flag
+
+### [2026-04-03 11:30:48] Round 1 深度复盘
+- bottlenecks:
+  - 本轮主流程执行顺畅，未出现显著阻断。
+- root_causes:
+  - 前置清理与重试机制降低了偶发错误率。
+- optimization_paths:
+  - 继续强化阶段内指标门禁，缩短无效迭代。
+- reusable_capability_iterations:
+  - 保持阶段日志与能力沉淀同步写入 skills 知识库。
