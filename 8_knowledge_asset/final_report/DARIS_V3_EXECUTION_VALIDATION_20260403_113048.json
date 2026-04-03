@@ -1,0 +1,667 @@
+{
+  "request": "rerun_after_repo_map_update2",
+  "start_time": "2026-04-03T11:27:44.456638",
+  "rounds": 1,
+  "auto_migrate": false,
+  "skip_full_baseline": true,
+  "steps": [
+    {
+      "round": 1,
+      "keywords": [
+        "rerun_after_repo_map_update2",
+        "rerun_after_repo_map_update2 time series forecasting",
+        "rerun_after_repo_map_update2 graph neural network"
+      ],
+      "literature_json": "3_literature_workflow\\structured_summary\\auto_literature_20260403_112923.json",
+      "reading_summary": "3_literature_workflow\\structured_summary\\agent_reading_round1.md",
+      "innovation": "4_research_hypothesis\\innovation_round1.md",
+      "innovation_review": "4_research_hypothesis\\review_report\\innovation_review_round1.md",
+      "changed_files": [
+        "5_code_base\\optimized\\power_models\\timesnet_model.py"
+      ],
+      "demo_metrics": {
+        "MAE": 45.474403381347656,
+        "RMSE": 64.61547167426312,
+        "R2": 0.871709406375885
+      },
+      "full_test_log": "skipped_by_flag",
+      "round_metrics": {
+        "timestamp": "2026-04-03 10:58:40",
+        "innovation": {
+          "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+          "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+          "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+          "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+        },
+        "results": {
+          "XGBoost": {
+            "baseline": {
+              "MAE": 35.546630859375,
+              "RMSE": 55.607320311858444,
+              "R2": 0.9012383222579956
+            },
+            "optimized": {
+              "MAE": 37.82931900024414,
+              "RMSE": 56.51379334189685,
+              "R2": 0.8980273008346558
+            }
+          },
+          "TimesNet": {
+            "baseline": {
+              "MAE": 87.47589111328125,
+              "RMSE": 122.99695912145552,
+              "R2": 0.5168153047561646
+            },
+            "optimized": {
+              "MAE": 72.52911376953125,
+              "RMSE": 97.80694373196363,
+              "R2": 0.6947954893112183
+            }
+          },
+          "MTGNN": {
+            "baseline": {
+              "MAE": 74.5829849243164,
+              "RMSE": 106.59104273167141,
+              "R2": 0.6371176242828369
+            },
+            "optimized": {
+              "MAE": 93.80503845214844,
+              "RMSE": 114.72801991966696,
+              "R2": 0.5800567865371704
+            }
+          }
+        },
+        "improvement": {
+          "XGBoost": {
+            "MAE_improve_%": -6.421672281403032,
+            "RMSE_improve_%": -1.6301325526112382,
+            "R2_gain": -0.0032110214233398438
+          },
+          "TimesNet": {
+            "MAE_improve_%": 17.08673916152958,
+            "RMSE_improve_%": 20.480193631956027,
+            "R2_gain": 0.1779801845550537
+          },
+          "MTGNN": {
+            "MAE_improve_%": -25.77270613040996,
+            "RMSE_improve_%": -7.633828302514405,
+            "R2_gain": -0.057060837745666504
+          }
+        },
+        "stage3_notes": {
+          "XGBoost": [
+            "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+          ],
+          "TimesNet": [
+            "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+          ],
+          "MTGNN": [
+            "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+          ]
+        }
+      }
+    }
+  ],
+  "git_commits": [
+    {
+      "status": "success",
+      "output": "[main 61b8477] [DARIS-v3][stage:cleanup] auto redundant cleanup\n 2 files changed, 63 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_112748.json\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_112748.md"
+    },
+    {
+      "status": "success",
+      "output": "[main 292cf39] [DARIS-v3][stage:benchmark] integrate benchmark open-source capabilities\n 2 files changed, 536 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_112917.json\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_112917.md"
+    },
+    {
+      "status": "success",
+      "output": "[main 593fe93] [DARIS-v3][stage:round-1] execute auto loop\n 2 files changed, 196 insertions(+)\n create mode 100644 3_literature_workflow/structured_summary/auto_literature_20260403_112923.json"
+    }
+  ],
+  "non_blocking_failures": [],
+  "skills_library": "8_knowledge_asset/iteration_memory/skills_library.md",
+  "cleanup": {
+    "json_report": "8_knowledge_asset/final_report/cleanup_report_20260403_112748.json",
+    "md_report": "8_knowledge_asset/final_report/cleanup_report_20260403_112748.md",
+    "deleted": [],
+    "skipped": [],
+    "touched": [
+      "8_knowledge_asset/final_report/cleanup_report_20260403_112748.json",
+      "8_knowledge_asset/final_report/cleanup_report_20260403_112748.md"
+    ]
+  },
+  "benchmark_config": "1_config/base/benchmark_projects.json",
+  "benchmark_integration": {
+    "json_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_112917.json",
+    "md_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_112917.md",
+    "records": [
+      {
+        "name": "OpenClaw",
+        "agent": "global_scheduler",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openclaw_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=0fdb55c4e4; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "0fdb55c4e4",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "EvoScientist",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/evoscientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=897b444; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "897b444",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "SciPhi",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            ".env.example"
+          ],
+          "required_probes": [
+            "README.md",
+            ".env.example"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/sciphi_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "9c5a94d1",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "OpenResearch",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "2ef7c14",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero-GPT",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "8045362",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "PaperAgent",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/paperagent_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=be55aff; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "be55aff",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "AI-Scientist",
+        "agent": "innovation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ],
+          "required_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "1de1dbc",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ARIS",
+        "agent": "innovation_review_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aris_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=549db5a; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "549db5a",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Aider",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "aider"
+          ],
+          "required_probes": [
+            "README.md",
+            "aider"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aider_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=bdb4d9ff8; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "bdb4d9ff8",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ML-Agent-Research",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ml_agent_research_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5d71205; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "5d71205",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "AutoResearch",
+        "agent": "experiment_tuning_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/autoresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=228791f; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "228791f",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "chrome"
+          ],
+          "required_probes": [
+            "README.md",
+            "chrome"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5a347f4be; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "5a347f4be",
+            "source": "existing_repo"
+          }
+        ]
+      }
+    ],
+    "non_blocking_failures": [],
+    "touched": [
+      "2_agent_system/integration/openclaw_adapter.md",
+      "2_agent_system/integration/evoscientist_adapter.md",
+      "2_agent_system/integration/sciphi_adapter.md",
+      "2_agent_system/integration/openresearch_adapter.md",
+      "2_agent_system/integration/zotero_gpt_adapter.md",
+      "2_agent_system/integration/paperagent_adapter.md",
+      "2_agent_system/integration/ai_scientist_adapter.md",
+      "2_agent_system/integration/aris_adapter.md",
+      "2_agent_system/integration/aider_adapter.md",
+      "2_agent_system/integration/ml_agent_research_adapter.md",
+      "2_agent_system/integration/autoresearch_adapter.md",
+      "2_agent_system/integration/zotero_adapter.md",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_112917.json",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_112917.md"
+    ]
+  },
+  "retrospectives": [
+    {
+      "bottlenecks": [
+        "本轮主流程执行顺畅，未出现显著阻断。"
+      ],
+      "root_causes": [
+        "前置清理与重试机制降低了偶发错误率。"
+      ],
+      "optimization_paths": [
+        "继续强化阶段内指标门禁，缩短无效迭代。"
+      ],
+      "reusable_capability_iterations": [
+        "保持阶段日志与能力沉淀同步写入 skills 知识库。"
+      ]
+    }
+  ],
+  "status": "success",
+  "events": [
+    "[2026-04-03 11:27:44] 启动前冗余清理 开始 (attempt=1)",
+    "[2026-04-03 11:27:48] 清理完成: 删除 0 项，跳过 0 项",
+    "[2026-04-03 11:27:48] 12标杆项目能力集成 开始 (attempt=1)",
+    "[2026-04-03 11:27:48] 开始集成标杆项目: OpenClaw",
+    "[2026-04-03 11:27:49] 开始集成标杆项目: EvoScientist",
+    "[2026-04-03 11:29:02] 开始集成标杆项目: SciPhi",
+    "[2026-04-03 11:29:03] 开始集成标杆项目: OpenResearch",
+    "[2026-04-03 11:29:05] 开始集成标杆项目: Zotero-GPT",
+    "[2026-04-03 11:29:06] 开始集成标杆项目: PaperAgent",
+    "[2026-04-03 11:29:08] 开始集成标杆项目: AI-Scientist",
+    "[2026-04-03 11:29:09] 开始集成标杆项目: ARIS",
+    "[2026-04-03 11:29:11] 开始集成标杆项目: Aider",
+    "[2026-04-03 11:29:12] 开始集成标杆项目: ML-Agent-Research",
+    "[2026-04-03 11:29:14] 开始集成标杆项目: AutoResearch",
+    "[2026-04-03 11:29:15] 开始集成标杆项目: Zotero",
+    "[2026-04-03 11:29:17] 标杆项目集成完成: 成功/部分=12，非阻断失败=0",
+    "[2026-04-03 11:29:17] 开始执行自动化轮次 1/1",
+    "[2026-04-03 11:29:17] 文献抓取 开始 (attempt=1)",
+    "[2026-04-03 11:29:17] 抓取文献关键词: rerun_after_repo_map_update2",
+    "[2026-04-03 11:29:19] 抓取文献关键词: rerun_after_repo_map_update2 time series forecasting",
+    "[2026-04-03 11:29:21] 抓取文献关键词: rerun_after_repo_map_update2 graph neural network",
+    "[2026-04-03 11:29:23] 文献抓取完成: D:\\computer learning\\science_workflow\\3_literature_workflow\\structured_summary\\auto_literature_20260403_112923.json",
+    "[2026-04-03 11:29:23] 智能体阅读文献 开始 (attempt=1)",
+    "[2026-04-03 11:29:23] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:29:23] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"4b75775e-20ea-9061-8ecd-c2cb93b6001d\"}",
+    "[2026-04-03 11:29:23] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:29:31] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 11:29:31] 提出创新点 开始 (attempt=1)",
+    "[2026-04-03 11:29:31] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:29:31] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"983492ab-c401-90d8-996f-0a9fac10eef2\"}",
+    "[2026-04-03 11:29:31] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:29:49] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 11:29:49] 智能体审阅创新点 开始 (attempt=1)",
+    "[2026-04-03 11:29:49] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:29:49] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"4d5fd2c6-caa4-94e4-ab8c-2d457867e67d\"}",
+    "[2026-04-03 11:29:49] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 11:30:03] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 11:30:03] 智能体改动代码 开始 (attempt=1)",
+    "[2026-04-03 11:30:03] 自动代码改动完成，涉及文件数: 1",
+    "[2026-04-03 11:30:03] Demo 评估 开始 (attempt=1)",
+    "[2026-04-03 11:30:48] Demo 评估完成: {'MAE': 45.474403381347656, 'RMSE': 64.61547167426312, 'R2': 0.871709406375885}"
+  ],
+  "end_time": "2026-04-03T11:30:48.366046"
+}
