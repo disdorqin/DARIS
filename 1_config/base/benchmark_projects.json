@@ -17,6 +17,7 @@
       "name": "EvoScientist",
       "agent": "research_manager_agent",
       "repo_candidates": [
+        "https://github.com/EvoScientist/EvoScientist",
         "https://github.com/EvoAgentX/EvoScientist",
         "https://github.com/open-science-ai/EvoScientist"
       ],
@@ -35,7 +36,8 @@
         "https://github.com/SciPhi-AI/sciphi"
       ],
       "probe_files": [
-        "README.md"
+        "README.md",
+        ".env.example"
       ],
       "validation_commands": [
         "git rev-parse --short HEAD"
@@ -72,6 +74,7 @@
       "name": "PaperAgent",
       "agent": "literature_summary_agent",
       "repo_candidates": [
+        "https://github.com/songhahaha66/PaperAgent",
         "https://github.com/paperagent/paperagent",
         "https://github.com/PaperAgent/PaperAgent"
       ],
@@ -100,6 +103,7 @@
       "name": "ARIS",
       "agent": "innovation_review_agent",
       "repo_candidates": [
+        "https://github.com/abekek/arise",
         "https://github.com/ARIS-Lab/ARIS",
         "https://github.com/stanford-futuredata/aris"
       ],
@@ -142,6 +146,8 @@
       "name": "AutoResearch",
       "agent": "experiment_tuning_agent",
       "repo_candidates": [
+        "https://github.com/karpathy/autoresearch",
+        "https://github.com/aiming-lab/AutoResearchClaw",
         "https://github.com/AutoResearch/AutoResearch",
         "https://github.com/snap-stanford/AutoResearch"
       ],
