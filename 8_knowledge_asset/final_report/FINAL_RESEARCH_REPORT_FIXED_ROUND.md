@@ -1,6 +1,6 @@
 # 固定参数闭环执行报告
 
-- 时间: 2026-04-03 12:08:40
+- 时间: 2026-04-04 23:23:59
 - 数据: D:\computer learning\science_workflow\6_experiment_execution\data\shandong_pmos_hourly.csv
 - 核心创新: FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast
 - 理论依据: 近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。
@@ -16,17 +16,17 @@
 |---|---:|---:|---:|---:|
 | XGBoost | baseline | 35.546631 | 55.607320 | 0.901238 |
 | XGBoost | optimized | 37.829319 | 56.513793 | 0.898027 |
-| TimesNet | baseline | 74.907478 | 104.443003 | 0.651596 |
-| TimesNet | optimized | 66.196976 | 91.532749 | 0.732697 |
-| MTGNN | baseline | 78.487801 | 110.962158 | 0.606745 |
-| MTGNN | optimized | 74.288582 | 98.366477 | 0.691293 |
+| TimesNet | baseline | 72.769348 | 106.472662 | 0.637923 |
+| TimesNet | optimized | 76.081520 | 98.094736 | 0.692997 |
+| MTGNN | baseline | 76.726006 | 111.917476 | 0.599944 |
+| MTGNN | optimized | 103.481384 | 124.002544 | 0.509417 |
 
 ## 优化收益
 | Model | MAE improve % | RMSE improve % | R2 gain |
 |---|---:|---:|---:|
 | XGBoost | -6.42 | -1.63 | -0.003211 |
-| TimesNet | 11.63 | 12.36 | 0.081101 |
-| MTGNN | 5.35 | 11.35 | 0.084548 |
+| TimesNet | -4.55 | 7.87 | 0.055073 |
+| MTGNN | -34.87 | -10.80 | -0.090528 |
 
 ## 代码改动核心要点
 - XGBoost: 5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)

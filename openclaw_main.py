@@ -38,6 +38,15 @@ from typing import Any, Dict, List, Optional
 import requests
 import yaml
 
+# 导入钉钉回调模块
+sys.path.insert(0, str(Path(__file__).resolve().parent / "2_agent_system"))
+from dingtalk_callback import (
+    DingTalkCallbackServer,
+    create_callback_server,
+    start_callback_server,
+    stop_callback_server,
+)
+
 
 # ==================== 路径配置 ====================
 ROOT = Path(__file__).resolve().parent
@@ -47,6 +56,10 @@ STATE_PATH = ROOT / "7_monitor_system" / "system_log" / "openclaw_state.json"
 RUNNER_PATH = ROOT / "2_agent_system" / "1_research_manager" / "run.py"
 MEMORY_DIR = ROOT / "8_knowledge_asset" / "iteration_memory"
 SKILLS_LIBRARY = MEMORY_DIR / "skills_library.md"
+
+# ==================== 钉钉回调配置 ====================
+CALLBACK_PORT = 8080  # 回调服务器监听端口
+CALLBACK_SERVER: Optional[DingTalkCallbackServer] = None
 
 # ==================== 钉钉指令定义 ====================
 DINGTALK_COMMANDS = {
@@ -678,6 +691,24 @@ def _load_env() -> Dict[str, str]:
     return env
 
 
+def _dingtalk_instruction_handler(command: str, sender_id: str, sender_nick: str) -> str:
+    """
+    钉钉指令处理函数（供回调服务器调用）
+    
+    Args:
+        command: 指令内容
+        sender_id: 发送者 ID
+        sender_nick: 发送者昵称
+    
+    Returns:
+        响应文本
+    """
+    # 创建临时调度器处理指令
+    env = _load_env()
+    scheduler = OpenClawScheduler(env)
+    return scheduler.process_command(command)
+
+
 def main() -> None:
     """主函数"""
     parser = argparse.ArgumentParser(description="DARIS v3.1 OpenClaw 全局调度")
@@ -705,6 +736,17 @@ def main() -> None:
         action="store_true",
         help="以守护进程模式运行（持续监听钉钉指令）",
     )
+    parser.add_argument(
+        "--callback-port",
+        type=int,
+        default=CALLBACK_PORT,
+        help=f"钉钉回调服务器监听端口 (默认：{CALLBACK_PORT})",
+    )
+    parser.add_argument(
+        "--no-callback",
+        action="store_true",
+        help="不启动钉钉回调服务器",
+    )
     args = parser.parse_args()
     
     # 加载环境
@@ -721,6 +763,31 @@ def main() -> None:
         # 查询状态
         print(scheduler.query_status())
         return
+    
+    # 启动钉钉回调服务器（双向通信）
+    if not args.no_callback:
+        print(f"\n📡 正在启动钉钉回调服务器，监听端口：{args.callback_port}")
+        
+        global CALLBACK_SERVER
+        CALLBACK_SERVER = create_callback_server(
+            port=args.callback_port,
+            env=env,
+            instruction_handler=_dingtalk_instruction_handler,
+        )
+        
+        if CALLBACK_SERVER.start():
+            print(f"✅ 钉钉回调服务器已启动")
+            print(f"📡 回调 URL: http://47.100.98.160:{args.callback_port}/")
+            print("")
+            print("⚠️ 钉钉开发者后台配置步骤:")
+            print("1. 登录钉钉开发者后台：https://open-dev.dingtalk.com/")
+            print("2. 创建企业内部应用")
+            print("3. 配置回调 URL: http://47.100.98.160:{args.callback_port}/")
+            print("4. 配置 Token: {env.get('DINGTALK_TOKEN', '未配置')}")
+            print("5. 启用事件订阅")
+            print("")
+        else:
+            print("❌ 钉钉回调服务器启动失败")
     
     # 发送启动通知到钉钉
     scheduler.dingtalk.send_message(
@@ -753,7 +820,7 @@ def main() -> None:
         workflow_thread.start()
         
         # 如果是守护进程模式，持续监听钉钉指令
-        if args.daemon:
+        if args.daemon or not args.no_callback:
             print("")
             print("进入钉钉指令监听模式...")
             print("按 Ctrl+C 退出")
@@ -764,10 +831,19 @@ def main() -> None:
             except KeyboardInterrupt:
                 print("\n收到退出信号，正在关闭...")
                 scheduler.stop_workflow()
+                
+                # 停止回调服务器
+                if CALLBACK_SERVER:
+                    CALLBACK_SERVER.stop()
     
     else:
         # 直接执行工作流
         returncode = scheduler.execute_workflow(args.request, args.rounds)
+        
+        # 停止回调服务器
+        if CALLBACK_SERVER:
+            CALLBACK_SERVER.stop()
+        
         sys.exit(returncode)
 
 
