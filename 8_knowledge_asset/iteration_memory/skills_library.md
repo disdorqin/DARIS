@@ -1,408 +1,147 @@
 # DARIS v3 Skills Library
 
 ## 固定规则：冗余文件清理规则
-- 每轮工作流启动前，先生成全目录预览，不允许跳过。
-- 自动清理仅允许处理以下对象：缓存目录（__pycache__/.pytest_cache/.mypy_cache/.ruff_cache/.ipynb_checkpoints）、Office 锁文件（~$*.docx|xlsx|pptx）、临时文件后缀（.tmp/.temp/.bak/.orig/.rej/.swp）、系统垃圾（Thumbs.db/.DS_Store）。
-- 失败日志清理需同时满足：名称包含 failed 或 error，且超过 48 小时。
-- 任何核心配置、有效代码、已沉淀科研资产一律不自动删除。
-- 清理必须输出清单、原因、删除结果、跳过原因，并同步进入版本记录。
+- 每轮启动前必须先生成全目录预览，再执行清理。
+- 仅允许自动删除：缓存目录（__pycache__/.pytest_cache/.mypy_cache/.ruff_cache/.ipynb_checkpoints）、Office 锁文件（~$*.docx|xlsx|pptx）、临时后缀文件（.tmp/.temp/.bak/.orig/.rej/.swp）、无效系统垃圾文件（Thumbs.db/.DS_Store）。
+- 对失败/过期日志采用白名单路径和时间条件清理，默认保守跳过任何核心配置、有效代码、科研资产。
+- 清理前必须记录清单和删除原因；清理后必须记录结果和回滚建议。
+
+---
 
 ## 环节能力沉淀
 
+### 环节 1: 文献检索与归档智能体
+- **核心技能**: 多源学术 API 集成检索、Zotero 自动归档、文献去重过滤
+- **避坑规则**: 
+  - API 限流处理：请求间隔至少 0.5 秒
+  - Zotero API 密钥权限需设置为"读写"
+- **效率优化**: 
+  - 批量处理文献元数据，减少 API 调用次数
+  - 使用 DOI 作为去重主键
+
+### 环节 2: 文献阅读与结构化解析智能体
+- **核心技能**: 科研知识图谱构建、文献全文结构化解析、核心方法拆解
+- **避坑规则**:
+  - PDF 解析失败时回退到摘要解析
+  - 长文本需分段处理，避免超出模型上下文限制
+- **效率优化**:
+  - 使用 kimi-k2.5 进行文本解析，效果最佳
+  - 批量解析时限制并发数为 3
+
+### 环节 3: 创新点生成与技术拆解智能体
+- **核心技能**: 原子学术概念拆解、研究假说生成、基线短板分析
+- **避坑规则**:
+  - 创新点必须可量化评估
+  - 避免过于宽泛的创新方向
+- **效率优化**:
+  - 使用 glm-5 进行任务管理调度
+  - 创新点数量控制在 3-5 个
+
+### 环节 4: 创新点可行性评审智能体
+- **核心技能**: 双模型验证体系、可行性校验、风险评估
+- **避坑规则**:
+  - 评审必须给出明确的通过/修改/驳回结论
+  - 风险项必须附带应对策略
+- **效率优化**:
+  - 使用 MiniMax-M2.5 进行评审
+  - 评审报告结构化输出
+
+### 环节 5&6: 代码实现智能体
+- **核心技能**: 增量编码、报错自动修复、最小化验证
+- **避坑规则**:
+  - 代码修改前必须备份原文件
+  - 每次修改后进行语法检查
+- **效率优化**:
+  - 使用 qwen3.5-plus 进行代码生成
+  - 代码改动限制在最小范围
+
+### 环节 7: 实验调优智能体
+- **核心技能**: 指标驱动自主迭代、超参搜索、自动回滚
+- **避坑规则**:
+  - 实验前记录初始状态
+  - 指标下降超过阈值自动回滚
+- **效率优化**:
+  - 使用 Optuna 进行超参搜索
+  - 并行运行多个实验配置
+
+### 环节 8: 全局调度与流程管控
+- **核心技能**: 状态机管理、持久记忆库、全流程编排
+- **避坑规则**:
+  - 状态变更必须持久化
+  - 异常处理必须记录详细日志
+- **效率优化**:
+  - 使用 OpenClaw 作为统一调度入口
+  - 钉钉指令实时响应
+
+---
+
 ## 每轮深度复盘
 
-### [2026-04-03 10:24:12] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_102412.md
+### 复盘模板
+- **bottlenecks**: [本轮遇到的瓶颈问题]
+- **root_causes**: [问题的根本原因]
+- **optimization_paths**: [优化方向]
+- **reusable_capability_iterations**: [可复用的能力迭代]
 
-### [2026-04-03 10:26:03] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_102603.md
+---
 
-### [2026-04-03 10:26:37] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_102637.md
+## 大模型调用最佳实践
 
-### [2026-04-03 10:27:25] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_102725.md
+### 模型选择指南
+| 环节 | 推荐模型 | 原因 |
+|------|----------|------|
+| 文献检索/阅读 | kimi-k2.5 | 文本解析能力强，擅长长文本理解 |
+| 创新点提出 | glm-5 | 任务管理调度能力强，逻辑清晰 |
+| 创新点评审 | MiniMax-M2.5 | 评审能力强，能给出具体建议 |
+| 代码实现 | qwen3.5-plus | 代码生成能力强，支持多种语言 |
+| 实验调优 | qwen3.5-plus | 数据分析能力强 |
 
-### [2026-04-03 10:29:49] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_102949.md
+### API 端点fallback 策略
+1. 优先使用华北 2（北京）端点
+2. 失败后切换新加坡端点
+3. 最后尝试美国（弗吉尼亚）端点
+4. 全部失败时使用本地兜底生成
 
-### [2026-04-03 10:30:43] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_103043.md
+### 调用参数建议
+- temperature: 0.2（保持输出稳定性）
+- max_retries: 3（最多重试 3 次）
+- timeout: 120（超时时间 2 分钟）
 
-### [2026-04-03 10:31:32] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_103132.md
+---
 
-### [2026-04-03 10:36:52] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_103652.md
+## 开源项目集成指南
 
-### [2026-04-03 10:37:55] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - skipped_by_flag
+### Git 克隆最佳实践
+```bash
+# 使用 Token 认证
+git clone https://${GITHUB_TOKEN}@github.com/username/repo.git
 
-### [2026-04-03 10:37:55] Round 1 深度复盘
-- bottlenecks:
-  - 标杆项目中存在 5 个非阻断失败项，影响能力完全落地率。
-- root_causes:
-  - 部分仓库地址不可用或网络不可达。
-- optimization_paths:
-  - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
-- reusable_capability_iterations:
-  - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
+# 失败后切换 SSH
+git clone git@github.com:username/repo.git
 
-### [2026-04-03 10:38:47] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_103847.md
+# 使用国内镜像
+git clone https://gitee.com/mirror/repo.git
+```
 
-### [2026-04-03 10:52:25] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_105225.md
+### 核心模块提取步骤
+1. 克隆仓库到本地
+2. 阅读 README 了解项目结构
+3. 识别核心功能模块
+4. 提取关键代码文件
+5. 适配项目标准
+6. 运行可用性测试
 
-### [2026-04-03 10:58:41] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - 6_experiment_execution\tuning_log\auto_full_pipeline_stdout.log
+---
 
-### [2026-04-03 10:58:41] Round 1 深度复盘
-- bottlenecks:
-  - 标杆项目中存在 9 个非阻断失败项，影响能力完全落地率。
-- root_causes:
-  - 部分仓库地址不可用或网络不可达。
-- optimization_paths:
-  - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
-- reusable_capability_iterations:
-  - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
+## 钉钉指令速查
 
-### [2026-04-03 11:19:00] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_111900.md
-
-### [2026-04-03 11:19:50] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_111950.md
-
-### [2026-04-03 11:20:44] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_112044.md
-
-### [2026-04-03 11:22:15] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_112215.md
-
-### [2026-04-03 11:22:30] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - skipped_by_flag
-
-### [2026-04-03 11:22:30] Round 1 深度复盘
-- bottlenecks:
-  - 标杆项目中存在 5 个非阻断失败项，影响能力完全落地率。
-- root_causes:
-  - 部分仓库地址不可用或网络不可达。
-- optimization_paths:
-  - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
-- reusable_capability_iterations:
-  - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
-
-### [2026-04-03 11:23:07] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_112307.md
-
-### [2026-04-03 11:24:44] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - skipped_by_flag
-
-### [2026-04-03 11:24:44] Round 1 深度复盘
-- bottlenecks:
-  - 标杆项目中存在 5 个非阻断失败项，影响能力完全落地率。
-- root_causes:
-  - 部分仓库地址不可用或网络不可达。
-- optimization_paths:
-  - 维护企业内部镜像仓库并在配置中优先使用镜像地址。
-- reusable_capability_iterations:
-  - 将仓库候选地址与探针文件写入配置并执行自动三次重试。
-
-### [2026-04-03 11:25:33] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_112533.md
-
-### [2026-04-03 11:27:08] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_112708.md
-
-### [2026-04-03 11:27:48] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_112748.md
-
-### [2026-04-03 11:28:19] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_112819.md
-
-### [2026-04-03 11:29:17] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_112917.md
-
-### [2026-04-03 11:30:13] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - skipped_by_flag
-
-### [2026-04-03 11:30:13] Round 1 深度复盘
-- bottlenecks:
-  - 本轮主流程执行顺畅，未出现显著阻断。
-- root_causes:
-  - 前置清理与重试机制降低了偶发错误率。
-- optimization_paths:
-  - 继续强化阶段内指标门禁，缩短无效迭代。
-- reusable_capability_iterations:
-  - 保持阶段日志与能力沉淀同步写入 skills 知识库。
-
-### [2026-04-03 11:30:48] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - skipped_by_flag
-
-### [2026-04-03 11:30:48] Round 1 深度复盘
-- bottlenecks:
-  - 本轮主流程执行顺畅，未出现显著阻断。
-- root_causes:
-  - 前置清理与重试机制降低了偶发错误率。
-- optimization_paths:
-  - 继续强化阶段内指标门禁，缩短无效迭代。
-- reusable_capability_iterations:
-  - 保持阶段日志与能力沉淀同步写入 skills 知识库。
-
-### [2026-04-03 12:02:38] 预清理阶段
-- core_skills:
-  - 全目录预览 + 安全白名单清理
-  - 清理报告双格式落盘
-- pitfalls:
-  - 避免误删核心配置和科研资产
-- optimizations:
-  - 仅对显式冗余模式执行删除
-- evidence:
-  - 8_knowledge_asset/final_report/cleanup_report_20260403_120238.md
-
-### [2026-04-03 12:03:04] 标杆项目集成阶段
-- core_skills:
-  - 仓库三次重试克隆
-  - 四步校验: 克隆/复现/适配/可用性
-- pitfalls:
-  - 仓库地址漂移导致克隆失败
-  - 探针文件路径不稳定导致误判
-- optimizations:
-  - 配置化候选仓库地址
-  - 统一适配文档模板自动生成
-- evidence:
-  - 8_knowledge_asset/final_report/benchmark_integration_20260403_120304.md
-
-### [2026-04-03 12:08:41] 轮次1执行阶段
-- core_skills:
-  - 文献抓取-创新生成-评审-代码改动-验证串行闭环
-- pitfalls:
-  - API 不可用时需降级且保持输出结构稳定
-- optimizations:
-  - 将全量测试日志固定重定向到 tuning_log
-- evidence:
-  - 6_experiment_execution\tuning_log\auto_full_pipeline_stdout.log
-
-### [2026-04-03 12:08:41] Round 1 深度复盘
-- bottlenecks:
-  - 本轮主流程执行顺畅，未出现显著阻断。
-- root_causes:
-  - 前置清理与重试机制降低了偶发错误率。
-- optimization_paths:
-  - 继续强化阶段内指标门禁，缩短无效迭代。
-- reusable_capability_iterations:
-  - 保持阶段日志与能力沉淀同步写入 skills 知识库。
+| 指令 | 功能 | 权限 |
+|------|------|------|
+| `/start` | 启动工作流 | 管理员 |
+| `/pause` | 暂停工作流 | 管理员 |
+| `/resume` | 恢复工作流 | 管理员 |
+| `/stop` | 终止工作流 | 管理员 |
+| `/status` | 查询状态 | 所有人 |
+| `/clean` | 清理文件 | 管理员 |
+| `/rollback` | 版本回滚 | 管理员 |
+| `/help` | 显示帮助 | 所有人 |

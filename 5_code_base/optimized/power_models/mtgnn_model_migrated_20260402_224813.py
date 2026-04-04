@@ -11,23 +11,26 @@ from torch.utils.data import DataLoader, TensorDataset
 from power_models.common import DatasetBundle, compute_metrics, make_dataset_bundle, physics_postprocess
 
 
-class TimesNetLite(nn.Module):
-    def __init__(self, input_dim: int, hidden_dim: int = 64):
+class MTGNNLite(nn.Module):
+    def __init__(self, n_features: int, adj: np.ndarray, hidden_dim: int = 64):
         super().__init__()
-        self.backbone = nn.Sequential(
-            nn.Conv1d(input_dim, hidden_dim, kernel_size=3, padding=1),
-            nn.GELU(),
+        self.register_buffer("adj", torch.from_numpy(adj.astype(np.float32)))
+        self.in_proj = nn.Linear(n_features * 2, hidden_dim)
+        self.temporal = nn.Sequential(
             nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1),
-            nn.GELU(),
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=5, padding=2),
-            nn.GELU(),
+            nn.ReLU(),
+            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1),
+            nn.ReLU(),
         )
         self.head = nn.Linear(hidden_dim, 1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # x: [B, S, D]
-        h = x.transpose(1, 2)
-        h = self.backbone(h)
+        # x: [B, S, N]
+        graph_ctx = torch.einsum("ij,bsj->bsi", self.adj, x)
+        h = torch.cat([x, graph_ctx], dim=-1)
+        h = self.in_proj(h)
+        h = h.transpose(1, 2)
+        h = self.temporal(h)
         h = h[:, :, -1]
         out = self.head(h).squeeze(-1)
         return out
@@ -41,9 +44,21 @@ class TrainConfig:
     lambda_phy: float
 
 
+def _build_adj(train_x: np.ndarray) -> np.ndarray:
+    # train_x: [N, S, F]
+    flat = train_x.reshape(-1, train_x.shape[-1])
+    corr = np.corrcoef(flat.T)
+    corr = np.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
+    corr = np.abs(corr)
+    np.fill_diagonal(corr, 1.0)
+    row_sum = corr.sum(axis=1, keepdims=True) + 1e-6
+    return corr / row_sum
+
+
 def _train_model(data: DatasetBundle, cfg: TrainConfig, optimized: bool) -> np.ndarray:
     device = torch.device("cpu")
-    model = TimesNetLite(input_dim=data.n_features, hidden_dim=72 if optimized else 56).to(device)
+    adj = _build_adj(data.x_train)
+    model = MTGNNLite(n_features=data.n_features, adj=adj, hidden_dim=80 if optimized else 64).to(device)
 
     train_ds = TensorDataset(torch.from_numpy(data.x_train), torch.from_numpy(data.y_train), torch.from_numpy(data.last_train))
     train_loader = DataLoader(train_ds, batch_size=cfg.batch_size, shuffle=True)
@@ -80,15 +95,15 @@ def _train_model(data: DatasetBundle, cfg: TrainConfig, optimized: bool) -> np.n
     return test_pred
 
 
-def train_eval_timesnet(df, optimized: bool) -> Dict[str, float]:
+def train_eval_mtgnn(df, optimized: bool) -> Dict[str, float]:
     seq_len = 120 if optimized else 72
     data: DatasetBundle = make_dataset_bundle(df=df, seq_len=seq_len, horizon=1, optimized=optimized)
 
     cfg = TrainConfig(
-        epochs=10 if optimized else 6,
+        epochs=8 if optimized else 6,
         batch_size=128,
         lr=8e-4 if optimized else 1e-3,
-        lambda_phy=0.1222222222,
+        lambda_phy=0.1,
     )
 
     pred = _train_model(data, cfg, optimized)

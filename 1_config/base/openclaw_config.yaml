@@ -1,53 +1,298 @@
-﻿version: "3.0"
-project: DARIS
-runtime:
-  scheduler: openclaw
-  openclaw_cli: openclaw.cmd
-  openclaw_data_path: E:/Openclaw/data
-  openclaw_link_path: C:/Users/37813/.openclaw
-  memory_path: 8_knowledge_asset/iteration_memory
-api_bindings:
-  llm:
-    primary:
-      provider: openai
-      api_key_env: OPENAI_API_KEY
-      base_url_env: OPENAI_BASE_URL
-    fallback:
-      - provider: anthropic
-        api_key_env: ANTHROPIC_API_KEY
-      - provider: deepseek
-        api_key_env: DEEPSEEK_API_KEY
-  academic:
-    semantic_scholar_api_key_env: SEMANTIC_SCHOLAR_API_KEY
-    arxiv_api_key_env: ARXIV_API_KEY
-  zotero:
-    zotero_api_key_env: ZOTERO_API_KEY
-    zotero_user_id_env: ZOTERO_USER_ID
-    zotero_library_type_env: ZOTERO_LIBRARY_TYPE
-    zotero_collection_env: ZOTERO_COLLECTION_NAME
-tools:
-  git:
+# DARIS v3.1 OpenClaw 全局配置文件
+
+# ==================== 基础配置 ====================
+version: "3.1"
+name: "DARIS OpenClaw Scheduler"
+description: "Disdorqin Auto Research In Sleep - OpenClaw 全局调度器"
+
+# ==================== 大模型配置 ====================
+llm:
+  # 主用 API 端点（华北 2 北京）
+  primary_endpoint:
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key_env: "DASHSCOPE_API_KEY"
+  
+  # 备用 API 端点
+  fallback_endpoints:
+    - name: "singapore"
+      base_url: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+      api_key_env: "DASHSCOPE_SG_API_KEY"
+    - name: "us_virginia"
+      base_url: "https://dashscope-us.aliyuncs.com/compatible-mode/v1"
+      api_key_env: "DASHSCOPE_US_API_KEY"
+  
+  # 模型路由配置（按环节指定）
+  model_routing:
+    literature_agent: "kimi-k2.5"        # 文献检索与阅读（文本解析专用）
+    literature_summary_agent: "kimi-k2.5"  # 文献总结（文本解析专用）
+    innovation_agent: "glm-5"             # 创新点提出（任务管理调度）
+    innovation_review_agent: "MiniMax-M2.5" # 创新点评审
+    code_implementation_agent: "qwen3.5-plus" # 代码实现（代码书写专用）
+    experiment_tuning_agent: "qwen3.5-plus"   # 实验调优
+    monitor_alert_agent: "qwen3.5-plus"       # 监控告警
+  
+  # 模型调用参数
+  call_params:
+    temperature: 0.2
+    max_retries: 3
+    timeout: 120
+
+# ==================== 智能体环节配置 ====================
+agents:
+  # 环节 1: 文献检索与归档
+  literature_agent:
     enabled: true
-  zotero:
+    bound_repos:
+      - name: "OpenResearch"
+        url: "https://github.com/OpenResearchAI/OpenResearch"
+      - name: "Zotero-GPT"
+        url: "https://github.com/MuiseDestiny/zotero-gpt"
+    core_modules:
+      - "多源学术 API 集成检索模块"
+      - "Zotero 自动归档模块"
+      - "PDF 元数据补全模块"
+      - "文献去重过滤模块"
+    validation:
+      - "完成 2 个仓库的 git clone"
+      - "输出检索清单、Zotero 归档记录"
+      - "输出 kimi-k2.5 调用日志"
+  
+  # 环节 2: 文献阅读与结构化解析
+  literature_summary_agent:
     enabled: true
-  aliyun_ssh:
+    bound_repos:
+      - name: "PaperAgent"
+        url: "https://github.com/THUDM/PaperAgent"
+      - name: "Zotero-GPT"
+        url: "https://github.com/MuiseDestiny/zotero-gpt"
+    core_modules:
+      - "科研知识图谱构建模块"
+      - "文献全文结构化解析模块"
+      - "核心方法拆解模块"
+      - "研究脉络梳理模块"
+    validation:
+      - "完成 PaperAgent 仓库 git clone"
+      - "输出每篇文献的结构化笔记"
+      - "输出 kimi-k2.5 调用日志"
+  
+  # 环节 3: 创新点生成与技术拆解
+  innovation_agent:
     enabled: true
-  obsidian:
+    bound_repos:
+      - name: "AI-Scientist"
+        url: "https://github.com/SakanaAI/AI-Scientist"
+      - name: "PaperAgent"
+        url: "https://github.com/THUDM/PaperAgent"
+    core_modules:
+      - "原子学术概念拆解模块"
+      - "研究假说生成模块"
+      - "基线短板分析模块"
+      - "原子化技术模块拆解模块"
+    validation:
+      - "完成 AI-Scientist 仓库 git clone"
+      - "输出创新点清单、技术路线拆解文档"
+      - "输出 glm-5 调用日志"
+  
+  # 环节 4: 创新点可行性评审
+  innovation_review_agent:
     enabled: true
-orchestration:
-  stages:
-    - research_definition
-    - literature_research
-    - innovation_mining
-    - code_implementation
-    - cloud_tuning
-    - asset_sedimentation
+    bound_repos:
+      - name: "ARIS"
+        url: "https://github.com/OpenBMB/ARIS"
+    core_modules:
+      - "执行 + 评审双模型验证体系"
+      - "创新点可行性校验模块"
+      - "落地风险评估模块"
+      - "优先级排序模块"
+    validation:
+      - "完成 ARIS 仓库 git clone"
+      - "输出完整评审报告"
+      - "输出 MiniMax-M2.5 调用日志"
+  
+  # 环节 5: 创新点轻量化 Demo 实现
+  code_implementation_agent:
+    enabled: true
+    bound_repos:
+      - name: "Aider"
+        url: "https://github.com/paul-gauthier/aider"
+      - name: "AI-Scientist"
+        url: "https://github.com/SakanaAI/AI-Scientist"
+    core_modules:
+      - "增量编码模块"
+      - "报错自动修复模块"
+      - "最小化验证模块"
+      - "公式↔代码双向映射模块"
+    validation:
+      - "完成 Aider 仓库 git clone"
+      - "输出可运行的 Demo 代码"
+      - "输出 qwen3.5-plus 调用日志"
+  
+  # 环节 6: 创新点融入基线模型
+  code_implementation_agent_v2:
+    enabled: true
+    bound_repos:
+      - name: "Aider"
+        url: "https://github.com/paul-gauthier/aider"
+      - name: "ML-Agent-Research"
+        url: "https://github.com/google/ml-agent-research"
+    core_modules:
+      - "基线代码适配模块"
+      - "增量代码集成模块"
+      - "阿里云同步模块"
+      - "代码报错自动修复模块"
+    validation:
+      - "完成 2 个仓库的 git clone"
+      - "输出三个基线模型的代码修改"
+      - "输出 qwen3.5-plus 调用日志"
+  
+  # 环节 7: 云端自动化调优与实验
+  experiment_tuning_agent:
+    enabled: true
+    bound_repos:
+      - name: "AutoResearch"
+        url: "https://github.com/yuchenlin/AutoResearch"
+      - name: "ARIS"
+        url: "https://github.com/OpenBMB/ARIS"
+    core_modules:
+      - "指标驱动自主迭代模块"
+      - "超参搜索模块"
+      - "实验日志留存模块"
+      - "自动回滚模块"
+    validation:
+      - "完成 AutoResearch 仓库 git clone"
+      - "输出调优日志、最优参数组合"
+      - "输出 qwen3.5-plus 调用日志"
+  
+  # 环节 8: 全局调度与流程管控
+  global_scheduler:
+    enabled: true
+    bound_repos:
+      - name: "EvoScientist"
+        url: "https://github.com/epfml/evo-scientist"
+      - name: "SciPhi"
+        url: "https://github.com/emrgnt-cmplxty/sciphi"
+    core_modules:
+      - "三智能体协同架构"
+      - "状态机管理"
+      - "持久记忆库"
+      - "全流程编排模块"
+      - "异常处理模块"
+    validation:
+      - "完成 2 个仓库的 git clone"
+      - "对接 OpenClaw 全局调度"
+      - "输出全流程调度校验报告"
+
+# ==================== Git 配置 ====================
+git:
+  # 克隆认证配置
+  auth:
+    token_env: "COPILOT_GITHUB_TOKEN"
+    fallback_token_env: "GITHUB_TOKEN"
+  
+  # 克隆重试配置
   retry:
     max_attempts: 3
-    backoff_seconds: 10
-  rollback:
-    enabled_env_key: AUTO_ROLLBACK_ENABLED
-validation:
-  require_stage_gate: true
-  require_traceable_logs: true
-  require_prompt_versioning: true
+    retry_delay: 5  # 秒
+  
+  # 克隆协议优先级
+  protocol_priority:
+    - "https"
+    - "ssh"
+    - "gitee_mirror"
+
+# ==================== 阿里云服务器配置 ====================
+aliyun:
+  server_ip_env: "ALIYUN_SERVER_IP"
+  server_port_env: "ALIYUN_SERVER_PORT"
+  server_user_env: "ALIYUN_SERVER_USER"
+  server_password_env: "ALIYUN_SERVER_PASSWORD"
+  work_dir_env: "ALIYUN_SERVER_WORK_DIR"
+  
+  sync:
+    enabled: true
+    auto_sync_on_complete: true
+
+# ==================== 工作流配置 ====================
+workflow:
+  # 默认轮次
+  default_rounds: 1
+  
+  # 最大迭代轮次
+  max_iterations_env: "MAX_ITERATIONS"
+  
+  # 自动回滚配置
+  auto_rollback:
+    enabled_env: "AUTO_ROLLBACK_ENABLED"
+  
+  # 训练时长限制（分钟）
+  max_train_duration_env: "MAX_TRAIN_DURATION"
+
+# ==================== 基线模型配置 ====================
+baseline_models:
+  - name: "MTGNN"
+    description: "图神经网络时序预测模型"
+    path: "5_code_base/baseline/mtgnn_model.py"
+  - name: "TimesNet"
+    description: "基于周期变换的时序预测模型"
+    path: "5_code_base/baseline/timesnet_model.py"
+  - name: "XGBoost"
+    description: "梯度提升树模型"
+    path: "5_code_base/baseline/xgboost_model.py"
+
+# ==================== 日志配置 ====================
+logging:
+  level_env: "LOG_LEVEL"
+  log_dir: "7_monitor_system/system_log"
+  
+  # 日志保留天数
+  retention_days: 30
+  
+  # 日志轮转
+  rotation:
+    max_size_mb: 100
+    backup_count: 10
+
+# ==================== 监控配置 ====================
+monitoring:
+  # 告警分级配置
+  alert_levels:
+    - name: "emergency"
+      description: "紧急告警"
+      push_immediately: true
+      triggers:
+        - "服务器失联"
+        - "训练中断"
+        - "代码报错 3 次修复失败"
+        - "克隆仓库失败"
+    - name: "warning"
+      description: "预警告警"
+      push_within_minutes: 10
+      triggers:
+        - "资源接近阈值"
+        - "指标连续 3 轮下降"
+        - "环节执行超时"
+    - name: "notice"
+      description: "通知告警"
+      push_on_event: true
+      triggers:
+        - "环节完成"
+        - "迭代结束"
+        - "最优模型生成"
+        - "指令执行完成"
+
+# ==================== 知识资产管理配置 ====================
+knowledge_asset:
+  # 记忆库配置
+  memory:
+    dir: "8_knowledge_asset/iteration_memory"
+    skills_library: "skills_library.md"
+  
+  # 最终报告配置
+  final_report:
+    dir: "8_knowledge_asset/final_report"
+    auto_generate: true
+  
+  # Git 版本配置
+  git_version:
+    dir: "8_knowledge_asset/git_version"
+    auto_commit: true

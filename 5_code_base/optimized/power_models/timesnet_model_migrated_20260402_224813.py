@@ -85,10 +85,10 @@ def train_eval_timesnet(df, optimized: bool) -> Dict[str, float]:
     data: DatasetBundle = make_dataset_bundle(df=df, seq_len=seq_len, horizon=1, optimized=optimized)
 
     cfg = TrainConfig(
-        epochs=10 if optimized else 6,
+        epochs=8 if optimized else 6,
         batch_size=128,
         lr=8e-4 if optimized else 1e-3,
-        lambda_phy=0.1222222222,
+        lambda_phy=0.1,
     )
 
     pred = _train_model(data, cfg, optimized)

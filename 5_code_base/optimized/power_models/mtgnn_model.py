@@ -58,7 +58,7 @@ def _build_adj(train_x: np.ndarray) -> np.ndarray:
 def _train_model(data: DatasetBundle, cfg: TrainConfig, optimized: bool) -> np.ndarray:
     device = torch.device("cpu")
     adj = _build_adj(data.x_train)
-    model = MTGNNLite(n_features=data.n_features, adj=adj, hidden_dim=80 if optimized else 64).to(device)
+    model = MTGNNLite(n_features=data.n_features, adj=adj, hidden_dim=88 if optimized else 64).to(device)
 
     train_ds = TensorDataset(torch.from_numpy(data.x_train), torch.from_numpy(data.y_train), torch.from_numpy(data.last_train))
     train_loader = DataLoader(train_ds, batch_size=cfg.batch_size, shuffle=True)
@@ -100,7 +100,7 @@ def train_eval_mtgnn(df, optimized: bool) -> Dict[str, float]:
     data: DatasetBundle = make_dataset_bundle(df=df, seq_len=seq_len, horizon=1, optimized=optimized)
 
     cfg = TrainConfig(
-        epochs=8 if optimized else 6,
+        epochs=10 if optimized else 6,
         batch_size=128,
         lr=8e-4 if optimized else 1e-3,
         lambda_phy=0.1,

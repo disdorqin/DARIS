@@ -16,8 +16,8 @@ def train_eval_xgboost(df, optimized: bool) -> Dict[str, float]:
     x_test = data.x_test.reshape(data.x_test.shape[0], -1)
 
     model = XGBRegressor(
-        n_estimators=160 if optimized else 90,
-        max_depth=6 if optimized else 4,
+        n_estimators=140 if optimized else 90,
+        max_depth=5 if optimized else 4,
         learning_rate=0.05 if optimized else 0.07,
         subsample=0.85 if optimized else 0.8,
         colsample_bytree=0.85 if optimized else 0.8,
