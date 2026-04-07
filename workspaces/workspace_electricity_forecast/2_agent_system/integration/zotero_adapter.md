@@ -1,7 +1,7 @@
 # Zotero Integration Adapter
 
 - agent_stage: literature_agent
-- local_repo: 5_code_base/benchmark_projects/zotero_retry_1775569613575
+- local_repo: 5_code_base/benchmark_projects/zotero_retry_1775570063004
 - integration_steps:
   - clone_or_update
   - core_logic_probe_validation

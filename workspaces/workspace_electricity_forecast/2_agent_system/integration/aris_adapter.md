@@ -1,7 +1,7 @@
 # ARIS Integration Adapter
 
 - agent_stage: innovation_review_agent
-- local_repo: 5_code_base/benchmark_projects/aris_retry_1775569464827
+- local_repo: 5_code_base/benchmark_projects/aris_retry_1775570020941
 - integration_steps:
   - clone_or_update
   - core_logic_probe_validation
