@@ -1,0 +1,13 @@
+name: 'Setup Docker'
+description: 'Sets up Docker for running R2R'
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Docker
+      uses: docker-practice/actions-setup-docker@master
+      with:
+        docker_version: 20.10
+        docker_buildx: true
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2

@@ -1,0 +1,10 @@
+﻿model: XGBoost
+task: multivariate_long_horizon_forecast
+baseline:
+  n_estimators: 90
+  max_depth: 4
+optimization:
+  n_estimators: 140
+  max_depth: 5
+  tree_method: hist
+metrics: [MAE, RMSE, R2]

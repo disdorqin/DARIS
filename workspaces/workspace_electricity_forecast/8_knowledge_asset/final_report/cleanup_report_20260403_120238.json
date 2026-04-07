@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-04-03T12:02:38.401629",
+  "preview": {
+    "timestamp": "2026-04-03T12:02:35.068370",
+    "total_dirs": 1727,
+    "total_files": 19475,
+    "top_level": {
+      ".vscode": {
+        "dirs": 0,
+        "files": 1
+      },
+      "1_config": {
+        "dirs": 4,
+        "files": 24
+      },
+      "2_agent_system": {
+        "dirs": 10,
+        "files": 49
+      },
+      "3_literature_workflow": {
+        "dirs": 10,
+        "files": 41
+      },
+      "4_research_hypothesis": {
+        "dirs": 3,
+        "files": 11
+      },
+      "5_code_base": {
+        "dirs": 1671,
+        "files": 19191
+      },
+      "6_experiment_execution": {
+        "dirs": 7,
+        "files": 25
+      },
+      "7_monitor_system": {
+        "dirs": 4,
+        "files": 6
+      },
+      "8_knowledge_asset": {
+        "dirs": 9,
+        "files": 119
+      }
+    }
+  },
+  "cleanup_candidates": [
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "~$RIS v3.docx",
+      "type": "file",
+      "reason": "office_lock_file"
+    }
+  ],
+  "deleted": [
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "~$RIS v3.docx",
+      "type": "file",
+      "reason": "office_lock_file"
+    }
+  ],
+  "skipped": []
+}

@@ -1,0 +1,630 @@
+{
+  "timestamp": "2026-04-02T22:49:39.594277",
+  "moved": [
+    {
+      "source": "config\\agent_config.yaml",
+      "target": "1_config\\base\\agent_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\alert_config.yaml",
+      "target": "1_config\\alert\\alert_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\cost_config.yaml",
+      "target": "1_config\\research\\cost_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\data_feature.yaml",
+      "target": "1_config\\research\\data_feature.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\fuse_config.yaml",
+      "target": "1_config\\research\\fuse_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\innovation_prompt.md",
+      "target": "4_research_hypothesis\\innovation_prompt.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\program.md",
+      "target": "6_experiment_execution\\pipeline\\program.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\search_rules.yaml",
+      "target": "3_literature_workflow\\search_rules.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\zotero_sync.yaml",
+      "target": "3_literature_workflow\\zotero_sync\\zotero_sync.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\prompts",
+      "target": "2_agent_system\\prompts",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\crawler",
+      "target": "3_literature_workflow\\crawler",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\utils",
+      "target": "3_literature_workflow\\downloaders",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_crawler.py",
+      "target": "3_literature_workflow\\run_crawler.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\install_chromedriver.py",
+      "target": "3_literature_workflow\\install_chromedriver.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\power_models",
+      "target": "5_code_base\\optimized\\power_models",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\test_model.py",
+      "target": "5_code_base\\demo\\test_model.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\prepare_mtg_data.py",
+      "target": "6_experiment_execution\\pipeline\\prepare_mtg_data.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_stage3_local.ps1",
+      "target": "6_experiment_execution\\pipeline\\run_stage3_local.ps1",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_round_fixed_pipeline.py",
+      "target": "6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_round2_deps.py",
+      "target": "6_experiment_execution\\pipeline\\check_round2_deps.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_torch.py",
+      "target": "6_experiment_execution\\pipeline\\check_torch.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\get_num_nodes.py",
+      "target": "6_experiment_execution\\pipeline\\get_num_nodes.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SERVER_DEPLOY.md",
+      "target": "8_knowledge_asset\\docs\\SERVER_DEPLOY.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_SETUP.md",
+      "target": "8_knowledge_asset\\docs\\SSH_SETUP.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_PUBKEY.txt",
+      "target": "8_knowledge_asset\\docs\\SSH_PUBKEY.txt",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SKILLS.md",
+      "target": "8_knowledge_asset\\docs\\SKILLS.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\program.md",
+      "target": "8_knowledge_asset\\docs\\program.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "data",
+      "target": "6_experiment_execution\\data",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "experiment",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "literature",
+      "target": "3_literature_workflow\\literature_asset",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "hypothesis",
+      "target": "4_research_hypothesis\\history",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "knowledge_base",
+      "target": "8_knowledge_asset\\knowledge_base",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "memory",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "docs",
+      "target": "8_knowledge_asset\\docs",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "report",
+      "target": "8_knowledge_asset\\final_report\\history_report",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "MTGNN\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7.idx",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7_migrated_20260402_224939.idx",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7.pack",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7_migrated_20260402_224939.pack",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7.rev",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\objects\\pack\\pack-00e459d52fd008c96ab3ac28e3a67ae2a99704e7_migrated_20260402_224939.rev",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\objects\\pack",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\objects\\pack",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\objects",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\objects",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\packed-refs",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\packed-refs_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\heads\\master",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\heads\\master_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\heads",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\heads",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\remotes\\origin\\HEAD",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\remotes\\origin\\HEAD_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\remotes\\origin",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\remotes\\origin",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\remotes",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\remotes",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs\\tags",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs\\tags",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git\\refs",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git\\refs",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\.git",
+      "target": "5_code_base\\baseline\\MTGNN_root\\.git",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\data\\sensor_graph\\adj_mx.pkl",
+      "target": "5_code_base\\baseline\\MTGNN_root\\data\\sensor_graph\\adj_mx_migrated_20260402_224939.pkl",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\data\\sensor_graph\\adj_mx_bay.pkl",
+      "target": "5_code_base\\baseline\\MTGNN_root\\data\\sensor_graph\\adj_mx_bay_migrated_20260402_224939.pkl",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\data\\sensor_graph",
+      "target": "5_code_base\\baseline\\MTGNN_root\\data\\sensor_graph",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\data\\shandong_numeric.csv",
+      "target": "5_code_base\\baseline\\MTGNN_root\\data\\shandong_numeric_migrated_20260402_224939.csv",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\data",
+      "target": "5_code_base\\baseline\\MTGNN_root\\data",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\generate_training_data.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\generate_training_data_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\layer.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\layer_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\LICENSE",
+      "target": "5_code_base\\baseline\\MTGNN_root\\LICENSE_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\adaptive_dynamic_graph.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\adaptive_dynamic_graph_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\baseline.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\baseline_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\dynamic_graph.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\dynamic_graph_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\dynamic_graph_a03.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\dynamic_graph_a03_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\dynamic_graph_a05.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\dynamic_graph_a05_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\dynamic_graph_a08.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\dynamic_graph_a08_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model\\huber.pt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model\\huber_migrated_20260402_224939.pt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\model",
+      "target": "5_code_base\\baseline\\MTGNN_root\\model",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\net.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\net_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\README.md",
+      "target": "5_code_base\\baseline\\MTGNN_root\\README_migrated_20260402_224939.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\requirements.txt",
+      "target": "5_code_base\\baseline\\MTGNN_root\\requirements_migrated_20260402_224939.txt",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\trainer.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\trainer_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\train_multi_step.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\train_multi_step_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\train_single_step.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\train_single_step_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\util.py",
+      "target": "5_code_base\\baseline\\MTGNN_root\\util_migrated_20260402_224939.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\__pycache__\\layer.cpython-310.pyc",
+      "target": "5_code_base\\baseline\\MTGNN_root\\__pycache__\\layer.cpython-310_migrated_20260402_224939.pyc",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\__pycache__\\net.cpython-310.pyc",
+      "target": "5_code_base\\baseline\\MTGNN_root\\__pycache__\\net.cpython-310_migrated_20260402_224939.pyc",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\__pycache__\\trainer.cpython-310.pyc",
+      "target": "5_code_base\\baseline\\MTGNN_root\\__pycache__\\trainer.cpython-310_migrated_20260402_224939.pyc",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\__pycache__\\util.cpython-310.pyc",
+      "target": "5_code_base\\baseline\\MTGNN_root\\__pycache__\\util.cpython-310_migrated_20260402_224939.pyc",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN\\__pycache__",
+      "target": "5_code_base\\baseline\\MTGNN_root\\__pycache__",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN",
+      "target": "5_code_base\\baseline\\MTGNN_root",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630.idx",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630_migrated_20260402_224939.idx",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630.pack",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630_migrated_20260402_224939.pack",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630.rev",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\objects\\pack\\pack-44a7704a1905a0d6c4d74ee521b6e8363e79e630_migrated_20260402_224939.rev",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\objects\\pack",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\objects\\pack",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\objects",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\objects",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\packed-refs",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\packed-refs_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\heads\\main",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\heads\\main_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\heads",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\heads",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\remotes\\origin\\HEAD",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\remotes\\origin\\HEAD_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\remotes\\origin",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\remotes\\origin",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\remotes",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\remotes",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs\\tags",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs\\tags",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git\\refs",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git\\refs",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.git",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.git",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\.gitignore",
+      "target": "5_code_base\\baseline\\TimesNet_root\\.gitignore_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\LICENSE",
+      "target": "5_code_base\\baseline\\TimesNet_root\\LICENSE_migrated_20260402_224939",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\pic\\dataset.png",
+      "target": "5_code_base\\baseline\\TimesNet_root\\pic\\dataset_migrated_20260402_224939.png",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\pic\\overall.png",
+      "target": "5_code_base\\baseline\\TimesNet_root\\pic\\overall_migrated_20260402_224939.png",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\pic\\representation.png",
+      "target": "5_code_base\\baseline\\TimesNet_root\\pic\\representation_migrated_20260402_224939.png",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\pic\\timesnet.png",
+      "target": "5_code_base\\baseline\\TimesNet_root\\pic\\timesnet_migrated_20260402_224939.png",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\pic",
+      "target": "5_code_base\\baseline\\TimesNet_root\\pic",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet\\README.md",
+      "target": "5_code_base\\baseline\\TimesNet_root\\README_migrated_20260402_224939.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "TimesNet",
+      "target": "5_code_base\\baseline\\TimesNet_root",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "research_definition.md",
+      "target": "1_config\\research\\research_definition.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "D:\\computer learning\\science_workflow\\DARIS v3.docx",
+      "target": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\docs\\DARIS_v3.docx",
+      "status": "error",
+      "detail": "[WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'D:\\\\computer learning\\\\science_workflow\\\\DARIS v3.docx'"
+    },
+    {
+      "source": "~$RIS v3.docx",
+      "target": "8_knowledge_asset\\docs\\~$RIS v3.docx",
+      "status": "skipped",
+      "detail": "source_missing"
+    }
+  ],
+  "removed_empty_dirs": []
+}

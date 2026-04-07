@@ -1,0 +1,8 @@
+strands-agents>=1.13.0
+strands-agents-tools>=0.2.0
+boto3>=1.38.0
+a2a-sdk[http]>=0.3.0
+fastapi>=0.115.0
+uvicorn>=0.34.0
+arise-ai[aws]>=0.1.5
+litellm>=1.0

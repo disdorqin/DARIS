@@ -1,0 +1,478 @@
+"""Configuration management for EvoScientist.
+
+Handles loading, saving, and merging configuration from multiple sources
+with the following priority (highest to lowest):
+    CLI arguments > Environment variables > Config file > Defaults
+"""
+
+from __future__ import annotations
+
+import os
+from dataclasses import asdict, dataclass, fields
+from pathlib import Path
+from typing import Any, Literal
+
+import yaml
+from dotenv import find_dotenv, load_dotenv
+
+# =============================================================================
+# Configuration paths
+# =============================================================================
+
+
+def get_config_dir() -> Path:
+    """Get the configuration directory path.
+
+    Uses XDG_CONFIG_HOME if set, otherwise ~/.config/evoscientist/
+    """
+    xdg_config = os.environ.get("XDG_CONFIG_HOME")
+    if xdg_config:
+        return Path(xdg_config) / "evoscientist"
+    return Path.home() / ".config" / "evoscientist"
+
+
+def get_config_path() -> Path:
+    """Get the path to the configuration file."""
+    return get_config_dir() / "config.yaml"
+
+
+# =============================================================================
+# Configuration dataclass
+# =============================================================================
+
+
+@dataclass
+class EvoScientistConfig:
+    """EvoScientist configuration settings.
+
+    Attributes:
+        anthropic_api_key: Anthropic API key for Claude models.
+        openai_api_key: OpenAI API key for GPT models.
+        nvidia_api_key: NVIDIA API key for NVIDIA models.
+        google_api_key: Google API key for Gemini models.
+        tavily_api_key: Tavily API key for web search.
+        provider: Default LLM provider ('anthropic', 'openai', 'google-genai', or 'nvidia').
+        model: Default model name (short name or full ID).
+        default_mode: Default workspace mode ('daemon' or 'run').
+        default_workdir: Default workspace directory (empty = use current working directory).
+        show_thinking: Whether to show thinking panels in CLI.
+    """
+
+    # API Keys
+    anthropic_api_key: str = ""
+    anthropic_base_url: str = ""
+    anthropic_auth_mode: str = "api_key"  # "api_key" | "oauth"
+    openai_api_key: str = ""
+    openai_auth_mode: str = "api_key"  # "api_key" | "oauth"
+    nvidia_api_key: str = ""
+    google_api_key: str = ""
+    minimax_api_key: str = ""
+    siliconflow_api_key: str = ""
+    openrouter_api_key: str = ""
+    deepseek_api_key: str = ""
+    zhipu_api_key: str = ""
+    volcengine_api_key: str = ""
+    dashscope_api_key: str = ""
+    custom_openai_api_key: str = ""
+    custom_openai_base_url: str = ""
+    custom_anthropic_api_key: str = ""
+    custom_anthropic_base_url: str = ""
+    ollama_base_url: str = ""
+    tavily_api_key: str = ""
+
+    # LLM Settings
+    provider: str = "anthropic"
+    model: str = "claude-sonnet-4-5"
+
+    # Workspace Settings
+    default_mode: Literal["daemon", "run"] = "daemon"
+    default_workdir: str = ""
+
+    # UI Settings
+    show_thinking: bool = True
+    ui_backend: Literal["cli", "tui"] = "tui"
+
+    # Channel Settings
+    channel_enabled: str = ""  # "imessage" | "telegram" | "discord" | "slack" | "wechat" | "dingtalk" | "feishu" | "email" | "qq" | "signal" | "" (comma-separated for multiple)
+    channel_send_thinking: bool = True  # forward thinking to any channel
+    require_mention: str = "group"  # "always" | "group" | "off"
+    text_chunk_limit: int = 0  # 0 = use capability default
+    allowed_channels: str = ""  # comma-separated channel IDs, empty = allow all
+
+    # iMessage Settings
+    imessage_enabled: bool = False  # legacy compat
+    imessage_allowed_senders: str = ""
+
+    # Telegram Settings
+    telegram_bot_token: str = ""
+    telegram_allowed_senders: str = ""
+    telegram_proxy: str = ""
+
+    # Discord Settings
+    discord_bot_token: str = ""
+    discord_allowed_senders: str = ""
+    discord_allowed_channels: str = ""
+    discord_proxy: str = ""
+
+    # Slack Settings
+    slack_bot_token: str = ""
+    slack_app_token: str = ""
+    slack_allowed_senders: str = ""
+    slack_allowed_channels: str = ""
+    slack_proxy: str = ""
+
+    # Feishu Settings
+    feishu_app_id: str = ""
+    feishu_app_secret: str = ""
+    feishu_verification_token: str = ""
+    feishu_encrypt_key: str = ""
+    feishu_webhook_port: int = 9000
+    feishu_allowed_senders: str = ""
+    feishu_domain: str = "https://open.feishu.cn"
+    feishu_proxy: str = ""
+    feishu_subscription_mode: str = "webhook"  # "webhook" | "websocket"
+
+    # WeChat Settings
+    wechat_backend: str = "wecom"
+    wechat_webhook_port: int = 9001
+    wechat_allowed_senders: str = ""
+    wechat_proxy: str = ""
+    wechat_wecom_corp_id: str = ""
+    wechat_wecom_agent_id: str = ""
+    wechat_wecom_secret: str = ""
+    wechat_wecom_token: str = ""
+    wechat_wecom_encoding_aes_key: str = ""
+    wechat_mp_app_id: str = ""
+    wechat_mp_app_secret: str = ""
+    wechat_mp_token: str = ""
+    wechat_mp_encoding_aes_key: str = ""
+
+    # DingTalk Settings
+    dingtalk_client_id: str = ""
+    dingtalk_client_secret: str = ""
+    dingtalk_allowed_senders: str = ""
+    dingtalk_proxy: str = ""
+
+    # Email Settings
+    email_imap_host: str = ""
+    email_imap_port: int = 993
+    email_imap_username: str = ""
+    email_imap_password: str = ""
+    email_imap_mailbox: str = "INBOX"
+    email_imap_use_ssl: bool = True
+    email_smtp_host: str = ""
+    email_smtp_port: int = 587
+    email_smtp_username: str = ""
+    email_smtp_password: str = ""
+    email_smtp_use_tls: bool = True
+    email_from_address: str = ""
+    email_poll_interval: int = 30
+    email_mark_seen: bool = True
+    email_max_body_chars: int = 12000
+    email_subject_prefix: str = "Re: "
+    email_allowed_senders: str = ""
+
+    # QQ Settings
+    qq_app_id: str = ""
+    qq_app_secret: str = ""
+    qq_allowed_senders: str = ""
+
+    # Signal Settings
+    signal_phone_number: str = ""
+    signal_cli_path: str = "signal-cli"
+    signal_config_dir: str = ""
+    signal_allowed_senders: str = ""
+    signal_rpc_port: int = 7583
+
+    # Shared webhook port (0 = disabled)
+    shared_webhook_port: int = 9000
+
+    # HITL (Human-in-the-Loop) Settings
+    auto_approve: bool = False  # Auto-approve all tool executions without prompting
+    shell_allow_list: str = ""  # Comma-separated shell command prefixes to auto-approve
+
+    # Agent features
+    enable_ask_user: bool = True  # Enable ask_user tool for agent-initiated questions
+
+    # DM access control policy
+    dm_policy: str = "allowlist"
+
+    # OpenAI API mode - "" = auto, "true" = force Responses, "false" = force Completions
+    use_responses_api: str = ""
+
+    # ccproxy
+    ccproxy_port: int = 8000
+
+    # STT (Speech-to-Text) Settings
+    stt_enabled: bool = False
+    stt_language: str = "auto"  # "auto" | "zh" | "en"
+    stt_model: str = ""  # override model id; empty = auto-select by language
+    stt_device: str = "cpu"  # "cpu" | "cuda"
+    stt_compute_type: str = "int8"  # "int8" | "float16" | "float32"
+
+
+# =============================================================================
+# Config file operations
+# =============================================================================
+
+
+def load_config() -> EvoScientistConfig:
+    """Load configuration from file.
+
+    Returns:
+        EvoScientistConfig instance with values from file, or defaults if
+        file doesn't exist.
+    """
+    config_path = get_config_path()
+
+    if not config_path.exists():
+        return EvoScientistConfig()
+
+    try:
+        with open(config_path) as f:
+            data = yaml.safe_load(f) or {}
+
+        # Filter to only valid fields
+        valid_fields = {f.name for f in fields(EvoScientistConfig)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+
+        return EvoScientistConfig(**filtered_data)
+    except Exception:
+        # On any error, return defaults
+        return EvoScientistConfig()
+
+
+def save_config(config: EvoScientistConfig) -> None:
+    """Save configuration to file.
+
+    Args:
+        config: EvoScientistConfig instance to save.
+    """
+    config_path = get_config_path()
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+
+    data = asdict(config)
+
+    # Save all fields including empty API keys (users can set them via env vars instead)
+    with open(config_path, "w") as f:
+        yaml.safe_dump(data, f, default_flow_style=False, sort_keys=False)
+
+
+def reset_config() -> None:
+    """Reset configuration to defaults by deleting the config file."""
+    config_path = get_config_path()
+    if config_path.exists():
+        config_path.unlink()
+
+
+# =============================================================================
+# Config value operations
+# =============================================================================
+
+
+def _coerce_value(value: Any, field_type: Any) -> Any:
+    """Coerce a value to the expected field type.
+
+    Args:
+        value: The value to coerce.
+        field_type: The target type (from dataclass field).
+
+    Returns:
+        The coerced value.
+
+    Raises:
+        ValueError: If the value cannot be coerced.
+        TypeError: If the value cannot be coerced.
+    """
+    if field_type == "bool" or field_type is bool:
+        if isinstance(value, str):
+            return value.lower() in ("true", "1", "yes", "on")
+        return bool(value)
+    if field_type == "int" or field_type is int:
+        return int(value)
+    return str(value)
+
+
+def get_config_value(key: str) -> Any:
+    """Get a single configuration value.
+
+    Args:
+        key: Configuration key name.
+
+    Returns:
+        The value, or None if key doesn't exist.
+    """
+    config = load_config()
+    return getattr(config, key, None)
+
+
+def set_config_value(key: str, value: Any) -> bool:
+    """Set a single configuration value.
+
+    Args:
+        key: Configuration key name.
+        value: New value.
+
+    Returns:
+        True if successful, False if key is invalid.
+    """
+    valid_fields = {f.name for f in fields(EvoScientistConfig)}
+    if key not in valid_fields:
+        return False
+
+    config = load_config()
+
+    # Type coercion based on field type
+    field_info = next(f for f in fields(EvoScientistConfig) if f.name == key)
+    field_type = field_info.type
+
+    try:
+        value = _coerce_value(value, field_type)
+    except (ValueError, TypeError):
+        return False
+
+    setattr(config, key, value)
+    save_config(config)
+    return True
+
+
+def list_config() -> dict[str, Any]:
+    """List all configuration values.
+
+    Returns:
+        Dictionary of all configuration key-value pairs.
+    """
+    return asdict(load_config())
+
+
+# =============================================================================
+# Effective configuration (merging sources)
+# =============================================================================
+
+# Environment variable mappings
+_ENV_MAPPINGS = {
+    "anthropic_api_key": "ANTHROPIC_API_KEY",
+    "anthropic_base_url": "ANTHROPIC_BASE_URL",
+    "anthropic_auth_mode": "EVOSCIENTIST_ANTHROPIC_AUTH_MODE",
+    "openai_api_key": "OPENAI_API_KEY",
+    "openai_auth_mode": "EVOSCIENTIST_OPENAI_AUTH_MODE",
+    "nvidia_api_key": "NVIDIA_API_KEY",
+    "google_api_key": "GOOGLE_API_KEY",
+    "minimax_api_key": "MINIMAX_API_KEY",
+    "siliconflow_api_key": "SILICONFLOW_API_KEY",
+    "openrouter_api_key": "OPENROUTER_API_KEY",
+    "deepseek_api_key": "DEEPSEEK_API_KEY",
+    "zhipu_api_key": "ZHIPU_API_KEY",
+    "volcengine_api_key": "VOLCENGINE_API_KEY",
+    "dashscope_api_key": "DASHSCOPE_API_KEY",
+    "custom_openai_api_key": "CUSTOM_OPENAI_API_KEY",
+    "custom_openai_base_url": "CUSTOM_OPENAI_BASE_URL",
+    "custom_anthropic_api_key": "CUSTOM_ANTHROPIC_API_KEY",
+    "custom_anthropic_base_url": "CUSTOM_ANTHROPIC_BASE_URL",
+    "ollama_base_url": "OLLAMA_BASE_URL",
+    "tavily_api_key": "TAVILY_API_KEY",
+    "default_mode": "EVOSCIENTIST_DEFAULT_MODE",
+    "default_workdir": "EVOSCIENTIST_WORKSPACE_DIR",
+    "ui_backend": "EVOSCIENTIST_UI_BACKEND",
+    "ccproxy_port": "EVOSCIENTIST_CCPROXY_PORT",
+    "use_responses_api": "EVOSCIENTIST_USE_RESPONSES_API",
+}
+
+
+def get_effective_config(
+    cli_overrides: dict[str, Any] | None = None,
+) -> EvoScientistConfig:
+    """Get effective configuration by merging all sources.
+
+    Priority (highest to lowest):
+        1. CLI arguments (cli_overrides)
+        2. Environment variables
+        3. Config file
+        4. Defaults
+
+    Args:
+        cli_overrides: Dictionary of CLI argument overrides.
+
+    Returns:
+        EvoScientistConfig with merged values.
+    """
+    load_dotenv(find_dotenv(usecwd=True), override=True)
+
+    # Start with file config (includes defaults for missing values)
+    config = load_config()
+    data = asdict(config)
+
+    # Apply environment variable overrides
+    for config_key, env_key in _ENV_MAPPINGS.items():
+        env_value = os.environ.get(env_key)
+        if env_value:
+            field_info = next(
+                f for f in fields(EvoScientistConfig) if f.name == config_key
+            )
+            try:
+                data[config_key] = _coerce_value(env_value, field_info.type)
+            except (ValueError, TypeError):
+                pass
+
+    # Apply CLI overrides (highest priority)
+    if cli_overrides:
+        for key, value in cli_overrides.items():
+            if value is not None and key in data:
+                data[key] = value
+
+    return EvoScientistConfig(**data)
+
+
+def apply_config_to_env(config: EvoScientistConfig) -> None:
+    """Apply config API keys to environment variables if not already set.
+
+    This allows the config file to provide API keys that downstream
+    libraries (like langchain-anthropic) can pick up.
+
+    Args:
+        config: Configuration to apply.
+    """
+    if config.anthropic_api_key and not os.environ.get("ANTHROPIC_API_KEY"):
+        os.environ["ANTHROPIC_API_KEY"] = config.anthropic_api_key
+    if config.anthropic_base_url and not os.environ.get("ANTHROPIC_BASE_URL"):
+        os.environ["ANTHROPIC_BASE_URL"] = config.anthropic_base_url
+    if config.openai_api_key and not os.environ.get("OPENAI_API_KEY"):
+        os.environ["OPENAI_API_KEY"] = config.openai_api_key
+    if config.nvidia_api_key and not os.environ.get("NVIDIA_API_KEY"):
+        os.environ["NVIDIA_API_KEY"] = config.nvidia_api_key
+    if config.google_api_key and not os.environ.get("GOOGLE_API_KEY"):
+        os.environ["GOOGLE_API_KEY"] = config.google_api_key
+    if config.minimax_api_key and not os.environ.get("MINIMAX_API_KEY"):
+        os.environ["MINIMAX_API_KEY"] = config.minimax_api_key
+    if config.siliconflow_api_key and not os.environ.get("SILICONFLOW_API_KEY"):
+        os.environ["SILICONFLOW_API_KEY"] = config.siliconflow_api_key
+    if config.openrouter_api_key and not os.environ.get("OPENROUTER_API_KEY"):
+        os.environ["OPENROUTER_API_KEY"] = config.openrouter_api_key
+    if config.deepseek_api_key and not os.environ.get("DEEPSEEK_API_KEY"):
+        os.environ["DEEPSEEK_API_KEY"] = config.deepseek_api_key
+    if config.zhipu_api_key and not os.environ.get("ZHIPU_API_KEY"):
+        os.environ["ZHIPU_API_KEY"] = config.zhipu_api_key
+    if config.volcengine_api_key and not os.environ.get("VOLCENGINE_API_KEY"):
+        os.environ["VOLCENGINE_API_KEY"] = config.volcengine_api_key
+    if config.dashscope_api_key and not os.environ.get("DASHSCOPE_API_KEY"):
+        os.environ["DASHSCOPE_API_KEY"] = config.dashscope_api_key
+    if config.custom_openai_api_key and not os.environ.get("CUSTOM_OPENAI_API_KEY"):
+        os.environ["CUSTOM_OPENAI_API_KEY"] = config.custom_openai_api_key
+    if config.custom_openai_base_url and not os.environ.get("CUSTOM_OPENAI_BASE_URL"):
+        os.environ["CUSTOM_OPENAI_BASE_URL"] = config.custom_openai_base_url
+    if config.custom_anthropic_api_key and not os.environ.get(
+        "CUSTOM_ANTHROPIC_API_KEY"
+    ):
+        os.environ["CUSTOM_ANTHROPIC_API_KEY"] = config.custom_anthropic_api_key
+    if config.custom_anthropic_base_url and not os.environ.get(
+        "CUSTOM_ANTHROPIC_BASE_URL"
+    ):
+        os.environ["CUSTOM_ANTHROPIC_BASE_URL"] = config.custom_anthropic_base_url
+    if config.ollama_base_url and not os.environ.get("OLLAMA_BASE_URL"):
+        os.environ["OLLAMA_BASE_URL"] = config.ollama_base_url
+    if config.tavily_api_key and not os.environ.get("TAVILY_API_KEY"):
+        os.environ["TAVILY_API_KEY"] = config.tavily_api_key
+    if config.use_responses_api and not os.environ.get(
+        "EVOSCIENTIST_USE_RESPONSES_API"
+    ):
+        os.environ["EVOSCIENTIST_USE_RESPONSES_API"] = config.use_responses_api

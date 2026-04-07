@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "started_at": "2026-04-04T23:13:31.419830",
+  "request": "严格按照 DARIS_v3.md 文档执行",
+  "rounds": 1,
+  "command": "C:\\ProgramData\\anaconda3\\envs\\daris-research\\python.exe D:\\computer learning\\science_workflow\\2_agent_system\\1_research_manager\\run.py --request 严格按照DARIS_v3md文档执行 --rounds 1",
+  "current_stage": null,
+  "progress": 90,
+  "ended_at": "2026-04-04T23:24:01.495764",
+  "duration_seconds": 630.075934
+}

@@ -1,0 +1,42 @@
+name: 'Setup Python for R2R Light'
+description: 'Sets up Python environment and installs dependencies using uv'
+
+inputs:
+  os:
+    description: 'Operating system'
+    required: true
+  python-version:
+    description: 'Python version to use'
+    required: false
+    default: '3.12'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: 'pip'
+
+    - name: Install uv
+      shell: bash
+      run: |
+        pip install uv
+
+    - name: Cache uv dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          py/.venv
+          py/uv.lock
+        key: ${{ runner.os }}-uv-${{ hashFiles('py/pyproject.toml', 'py/uv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-uv-
+
+    - name: Install dependencies with uv
+      shell: bash
+      working-directory: py
+      run: |
+        uv sync --extra core
+        uv pip install pip wheel

@@ -1,0 +1,119 @@
+preferences-window =
+    .title = { -app-name } подешавања
+preferences-appearance-title = Изглед и језик
+preferences-auto-recognize-files =
+    .label = Аутоматски преузми метаподатке за ПДФ и е-књиге
+preferences-file-renaming-title = Преименовање датотека
+preferences-file-renaming-intro = { -app-name } can automatically rename files based on the details of the parent item (title, author, etc.) and keep the filenames in sync as you make changes. Downloaded files are always initially named based on the parent item.
+preferences-file-renaming-auto-rename-files =
+    .label = Automatically rename files
+preferences-file-renaming-file-types = Преименуј следеће врсте датотека:
+preferences-file-renaming-file-type-pdf =
+    .label = { file-type-pdf }
+preferences-file-renaming-file-type-epub =
+    .label = { file-type-ebook }
+preferences-file-renaming-file-type-image =
+    .label = { file-type-image }
+preferences-file-renaming-file-type-audio =
+    .label = { file-type-audio }
+preferences-file-renaming-file-type-video =
+    .label = { file-type-video }
+preferences-file-renaming-customize-button =
+    .label = Прилагоди формат имена датотеке…
+preferences-file-renaming-rename-now =
+    .label = Rename Files…
+preferences-file-renaming-format-title = Формат имена датотеке
+preferences-file-renaming-format-instructions = Можете променити шаблон за име датотеке који { -app-name } користи да преименује датотеке са прилозима на основу метаподатака.
+preferences-file-renaming-format-instructions-example = На пример, „{ $example }“ у овом шаблону ће бити замењен насловом родитељске ставке, скраћене на 50 знакова.
+preferences-file-renaming-format-instructions-more = Погледајте <label data-l10n-name="file-renaming-format-help-link">документацију</label> за више података.
+preferences-file-renaming-format-template = Шаблон за име датотеке:
+preferences-file-renaming-format-preview = Преглед:
+preferences-attachment-titles-title = Attachment Titles
+preferences-attachment-titles-intro = Attachment titles are <label data-l10n-name="wiki-link">different from filenames</label>. To support some workflows, { -app-name } can show filenames instead of attachment titles in the items list.
+preferences-attachment-titles-show-filenames =
+    .label = Show attachment filenames in the items list
+preferences-reader-title = Читач
+preferences-reader-open-epubs-using = Отвори е-ењиге помоћу
+preferences-reader-open-snapshots-using = Отвори снимке помоћу
+preferences-reader-open-in-new-window =
+    .label = Отвори датотеке у новим прозорима уместо у картицама
+preferences-reader-auto-disable-tool =
+    .label = Turn off note, text, and image annotation tools after each use
+preferences-reader-ebook-font = Фонт е-књиге:
+preferences-reader-ebook-hyphenate =
+    .label = Омогући аутоматски прелом текста
+preferences-note-title = Белешке
+preferences-note-open-in-new-window =
+    .label = Open notes in new windows instead of tabs
+preferences-color-scheme = Боје за приказ:
+preferences-color-scheme-auto =
+    .label = Аутоматски
+preferences-color-scheme-light =
+    .label = Светло
+preferences-color-scheme-dark =
+    .label = Тамно
+preferences-item-pane-header = Наслов површи ставке:
+preferences-item-pane-header-style = Стил цитата заглавља:
+preferences-item-pane-header-locale = Језик заглавља:
+preferences-item-pane-header-missing-style = Стил који недостаје: <{ $shortName }>
+preferences-locate-library-lookup-intro = Претрага библиотеке може да пронађе ствари на мрежи преко ОупенУРЛ разрешитеља ваше библиотеке
+preferences-locate-resolver = Разрешивач:
+preferences-locate-base-url = Основна адреса:
+preferences-quickCopy-minus =
+    .aria-label = { general-remove }
+    .label = { $label }
+preferences-quickCopy-plus =
+    .aria-label = { general-add }
+    .label = { $label }
+preferences-styleManager-intro = { -app-name } can generate citations and bibliographies in over 10,000 citation styles. Add styles here to make them available when selecting styles throughout { -app-name }.
+preferences-styleManager-get-additional-styles =
+    .label = Get Additional Styles…
+preferences-styleManager-restore-default =
+    .label = Restore Default Styles…
+preferences-styleManager-add-from-file =
+    .tooltiptext = Додај стил из датотеке
+    .label = Add from File…
+preferences-styleManager-remove = Press { delete-or-backspace } to remove this style.
+preferences-citation-dialog = Citation Dialog
+preferences-citation-dialog-mode = Citation Dialog Mode:
+preferences-citation-dialog-mode-last-used =
+    .label = Last Used
+preferences-citation-dialog-mode-list =
+    .label = List Mode
+preferences-citation-dialog-mode-library =
+    .label = Library Mode
+preferences-advanced-enable-local-api =
+    .label = Дозволи осталим програмима на овом рачунару да комуницирају са { -app-name }
+preferences-advanced-local-api-available = Доступно на <code data-l10n-name="url">{ $url }</span>
+preferences-advanced-server-disabled = { -app-name } ХТТП сервер је онемогућен.
+preferences-advanced-server-enable-and-restart =
+    .label = Омогући и поново покрени
+preferences-advanced-language-and-region-title = Језик и регион
+preferences-advanced-enable-bidi-ui =
+    .label = Омогући алате за двосмерно уређивање текста
+preferences-advanced-reset-data-dir =
+    .label = Revert to Default Location…
+preferences-advanced-custom-data-dir =
+    .label = Use Custom Location…
+preferences-advanced-default-data-dir =
+    .value = (Default: { $directory })
+    .aria-label = Default location
+preferences-sync-reset-restore-to-server-body = { -app-name } will replace “{ $libraryName }” on { $domain } with data from this computer.
+preferences-sync-reset-restore-to-server-deleted-items-text =
+    { $remoteItemsDeletedCount } { $remoteItemsDeletedCount ->
+        [one] item
+       *[other] items
+    } in the online library will be permanently deleted.
+preferences-sync-reset-restore-to-server-remaining-items-text =
+    { general-sentence-separator }{ $localItemsCount ->
+        [0] The library on this computer and the online library will be empty.
+        [one] 1 item will remain on this computer and in the online library.
+       *[other] { $localItemsCount } items will remain on this computer and in the online library.
+    }
+preferences-sync-reset-restore-to-server-checkbox-label =
+    { $remoteItemsDeletedCount ->
+        [one] Delete 1 item
+       *[other] Delete { $remoteItemsDeletedCount } items
+    }
+preferences-sync-reset-restore-to-server-confirmation-text = delete online library
+preferences-sync-reset-restore-to-server-yes = Замени податке у мрежној библиотеци

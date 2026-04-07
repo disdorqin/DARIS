@@ -1,0 +1,10 @@
+FROM --platform=linux/arm64 public.ecr.aws/lambda/python:3.11
+
+# Install deps without the heavy tiktoken/tokenizers (not needed for worker)
+RUN pip install --no-cache-dir pydantic>=2.0 boto3>=1.34 && \
+    pip install --no-cache-dir litellm>=1.0 && \
+    pip install --no-cache-dir arise-ai>=0.1.5
+
+COPY worker.py ${LAMBDA_TASK_ROOT}/
+
+CMD ["worker.lambda_handler"]

@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-04-04T23:13:37.567882",
+  "preview": {
+    "timestamp": "2026-04-04T23:13:33.387415",
+    "total_dirs": 1735,
+    "total_files": 19503,
+    "top_level": {
+      ".vscode": {
+        "dirs": 0,
+        "files": 1
+      },
+      "1_config": {
+        "dirs": 4,
+        "files": 24
+      },
+      "2_agent_system": {
+        "dirs": 17,
+        "files": 56
+      },
+      "3_literature_workflow": {
+        "dirs": 10,
+        "files": 43
+      },
+      "4_research_hypothesis": {
+        "dirs": 3,
+        "files": 11
+      },
+      "5_code_base": {
+        "dirs": 1671,
+        "files": 19191
+      },
+      "6_experiment_execution": {
+        "dirs": 7,
+        "files": 25
+      },
+      "7_monitor_system": {
+        "dirs": 4,
+        "files": 7
+      },
+      "8_knowledge_asset": {
+        "dirs": 9,
+        "files": 137
+      },
+      "__pycache__": {
+        "dirs": 0,
+        "files": 1
+      }
+    }
+  },
+  "cleanup_candidates": [
+    {
+      "path": "__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/1_research_manager/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/2_literature_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/3_literature_summary_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/4_innovation_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/5_innovation_review_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/6_code_implementation_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "deleted": [
+    {
+      "path": "2_agent_system/1_research_manager/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/2_literature_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/3_literature_summary_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/4_innovation_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/5_innovation_review_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/6_code_implementation_agent/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "skipped": []
+}

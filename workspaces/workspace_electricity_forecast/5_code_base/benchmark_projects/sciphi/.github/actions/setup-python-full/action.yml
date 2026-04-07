@@ -1,0 +1,51 @@
+name: 'Setup Python for R2R Full'
+description: 'Sets up Python and installs R2R dependencies for full installation'
+
+inputs:
+  os:
+    description: 'Operating system'
+    required: true
+  python-version:
+    description: 'Python version to use'
+    required: false
+    default: '3.12'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: 'pip'
+
+    - name: Install R2R CLI & Python SDK
+      shell: bash
+      run: |
+        pip install r2r
+
+    - name: Install uv
+      shell: bash
+      run: |
+        pip install uv
+
+    - name: Install uv
+      shell: bash
+      run: |
+        pip install uv
+
+    - name: Cache uv dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          py/.venv
+          py/uv.lock
+        key: ${{ runner.os }}-uv-${{ hashFiles('py/pyproject.toml', 'py/uv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-uv-
+
+    - name: Install dependencies with uv
+      shell: bash
+      working-directory: py
+      run: |
+        uv sync --extra core

@@ -1,0 +1,166 @@
+{
+  "request": "今日找电力负荷预测方向文献，自动化流程执行1轮",
+  "start_time": "2026-04-02T22:52:56.628452",
+  "rounds": 1,
+  "auto_migrate": true,
+  "steps": [
+    {
+      "round": 1,
+      "keywords": [
+        "电力负荷预测",
+        "电力负荷预测 time series forecasting",
+        "电力负荷预测 graph neural network"
+      ],
+      "literature_json": "3_literature_workflow\\structured_summary\\auto_literature_20260402_225302.json",
+      "reading_summary": "3_literature_workflow\\structured_summary\\agent_reading_round1.md",
+      "innovation": "4_research_hypothesis\\innovation_round1.md",
+      "innovation_review": "4_research_hypothesis\\review_report\\innovation_review_round1.md",
+      "changed_files": [
+        "5_code_base\\optimized\\power_models\\xgboost_model.py",
+        "5_code_base\\optimized\\power_models\\timesnet_model.py",
+        "5_code_base\\optimized\\power_models\\mtgnn_model.py"
+      ],
+      "demo_metrics": {
+        "MAE": 45.474403381347656,
+        "RMSE": 64.61547167426312,
+        "R2": 0.871709406375885
+      },
+      "full_test_log": "6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+      "round_metrics": {
+        "timestamp": "2026-04-02 23:01:39",
+        "innovation": {
+          "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+          "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+          "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+          "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+        },
+        "results": {
+          "XGBoost": {
+            "baseline": {
+              "MAE": 35.546630859375,
+              "RMSE": 55.607320311858444,
+              "R2": 0.9012383222579956
+            },
+            "optimized": {
+              "MAE": 37.82931900024414,
+              "RMSE": 56.51379334189685,
+              "R2": 0.8980273008346558
+            }
+          },
+          "TimesNet": {
+            "baseline": {
+              "MAE": 77.75325775146484,
+              "RMSE": 112.06383765933371,
+              "R2": 0.5988974571228027
+            },
+            "optimized": {
+              "MAE": 86.8813247680664,
+              "RMSE": 107.95256752823205,
+              "R2": 0.6281930208206177
+            }
+          },
+          "MTGNN": {
+            "baseline": {
+              "MAE": 73.37452697753906,
+              "RMSE": 104.52765315186934,
+              "R2": 0.6510310173034668
+            },
+            "optimized": {
+              "MAE": 116.97616577148438,
+              "RMSE": 138.640391672575,
+              "R2": 0.38675904273986816
+            }
+          }
+        },
+        "improvement": {
+          "XGBoost": {
+            "MAE_improve_%": -6.421672281403032,
+            "RMSE_improve_%": -1.6301325526112382,
+            "R2_gain": -0.0032110214233398438
+          },
+          "TimesNet": {
+            "MAE_improve_%": -11.739787219950399,
+            "RMSE_improve_%": 3.6686858285182393,
+            "R2_gain": 0.02929556369781494
+          },
+          "MTGNN": {
+            "MAE_improve_%": -59.42340017713826,
+            "RMSE_improve_%": -32.63513289745718,
+            "R2_gain": -0.26427197456359863
+          }
+        },
+        "stage3_notes": {
+          "XGBoost": [
+            "code/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+          ],
+          "TimesNet": [
+            "code/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+          ],
+          "MTGNN": [
+            "code/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+          ]
+        }
+      }
+    }
+  ],
+  "migration": {
+    "json_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260402_225256.json",
+    "md_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260402_225256.md",
+    "removed_empty_dirs": []
+  },
+  "status": "success",
+  "events": [
+    "[2026-04-02 22:52:56] 目录归位 开始 (attempt=1)",
+    "[2026-04-02 22:52:56] 目录重构完成，报告: D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260402_225256.md",
+    "[2026-04-02 22:52:56] 开始执行自动化轮次 1/1",
+    "[2026-04-02 22:52:56] 文献抓取 开始 (attempt=1)",
+    "[2026-04-02 22:52:56] 抓取文献关键词: 电力负荷预测",
+    "[2026-04-02 22:52:58] 抓取文献关键词: 电力负荷预测 time series forecasting",
+    "[2026-04-02 22:53:00] 抓取文献关键词: 电力负荷预测 graph neural network",
+    "[2026-04-02 22:53:02] 文献抓取完成: D:\\computer learning\\science_workflow\\3_literature_workflow\\structured_summary\\auto_literature_20260402_225302.json",
+    "[2026-04-02 22:53:02] 智能体阅读文献 开始 (attempt=1)",
+    "[2026-04-02 22:53:02] 尝试模型: qwen3.5-plus",
+    "[2026-04-02 22:53:03] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"df074838-8a33-994b-b5d7-9792540d48d6\"}",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3-coder-next",
+    "[2026-04-02 22:53:03] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"ec5f53a9-a3a2-9997-96a2-14116c42e77f\"}",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-02 22:53:03] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"354516df-f28d-979a-ad91-f6ecf861fdac\"}",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3-coder-plus",
+    "[2026-04-02 22:53:03] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"3432e443-9541-918e-a1ec-ee215a592e84\"}",
+    "[2026-04-02 22:53:03] 尝试模型: kimi-k2.5",
+    "[2026-04-02 22:53:03] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"e6d1d724-414e-91ae-b4bc-ea9ad61d546d\"}",
+    "[2026-04-02 22:53:03] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"e6d1d724-414e-91ae-b4bc-ea9ad61d546d\"}",
+    "[2026-04-02 22:53:03] 提出创新点 开始 (attempt=1)",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3.5-plus",
+    "[2026-04-02 22:53:03] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"36d6bf67-8925-9ace-8b32-1d3ab7908495\"}",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3-coder-next",
+    "[2026-04-02 22:53:03] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"a2bb2be6-4828-9974-8fc9-3323fab2e4ee\"}",
+    "[2026-04-02 22:53:03] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-02 22:53:04] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"48251fc1-6d53-9961-a4bf-9a7dd89ebaac\"}",
+    "[2026-04-02 22:53:04] 尝试模型: qwen3-coder-plus",
+    "[2026-04-02 22:53:04] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"aa327a06-1583-90d1-a7ca-c76ba804472f\"}",
+    "[2026-04-02 22:53:04] 尝试模型: kimi-k2.5",
+    "[2026-04-02 22:53:04] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"9fa4d281-cae2-9b1d-8a1b-1385562aa6e2\"}",
+    "[2026-04-02 22:53:04] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"9fa4d281-cae2-9b1d-8a1b-1385562aa6e2\"}",
+    "[2026-04-02 22:53:04] 智能体审阅创新点 开始 (attempt=1)",
+    "[2026-04-02 22:53:04] 尝试模型: qwen3.5-plus",
+    "[2026-04-02 22:53:04] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"d5b50691-c54d-98ba-9361-e19ec4f11555\"}",
+    "[2026-04-02 22:53:04] 尝试模型: qwen3-coder-next",
+    "[2026-04-02 22:53:05] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"c3302f27-fb99-98db-b93a-98088e8141c7\"}",
+    "[2026-04-02 22:53:05] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-02 22:53:05] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"92977533-245c-9a98-b8c7-1001ac75103b\"}",
+    "[2026-04-02 22:53:05] 尝试模型: qwen3-coder-plus",
+    "[2026-04-02 22:53:05] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"1436ed46-05d4-91a9-bc96-8b75e4001543\"}",
+    "[2026-04-02 22:53:05] 尝试模型: kimi-k2.5",
+    "[2026-04-02 22:53:05] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"2edbfc54-720a-9989-a332-b5aadb1ceca6\"}",
+    "[2026-04-02 22:53:05] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"2edbfc54-720a-9989-a332-b5aadb1ceca6\"}",
+    "[2026-04-02 22:53:05] 智能体改动代码 开始 (attempt=1)",
+    "[2026-04-02 22:53:05] 自动代码改动完成，涉及文件数: 3",
+    "[2026-04-02 22:53:05] Demo 评估 开始 (attempt=1)",
+    "[2026-04-02 22:54:24] Demo 评估完成: {'MAE': 45.474403381347656, 'RMSE': 64.61547167426312, 'R2': 0.871709406375885}",
+    "[2026-04-02 22:54:24] 三基线改动测试 开始 (attempt=1)",
+    "[2026-04-02 22:54:24] 执行三基线+优化测试脚本: D:\\computer learning\\science_workflow\\6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+    "[2026-04-02 23:01:41] 全量测试完成，日志: D:\\computer learning\\science_workflow\\6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log"
+  ],
+  "end_time": "2026-04-02T23:01:41.308386"
+}

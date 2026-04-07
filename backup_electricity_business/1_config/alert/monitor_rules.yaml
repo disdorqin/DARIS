@@ -1,0 +1,24 @@
+﻿resource_threshold:
+  cpu_percent: 90
+  memory_percent: 90
+  gpu_memory_percent: 95
+  disk_percent: 90
+  sustain_minutes: 5
+experiment_alert:
+  loss_explosion: true
+  metric_drop_consecutive_rounds: 5
+  runtime_error: true
+  ssh_disconnected: true
+  training_timeout: true
+workflow_alert:
+  stage_validation_failed: true
+  max_retry_exhausted: 3
+  rollback_triggered: true
+actions:
+  on_resource_alert:
+    - reduce_parallel_jobs
+    - pause_training
+  on_runtime_error:
+    - auto_fix_and_retry
+  on_ssh_disconnected:
+    - auto_reconnect
