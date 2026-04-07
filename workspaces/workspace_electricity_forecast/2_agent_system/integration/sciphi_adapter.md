@@ -1,7 +1,7 @@
 # SciPhi Integration Adapter
 
 - agent_stage: research_manager_agent
-- local_repo: 5_code_base/benchmark_projects/sciphi
+- local_repo: 5_code_base/benchmark_projects/sciphi_retry_1775567230458
 - integration_steps:
   - clone_or_update
   - core_logic_probe_validation
