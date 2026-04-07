@@ -1,0 +1,660 @@
+{
+  "timestamp": "2026-04-07T21:09:18.359800",
+  "moved": [
+    {
+      "source": "config\\agent_config.yaml",
+      "target": "1_config\\base\\agent_config_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\alert_config.yaml",
+      "target": "1_config\\alert\\alert_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\cost_config.yaml",
+      "target": "1_config\\research\\cost_config_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\data_feature.yaml",
+      "target": "1_config\\research\\data_feature_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\fuse_config.yaml",
+      "target": "1_config\\research\\fuse_config_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\innovation_prompt.md",
+      "target": "4_research_hypothesis\\innovation_prompt_migrated_20260407_210918.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\program.md",
+      "target": "6_experiment_execution\\pipeline\\program_migrated_20260407_210918.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\search_rules.yaml",
+      "target": "3_literature_workflow\\search_rules_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\zotero_sync.yaml",
+      "target": "3_literature_workflow\\zotero_sync\\zotero_sync_migrated_20260407_210918.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "config\\prompts",
+      "target": "2_agent_system\\prompts",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\crawler",
+      "target": "3_literature_workflow\\crawler",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\utils\\aliyun_connector.py",
+      "target": "3_literature_workflow\\downloaders\\aliyun_connector.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "code\\utils\\dingtalk_callback.py",
+      "target": "3_literature_workflow\\downloaders\\dingtalk_callback.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "code\\utils\\prepare_mtg_data.py",
+      "target": "3_literature_workflow\\downloaders\\prepare_mtg_data.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "code\\utils\\workspace_context.py",
+      "target": "3_literature_workflow\\downloaders\\workspace_context.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "code\\utils",
+      "target": "3_literature_workflow\\downloaders",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "code\\run_crawler.py",
+      "target": "3_literature_workflow\\run_crawler.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\install_chromedriver.py",
+      "target": "3_literature_workflow\\install_chromedriver.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\power_models",
+      "target": "5_code_base\\optimized\\power_models",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\test_model.py",
+      "target": "5_code_base\\demo\\test_model.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\prepare_mtg_data.py",
+      "target": "6_experiment_execution\\pipeline\\prepare_mtg_data.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_stage3_local.ps1",
+      "target": "6_experiment_execution\\pipeline\\run_stage3_local.ps1",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_round_fixed_pipeline.py",
+      "target": "6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_round2_deps.py",
+      "target": "6_experiment_execution\\pipeline\\check_round2_deps.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_torch.py",
+      "target": "6_experiment_execution\\pipeline\\check_torch.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\get_num_nodes.py",
+      "target": "6_experiment_execution\\pipeline\\get_num_nodes.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\dynamic_mtg nn_model.py",
+      "target": "5_code_base\\optimized\\dynamic_mtg_nn_model.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\chromedriver-win32.zip",
+      "target": "3_literature_workflow\\crawler\\chromedriver-win32.zip",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SERVER_DEPLOY.md",
+      "target": "8_knowledge_asset\\docs\\SERVER_DEPLOY.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_SETUP.md",
+      "target": "8_knowledge_asset\\docs\\SSH_SETUP.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_PUBKEY.txt",
+      "target": "8_knowledge_asset\\docs\\SSH_PUBKEY.txt",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SKILLS.md",
+      "target": "8_knowledge_asset\\docs\\SKILLS.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\program.md",
+      "target": "8_knowledge_asset\\docs\\program.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "data",
+      "target": "6_experiment_execution\\data",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\aliyun_sync",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\aliyun_sync",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\best_model",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\best_model",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\data",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\data",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\experiment_result",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\experiment_result",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\pipeline",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\pipeline",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment\\tuning_log",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\tuning_log",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature\\crawler",
+      "target": "3_literature_workflow\\literature_asset\\crawler",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\downloaders",
+      "target": "3_literature_workflow\\literature_asset\\downloaders",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\install_chromedriver.py",
+      "target": "3_literature_workflow\\literature_asset\\install_chromedriver.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\knowledge_graph",
+      "target": "3_literature_workflow\\literature_asset\\knowledge_graph",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\literature_asset",
+      "target": "3_literature_workflow\\literature_asset\\literature_asset",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\pdf",
+      "target": "3_literature_workflow\\literature_asset\\pdf",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature\\raw_pdf",
+      "target": "3_literature_workflow\\literature_asset\\raw_pdf",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\run_crawler.py",
+      "target": "3_literature_workflow\\literature_asset\\run_crawler.py",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\search_rules.yaml",
+      "target": "3_literature_workflow\\literature_asset\\search_rules.yaml",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\structured",
+      "target": "3_literature_workflow\\literature_asset\\structured",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature\\structured_summary",
+      "target": "3_literature_workflow\\literature_asset\\structured_summary",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\zotero_sync",
+      "target": "3_literature_workflow\\literature_asset\\zotero_sync",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature",
+      "target": "3_literature_workflow\\literature_asset",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\atomic_module",
+      "target": "4_research_hypothesis\\history\\atomic_module",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\electricity_forecast_innovation_plan.md",
+      "target": "4_research_hypothesis\\history\\electricity_forecast_innovation_plan.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\history",
+      "target": "4_research_hypothesis\\history\\history",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\innovation_list.md",
+      "target": "4_research_hypothesis\\history\\innovation_list.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\innovation_prompt.md",
+      "target": "4_research_hypothesis\\history\\innovation_prompt.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\innovation_round1.md",
+      "target": "4_research_hypothesis\\history\\innovation_round1.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\review_report",
+      "target": "4_research_hypothesis\\history\\review_report",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\technical_route.md",
+      "target": "4_research_hypothesis\\history\\technical_route.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis",
+      "target": "4_research_hypothesis\\history",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\docs",
+      "target": "8_knowledge_asset\\knowledge_base\\docs",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\final_report",
+      "target": "8_knowledge_asset\\knowledge_base\\final_report",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\git_version",
+      "target": "8_knowledge_asset\\knowledge_base\\git_version",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\iteration_memory",
+      "target": "8_knowledge_asset\\knowledge_base\\iteration_memory",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\knowledge_base",
+      "target": "8_knowledge_asset\\knowledge_base\\knowledge_base",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base\\obsidian_sync",
+      "target": "8_knowledge_asset\\knowledge_base\\obsidian_sync",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base",
+      "target": "8_knowledge_asset\\knowledge_base",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "memory\\failure",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory\\failure",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "memory\\skills_library.md",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory\\skills_library.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "memory\\success",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory\\success",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "memory",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "docs",
+      "target": "8_knowledge_asset\\docs",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "report\\benchmark_integration_20260407_210915.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\benchmark_integration_20260407_210915.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\benchmark_integration_20260407_210915.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\benchmark_integration_20260407_210915.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210054.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210054.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210054.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210054.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210115.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210115.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210115.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210115.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210240.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210240.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210240.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210240.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210546.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210546.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_210546.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_210546.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_205854.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_205854.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_205854.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_205854.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_205943.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_205943.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_205943.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_205943.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_210014.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_210014.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_210014.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_210014.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_210117.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_210117.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\daily_report_20260407_210117.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\daily_report_20260407_210117.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210117.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210117.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210117.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210117.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210242.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210242.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210242.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\DARIS_V3_EXECUTION_VALIDATION_20260407_210242.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\electricity_forecast_setup_report.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\electricity_forecast_setup_report.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\openclaw_full_auto_20260407_210117.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\openclaw_full_auto_20260407_210117.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\openclaw_full_auto_20260407_210117.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\openclaw_full_auto_20260407_210117.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\openclaw_full_auto_20260407_210242.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\openclaw_full_auto_20260407_210242.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\openclaw_full_auto_20260407_210242.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\openclaw_full_auto_20260407_210242.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report",
+      "target": "8_knowledge_asset\\final_report\\history_report",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN",
+      "target": "5_code_base\\baseline\\MTGNN_root",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "TimesNet",
+      "target": "5_code_base\\baseline\\TimesNet_root",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "research_definition.md",
+      "target": "1_config\\research\\research_definition.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "DARIS v3.docx",
+      "target": "8_knowledge_asset\\docs\\DARIS_v3.docx",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "~$RIS v3.docx",
+      "target": "8_knowledge_asset\\docs\\~$RIS v3.docx",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "README.md",
+      "target": "8_knowledge_asset\\docs\\README_legacy.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    }
+  ],
+  "removed_empty_dirs": []
+}
