@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-04-04 23:23:59",
+  "innovation": {
+    "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+    "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+    "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+    "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+  },
+  "results": {
+    "XGBoost": {
+      "baseline": {
+        "MAE": 35.546630859375,
+        "RMSE": 55.607320311858444,
+        "R2": 0.9012383222579956
+      },
+      "optimized": {
+        "MAE": 37.82931900024414,
+        "RMSE": 56.51379334189685,
+        "R2": 0.8980273008346558
+      }
+    },
+    "TimesNet": {
+      "baseline": {
+        "MAE": 72.76934814453125,
+        "RMSE": 106.47266191081634,
+        "R2": 0.6379232406616211
+      },
+      "optimized": {
+        "MAE": 76.0815200805664,
+        "RMSE": 98.09473557962986,
+        "R2": 0.6929967403411865
+      }
+    },
+    "MTGNN": {
+      "baseline": {
+        "MAE": 76.72600555419922,
+        "RMSE": 111.91747622411346,
+        "R2": 0.5999444723129272
+      },
+      "optimized": {
+        "MAE": 103.48138427734375,
+        "RMSE": 124.0025437617108,
+        "R2": 0.5094166398048401
+      }
+    }
+  },
+  "improvement": {
+    "XGBoost": {
+      "MAE_improve_%": -6.421672281403032,
+      "RMSE_improve_%": -1.6301325526112382,
+      "R2_gain": -0.0032110214233398438
+    },
+    "TimesNet": {
+      "MAE_improve_%": -4.551603141279577,
+      "RMSE_improve_%": 7.86861733409465,
+      "R2_gain": 0.05507349967956543
+    },
+    "MTGNN": {
+      "MAE_improve_%": -34.87133017011363,
+      "RMSE_improve_%": -10.798195192855431,
+      "R2_gain": -0.09052783250808716
+    }
+  },
+  "stage3_notes": {
+    "XGBoost": [
+      "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+    ],
+    "TimesNet": [
+      "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+    ],
+    "MTGNN": [
+      "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+    ]
+  }
+}

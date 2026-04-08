@@ -1,0 +1,176 @@
+{
+  "timestamp": "2026-04-03T11:29:23.006433",
+  "keywords": [
+    "rerun_after_repo_map_update2",
+    "rerun_after_repo_map_update2 time series forecasting",
+    "rerun_after_repo_map_update2 graph neural network"
+  ],
+  "papers": [
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "A Hybrid Method for Forecasting of Fuzzy Time Series",
+      "doi": "10.2174/9781681085289117020012",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020012",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "Recurrent ANFIS for Time Series Forecasting",
+      "doi": "10.2174/9781681085289117020011",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020011",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "A New High Order Multivariate Fuzzy Time Series Forecasting Model",
+      "doi": "10.2174/9781681085289117020009",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020009",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "A New Fuzzy Time Series Forecasting Model with Neural Network Structure",
+      "doi": "10.2174/9781681085289117020004",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020004",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "BUILDING MULTIPLE TIME SERIES FORECASTING MODELS",
+      "doi": "10.1016/b978-0-12-295183-1.50014-5",
+      "year": 2014,
+      "url": "https://doi.org/10.1016/b978-0-12-295183-1.50014-5",
+      "authors": [
+        "C.W.J. GRANGER",
+        "PAUL NEWBOLD"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "Fuzzy Time Series Forecasting Models Evaluation Based on A Novel Distance Measure",
+      "doi": "10.2174/9781681085289117020003",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020003",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "Fuzzy Functions Approach for Time Series Forecasting",
+      "doi": "10.2174/9781681085289117020010",
+      "year": 2017,
+      "url": "https://doi.org/10.2174/9781681085289117020010",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 time series forecasting",
+      "title": "PRACTICAL METHODS FOR UNIVARIATE TIME SERIES FORECASTING",
+      "doi": "10.1016/b978-0-12-295183-1.50011-x",
+      "year": 2014,
+      "url": "https://doi.org/10.1016/b978-0-12-295183-1.50011-x",
+      "authors": [
+        "C.W.J. GRANGER",
+        "PAUL NEWBOLD"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "NuGraph2: A Graph Neural Network for Neutrino Event Reconstruction",
+      "doi": "10.2172/2432449",
+      "year": 2024,
+      "url": "https://doi.org/10.2172/2432449",
+      "authors": [
+        "Giuseppe Cerati"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Figure 3: Graph neural network.",
+      "doi": "10.7717/peerj-cs.3366/fig-3",
+      "year": 2026,
+      "url": "https://doi.org/10.7717/peerj-cs.3366/fig-3",
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Graph Neural Network, ChebNet, Graph Convolutional Network, and Graph Autoencoder: Tutorial and Survey",
+      "doi": "10.31219/osf.io/9wk3y",
+      "year": 2024,
+      "url": "https://doi.org/10.31219/osf.io/9wk3y",
+      "authors": [
+        "Benyamin Ghojogh",
+        "Ali Ghodsi"
+      ],
+      "abstract": "<p>This is a tutorial paper on graph neural networks including ChebNet, graph convolutional network, graph attention network, and graph autoencoder. It starts with Laplacian of graph, graph Fourier transform, and graph convolution. Then, it is explained how Chebyshev polynomials are used in graph networks to have ChebNet. Afterwards, graph convolutional network and its general framework are introduced. Then, graph attention network is explained as a combination of attention mechanism and graph neural networks. Finally, graph reconstruction autoencoder and graph variational autoencoder are introduced.</p>"
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Personalized learning using graph neural network and knowledge graph",
+      "doi": "10.14711/thesis-991012936267503412",
+      "year": 2023,
+      "url": "https://doi.org/10.14711/thesis-991012936267503412",
+      "authors": [
+        "Shing Chun Yip"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "A Multipurpose Graph Neural Network for Reconstruction in LArTPC Detectors",
+      "doi": "10.2172/2361065",
+      "year": 2024,
+      "url": "https://doi.org/10.2172/2361065",
+      "authors": [
+        "Giuseppe Cerati",
+        "V. Hewes"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Network Anomaly Detection Scheme Using Graph Neural Network",
+      "doi": "10.32920/26883595",
+      "year": 2024,
+      "url": "https://doi.org/10.32920/26883595",
+      "authors": [
+        "Patrice Kisanger"
+      ],
+      "abstract": "<jats:p>&lt;p&gt;Traditional intrusion detection systems (IDSs) and intrusion prevention systems (IPSs) focus on detecting, preventing, and blocking known attacks and obvious threats. Contrary to these systems, the Activity and Event Network (AEN) model is a newly proposed framework capable of identifying long-term threats and novel attack patterns such as custom crafted, multi-stage attack vectors, that the above-mentioned tools cannot detect as its design relies on a large random time varying graph model. In this thesis, the structural foundations of AEN graph are used as a basis to design a graph neural network (GNN)-based network anomaly detection scheme. This work is the first ever application of AEN to build a GNN model for anomaly detection purpose. The proposed model is evaluated using five different labelled datasets, namely, the DDoS, Tor-nonTor, Portmap, UDPLag, and SYN datasets, yielding preliminary promising results in terms of precision, recall, F1 score, and accuracy, chosen as performance metrics.&lt;/p&gt;</jats:p>"
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Network Anomaly Detection Scheme Using Graph Neural Network",
+      "doi": "10.32920/26883595.v1",
+      "year": 2024,
+      "url": "https://doi.org/10.32920/26883595.v1",
+      "authors": [
+        "Patrice Kisanger"
+      ],
+      "abstract": "<jats:p>&lt;p&gt;Traditional intrusion detection systems (IDSs) and intrusion prevention systems (IPSs) focus on detecting, preventing, and blocking known attacks and obvious threats. Contrary to these systems, the Activity and Event Network (AEN) model is a newly proposed framework capable of identifying long-term threats and novel attack patterns such as custom crafted, multi-stage attack vectors, that the above-mentioned tools cannot detect as its design relies on a large random time varying graph model. In this thesis, the structural foundations of AEN graph are used as a basis to design a graph neural network (GNN)-based network anomaly detection scheme. This work is the first ever application of AEN to build a GNN model for anomaly detection purpose. The proposed model is evaluated using five different labelled datasets, namely, the DDoS, Tor-nonTor, Portmap, UDPLag, and SYN datasets, yielding preliminary promising results in terms of precision, recall, F1 score, and accuracy, chosen as performance metrics.&lt;/p&gt;</jats:p>"
+    },
+    {
+      "keyword": "rerun_after_repo_map_update2 graph neural network",
+      "title": "Anomaly Detection Using Graph Neural Network",
+      "doi": "10.18122/td.2065.boisestate",
+      "year": 2024,
+      "url": "https://doi.org/10.18122/td.2065.boisestate",
+      "authors": [
+        "Bishal Lakha"
+      ],
+      "abstract": "<p>Detecting malicious behavior is becoming increasingly crucial as the internet becomes more prevalent. This problem can be formulated as an anomaly detection task on provenance data, where attacks are detectable as anomalies in the behavior of the system. The availability of system-level data in comparison to network data is quite limited and so is the research carried out on system-level logs. However, monitoring the operating system's processes during program execution and identifying anomalous behavior in system calls can be beneficial since it can provide broad coverage and generality, as a variety of malicious applications could be identified. Furthermore, logs like system processes and events are provenance data- a graph that describes the relationship between all the elements that contributed to the creation of the data, making use of a Graph Neural Network (GNN) better suited for the task. Moreover, such data may contain metadata, which in general tends to be complex and make feature engineering more difficult resulting in limited usage of such features.</p>\n        <p>In this thesis, we address these issues by first utilizing the graph-like structure of logs, in which processes enact events and generate additional processes. Then we use a graph neural network to create representations of each event, encoding information about their neighboring events in a way that is unsupervised. The second is to make use of complex features such as command arguments which vary widely and cannot be used in the presented format as features in typical machine learning algorithms. If these features are instead encoded using a system composed of transformer and Variational Auto Encoder models, they can then be used in other algorithms such as a GNN or anomaly detector. These two approaches combined improve anomaly detection AUCROC for the BETH dataset by around 8 percent as compared to the manually engineered features alone.</p>"
+    }
+  ]
+}

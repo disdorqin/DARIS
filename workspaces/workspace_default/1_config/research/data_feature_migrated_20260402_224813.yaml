@@ -1,0 +1,67 @@
+# DARIS 数据特征定义配置
+# 适配模型：MTGNN / TimesNet / XGBoost
+
+data_basic_info:
+  data_name: 多变量时空序列数据集
+  data_format: csv
+  data_path_local: ./data/sequence_data.csv
+  data_path_aliyun: /home/root/DARIS/data/sequence_data.csv
+  time_col: date
+  time_freq: D
+  target_col: target_value
+
+feature_info:
+  basic_time_features:
+    - year
+    - month
+    - day
+    - weekday
+    - is_holiday
+  spatial_features:
+    - region_id
+    - area
+    - population
+    - economic_level
+  dynamic_time_features:
+    - lag_1
+    - lag_7
+    - rolling_7_mean
+    - rolling_30_std
+    - temperature
+    - energy
+
+data_split_rule:
+  train_period:
+    - "2018-01-01"
+    - "2022-12-31"
+  val_period:
+    - "2023-01-01"
+    - "2023-06-30"
+  test_period:
+    - "2023-07-01"
+    - "2023-12-31"
+
+model_input_requirement:
+  MTGNN:
+    input_shape: [30, num_nodes, 12]
+    seq_len: 30
+    pred_len: 7
+  TimesNet:
+    input_shape: [32, 96, 12]
+    seq_len: 96
+    pred_len: 24
+  XGBoost:
+    input_shape: [null, 15]
+    feature_num: 15
+
+# 异常处理配置
+error_handling:
+  data_not_found:
+    action: create_sample_data
+    log_level: warning
+  data_format_error:
+    action: auto_convert
+    log_level: error
+  missing_values:
+    action: interpolate
+    max_missing_ratio: 0.1

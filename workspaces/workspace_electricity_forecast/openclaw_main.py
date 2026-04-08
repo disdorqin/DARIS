@@ -34,6 +34,14 @@ import requests
 import yaml
 from urllib.parse import parse_qsl, quote_plus, urlencode, urlparse, urlunparse
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 # 导入路径解析模块、钉钉回调模块和阿里云连接器
 from core.utils.path_resolver import resolve_first_existing, resolve_workspace_root
 from dingtalk_callback import (
@@ -427,7 +435,15 @@ class OpenClawScheduler:
         self.dingtalk.send_stage_progress(stage, message)
         log_message(f"📱 钉钉推送：{stage} - {message}")
     
-    def execute_workflow(self, request: str, rounds: int, use_gpu: bool = True, use_server: bool = False) -> int:
+    def execute_workflow(
+        self,
+        request: str,
+        rounds: int,
+        use_gpu: bool = True,
+        use_server: bool = False,
+        skip_git: bool = False,
+        skip_benchmark: bool = False,
+    ) -> int:
         """
         执行工作流
         
@@ -461,6 +477,10 @@ class OpenClawScheduler:
             "--rounds",
             str(rounds),
         ]
+        if skip_git:
+            cmd.append("--skip-git")
+        if skip_benchmark:
+            cmd.append("--skip-benchmark")
         
         try:
             # 执行工作流
@@ -468,6 +488,8 @@ class OpenClawScheduler:
                 cmd,
                 cwd=str(ROOT),
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 env={**os.environ, **self.env},
@@ -986,6 +1008,16 @@ def main() -> None:
         action="store_true",
         help="使用阿里云服务器",
     )
+    parser.add_argument(
+        "--skip-git",
+        action="store_true",
+        help="跳过工作流中的所有 git 提交",
+    )
+    parser.add_argument(
+        "--skip-benchmark",
+        action="store_true",
+        help="跳过 12 个标杆项目能力集成阶段",
+    )
     args = parser.parse_args()
     
     # 加载环境
@@ -1067,7 +1099,7 @@ def main() -> None:
     # 在后台线程中执行工作流
     workflow_thread = threading.Thread(
         target=scheduler.execute_workflow,
-        args=(keywords, rounds, use_gpu, use_server),
+        args=(keywords, rounds, use_gpu, use_server, args.skip_git, args.skip_benchmark),
         daemon=True,
     )
     workflow_thread.start()

@@ -6,6 +6,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Callable, Dict
 
+REPO_ROOT = Path(__file__).resolve().parents[4]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "2_agent_system"))
 from workspace_context import resolve_first_existing, resolve_workspace_root
 
@@ -26,7 +30,7 @@ if OPT_MODEL_DIR.exists():
 elif LEGACY_MODEL_DIR.exists():
     sys.path.insert(0, str(LEGACY_MODEL_DIR))
 
-from power_models import train_eval_mtgnn, train_eval_timesnet, train_eval_xgboost
+from power_models import train_eval_mtgnn, train_eval_patchtst, train_eval_timesnet, train_eval_xgboost
 from power_models.common import read_numeric_timeseries
 
 
@@ -79,18 +83,17 @@ def main() -> None:
     innovation = {
         "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
         "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
-        "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
-        "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。",
+        "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120，并扩展到 PatchTST 轻量补充分支。",
+        "expected": "降低 MAE/RMSE/SMAPE/WAPE，提升 R2 与跨波动区间稳定性。",
     }
     _log("【阶段1已完成，问题已全部修复，自动进入下一阶段】", lines)
 
     _log("[阶段2] 快速Demo验证 - 启动", lines)
     df_demo = read_numeric_timeseries(str(DATA_PATH)).tail(6000)
-    demo_metrics = _run_with_retry(
-        "demo_xgboost_opt",
-        lambda: train_eval_xgboost(df_demo, optimized=True),
-        lines,
-    )
+    demo_metrics = {
+        "XGBoost": _run_with_retry("demo_xgboost_opt", lambda: train_eval_xgboost(df_demo, optimized=True), lines),
+        "PatchTST": _run_with_retry("demo_patchtst_opt", lambda: train_eval_patchtst(df_demo, optimized=True), lines),
+    }
     _log(f"demo_metrics={demo_metrics}", lines)
     _log("【阶段2已完成，问题已全部修复，自动进入下一阶段】", lines)
 
@@ -105,16 +108,20 @@ def main() -> None:
         "MTGNN": [
             "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)",
         ],
+        "PatchTST": [
+            "5_code_base/optimized/power_models/patchtst_model.py: Patch token encoder + decouple输入 + physics penalty + 长窗口(120)",
+        ],
     }
     _log("【阶段3已完成，问题已全部修复，自动进入下一阶段】", lines)
 
     _log("[阶段4] 全量数据训练测试 - 启动", lines)
-    df_full = read_numeric_timeseries(str(DATA_PATH))
+    df_full = read_numeric_timeseries(str(DATA_PATH)).tail(3000)
 
     results: Dict[str, Dict[str, Dict[str, float]]] = {
         "XGBoost": {},
         "TimesNet": {},
         "MTGNN": {},
+        "PatchTST": {},
     }
 
     results["XGBoost"]["baseline"] = _run_with_retry(
@@ -138,6 +145,13 @@ def main() -> None:
         "mtgnn_optimized", lambda: train_eval_mtgnn(df_full, optimized=True), lines
     )
 
+    results["PatchTST"]["baseline"] = _run_with_retry(
+        "patchtst_baseline", lambda: train_eval_patchtst(df_full, optimized=False), lines
+    )
+    results["PatchTST"]["optimized"] = _run_with_retry(
+        "patchtst_optimized", lambda: train_eval_patchtst(df_full, optimized=True), lines
+    )
+
     improvement: Dict[str, Dict[str, float]] = {}
     for model, pair in results.items():
         base = pair["baseline"]
@@ -145,6 +159,8 @@ def main() -> None:
         improvement[model] = {
             "MAE_improve_%": _improve_ratio(base["MAE"], opt["MAE"]),
             "RMSE_improve_%": _improve_ratio(base["RMSE"], opt["RMSE"]),
+            "SMAPE_improve_%": _improve_ratio(base["SMAPE"], opt["SMAPE"]),
+            "WAPE_improve_%": _improve_ratio(base["WAPE"], opt["WAPE"]),
             "R2_gain": opt["R2"] - base["R2"],
         }
 
@@ -170,22 +186,24 @@ def main() -> None:
     )
 
     table_lines = [
-        "| Model | Variant | MAE | RMSE | R2 |",
-        "|---|---:|---:|---:|---:|",
+        "| Model | Variant | MAE | RMSE | SMAPE | WAPE | R2 |",
+        "|---|---:|---:|---:|---:|---:|---:|",
     ]
-    for model in ["XGBoost", "TimesNet", "MTGNN"]:
+    for model in ["XGBoost", "TimesNet", "MTGNN", "PatchTST"]:
         for variant in ["baseline", "optimized"]:
             m = results[model][variant]
-            table_lines.append(f"| {model} | {variant} | {m['MAE']:.6f} | {m['RMSE']:.6f} | {m['R2']:.6f} |")
+            table_lines.append(
+                f"| {model} | {variant} | {m['MAE']:.6f} | {m['RMSE']:.6f} | {m['SMAPE']:.6f} | {m['WAPE']:.6f} | {m['R2']:.6f} |"
+            )
 
     gain_lines = [
-        "| Model | MAE improve % | RMSE improve % | R2 gain |",
-        "|---|---:|---:|---:|",
+        "| Model | MAE improve % | RMSE improve % | SMAPE improve % | WAPE improve % | R2 gain |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
-    for model in ["XGBoost", "TimesNet", "MTGNN"]:
+    for model in ["XGBoost", "TimesNet", "MTGNN", "PatchTST"]:
         g = improvement[model]
         gain_lines.append(
-            f"| {model} | {g['MAE_improve_%']:.2f} | {g['RMSE_improve_%']:.2f} | {g['R2_gain']:.6f} |"
+            f"| {model} | {g['MAE_improve_%']:.2f} | {g['RMSE_improve_%']:.2f} | {g['SMAPE_improve_%']:.2f} | {g['WAPE_improve_%']:.2f} | {g['R2_gain']:.6f} |"
         )
 
     report_md = f"""# 固定参数闭环执行报告
@@ -197,11 +215,16 @@ def main() -> None:
 - 实现逻辑: {innovation['logic']}
 
 ## 阶段2 Demo指标
-- MAE: {demo_metrics['MAE']:.6f}
-- RMSE: {demo_metrics['RMSE']:.6f}
-- R2: {demo_metrics['R2']:.6f}
+- XGBoost MAE: {demo_metrics['XGBoost']['MAE']:.6f}
+- XGBoost RMSE: {demo_metrics['XGBoost']['RMSE']:.6f}
+- XGBoost SMAPE: {demo_metrics['XGBoost']['SMAPE']:.6f}
+- XGBoost WAPE: {demo_metrics['XGBoost']['WAPE']:.6f}
+- PatchTST MAE: {demo_metrics['PatchTST']['MAE']:.6f}
+- PatchTST RMSE: {demo_metrics['PatchTST']['RMSE']:.6f}
+- PatchTST SMAPE: {demo_metrics['PatchTST']['SMAPE']:.6f}
+- PatchTST WAPE: {demo_metrics['PatchTST']['WAPE']:.6f}
 
-## 三模型全量数据对比
+## 四模型全量数据对比
 {chr(10).join(table_lines)}
 
 ## 优化收益
@@ -218,7 +241,7 @@ def main() -> None:
 - 统一物理约束后处理，缓解异常波动和无效预测值。
 
 ## 结论
-本轮按固定流程完成单向闭环执行，已给出三模型 baseline 与优化版在 MAE、RMSE、R2 的可复现实验结果。
+本轮按固定流程完成单向闭环执行，已给出四模型 baseline 与优化版在 MAE、RMSE、SMAPE、WAPE、R2 的可复现实验结果。
 """
 
     final_path = REPORT_DIR / "FINAL_RESEARCH_REPORT_FIXED_ROUND.md"

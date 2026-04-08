@@ -1,0 +1,504 @@
+{
+  "timestamp": "2026-04-03T10:52:25.963545",
+  "total": 12,
+  "records": [
+    {
+      "name": "OpenClaw",
+      "agent": "global_scheduler",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Recv failure: Connection was reset",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Failed to connect to github.com port 443 after 21068 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Failed to connect to github.com port 443 after 21059 ms: Could not connect to server",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "EvoScientist",
+      "agent": "research_manager_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "SciPhi",
+      "agent": "research_manager_agent",
+      "status": "partial",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": false,
+        "found_probes": [],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/sciphi_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "OpenResearch",
+      "agent": "literature_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/openresearch_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "Zotero-GPT",
+      "agent": "literature_summary_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/MuiseDestiny/zotero-gpt/': Failed to connect to github.com port 443 after 21052 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": true,
+          "detail": "",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "PaperAgent",
+      "agent": "literature_summary_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "AI-Scientist",
+      "agent": "innovation_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md",
+          "launch_scientist.py"
+        ],
+        "required_probes": [
+          "README.md",
+          "launch_scientist.py"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "error: RPC failed; curl 56 Recv failure: Connection was reset\nfatal: expected flush after ref listing",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": true,
+          "detail": "",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "ARIS",
+      "agent": "innovation_review_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "Aider",
+      "agent": "code_implementation_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21097 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21088 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21083 ms: Could not connect to server",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "ML-Agent-Research",
+      "agent": "code_implementation_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21095 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21132 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21084 ms: Could not connect to server",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "AutoResearch",
+      "agent": "experiment_tuning_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "all clone candidates failed",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "Zotero",
+      "agent": "literature_agent",
+      "status": "non_blocking_failed",
+      "clone": {
+        "ok": false,
+        "source": ""
+      },
+      "core_logic": {},
+      "adaptation": {},
+      "usability": {},
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21093 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 2,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21104 ms: Could not connect to server",
+          "source": "existing_repo"
+        },
+        {
+          "step": "clone",
+          "attempt": 3,
+          "ok": false,
+          "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21082 ms: Could not connect to server",
+          "source": "existing_repo"
+        }
+      ]
+    }
+  ],
+  "non_blocking_failures": [
+    {
+      "name": "OpenClaw.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "EvoScientist.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "SciPhi.core_logic",
+      "attempts": 3,
+      "error": "probe_not_found",
+      "non_blocking": true
+    },
+    {
+      "name": "PaperAgent.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "ARIS.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "Aider.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "ML-Agent-Research.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "AutoResearch.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "Zotero.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    }
+  ]
+}

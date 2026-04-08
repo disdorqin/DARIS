@@ -1,0 +1,176 @@
+{
+  "projects": [
+    {
+      "name": "OpenClaw",
+      "agent": "global_scheduler",
+      "repo_candidates": [
+        "https://github.com/openclaw/openclaw"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "EvoScientist",
+      "agent": "research_manager_agent",
+      "repo_candidates": [
+        "https://github.com/EvoScientist/EvoScientist",
+        "https://github.com/EvoAgentX/EvoScientist",
+        "https://github.com/open-science-ai/EvoScientist"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "SciPhi",
+      "agent": "research_manager_agent",
+      "repo_candidates": [
+        "https://github.com/SciPhi-AI/R2R",
+        "https://github.com/SciPhi-AI/sciphi"
+      ],
+      "probe_files": [
+        "README.md",
+        ".env.example"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "OpenResearch",
+      "agent": "literature_agent",
+      "repo_candidates": [
+        "https://github.com/open-research/openresearch",
+        "https://github.com/GAIR-NLP/OpenResearcher"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "Zotero-GPT",
+      "agent": "literature_summary_agent",
+      "repo_candidates": [
+        "https://github.com/MuiseDestiny/zotero-gpt"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "PaperAgent",
+      "agent": "literature_summary_agent",
+      "repo_candidates": [
+        "https://github.com/songhahaha66/PaperAgent",
+        "https://github.com/paperagent/paperagent",
+        "https://github.com/PaperAgent/PaperAgent"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "AI-Scientist",
+      "agent": "innovation_agent",
+      "repo_candidates": [
+        "https://github.com/SakanaAI/AI-Scientist"
+      ],
+      "probe_files": [
+        "README.md",
+        "launch_scientist.py"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "ARIS",
+      "agent": "innovation_review_agent",
+      "repo_candidates": [
+        "https://github.com/abekek/arise",
+        "https://github.com/ARIS-Lab/ARIS",
+        "https://github.com/stanford-futuredata/aris"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "Aider",
+      "agent": "code_implementation_agent",
+      "repo_candidates": [
+        "https://github.com/Aider-AI/aider"
+      ],
+      "probe_files": [
+        "README.md",
+        "aider"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "ML-Agent-Research",
+      "agent": "code_implementation_agent",
+      "repo_candidates": [
+        "https://github.com/ml-agent-research/ml-agent-research",
+        "https://github.com/snap-stanford/MLAgentBench"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "AutoResearch",
+      "agent": "experiment_tuning_agent",
+      "repo_candidates": [
+        "https://github.com/karpathy/autoresearch",
+        "https://github.com/aiming-lab/AutoResearchClaw",
+        "https://github.com/AutoResearch/AutoResearch",
+        "https://github.com/snap-stanford/AutoResearch"
+      ],
+      "probe_files": [
+        "README.md"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    },
+    {
+      "name": "Zotero",
+      "agent": "literature_agent",
+      "repo_candidates": [
+        "https://github.com/zotero/zotero"
+      ],
+      "probe_files": [
+        "README.md",
+        "chrome"
+      ],
+      "validation_commands": [
+        "git rev-parse --short HEAD"
+      ]
+    }
+  ]
+}

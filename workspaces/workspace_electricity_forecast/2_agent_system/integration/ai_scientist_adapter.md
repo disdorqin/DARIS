@@ -1,7 +1,7 @@
 # AI-Scientist Integration Adapter
 
 - agent_stage: innovation_agent
-- local_repo: 5_code_base/benchmark_projects/ai_scientist_retry_1775569977783
+- local_repo: 5_code_base/benchmark_projects/ai_scientist_retry_1775573755310
 - integration_steps:
   - clone_or_update
   - core_logic_probe_validation

@@ -42,7 +42,7 @@ class TrainConfig:
 
 
 def _train_model(data: DatasetBundle, cfg: TrainConfig, optimized: bool) -> np.ndarray:
-    device = torch.device("cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TimesNetLite(input_dim=data.n_features, hidden_dim=72 if optimized else 56).to(device)
 
     train_ds = TensorDataset(torch.from_numpy(data.x_train), torch.from_numpy(data.y_train), torch.from_numpy(data.last_train))
@@ -82,13 +82,13 @@ def _train_model(data: DatasetBundle, cfg: TrainConfig, optimized: bool) -> np.n
 
 def train_eval_timesnet(df, optimized: bool) -> Dict[str, float]:
     seq_len = 120 if optimized else 72
-    data: DatasetBundle = make_dataset_bundle(df=df, seq_len=seq_len, horizon=1, optimized=optimized)
+    data: DatasetBundle = make_dataset_bundle(df=df, seq_len=seq_len, horizon=1, optimized=optimized, feature_profile="temporal")
 
     cfg = TrainConfig(
         epochs=10 if optimized else 6,
         batch_size=128,
         lr=8e-4 if optimized else 1e-3,
-        lambda_phy=0.12222222222,
+        lambda_phy=0.1222222222222222222222,
     )
 
     pred = _train_model(data, cfg, optimized)

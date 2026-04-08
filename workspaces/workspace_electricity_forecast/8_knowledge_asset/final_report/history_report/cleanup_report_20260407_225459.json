@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-04-07T22:54:59.926067",
+  "preview": {
+    "timestamp": "2026-04-07T22:53:49.143270",
+    "total_dirs": 19471,
+    "total_files": 268386,
+    "top_level": {
+      ".vscode": {
+        "dirs": 0,
+        "files": 1
+      },
+      "1_config": {
+        "dirs": 4,
+        "files": 28
+      },
+      "2_agent_system": {
+        "dirs": 11,
+        "files": 54
+      },
+      "3_literature_workflow": {
+        "dirs": 20,
+        "files": 101
+      },
+      "4_research_hypothesis": {
+        "dirs": 6,
+        "files": 30
+      },
+      "5_code_base": {
+        "dirs": 17700,
+        "files": 248546
+      },
+      "6_experiment_execution": {
+        "dirs": 14,
+        "files": 54
+      },
+      "7_monitor_system": {
+        "dirs": 5,
+        "files": 8
+      },
+      "8_knowledge_asset": {
+        "dirs": 20,
+        "files": 373
+      },
+      "code": {
+        "dirs": 1669,
+        "files": 19154
+      },
+      "config": {
+        "dirs": 0,
+        "files": 4
+      },
+      "experiment": {
+        "dirs": 0,
+        "files": 2
+      },
+      "hypothesis": {
+        "dirs": 1,
+        "files": 2
+      },
+      "literature": {
+        "dirs": 2,
+        "files": 2
+      },
+      "logs": {
+        "dirs": 0,
+        "files": 6
+      },
+      "memory": {
+        "dirs": 0,
+        "files": 1
+      },
+      "report": {
+        "dirs": 0,
+        "files": 9
+      },
+      "tools": {
+        "dirs": 0,
+        "files": 1
+      },
+      "__pycache__": {
+        "dirs": 0,
+        "files": 2
+      }
+    }
+  },
+  "cleanup_candidates": [
+    {
+      "path": "__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "2_agent_system/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "deleted": [
+    {
+      "path": "2_agent_system/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    },
+    {
+      "path": "__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "skipped": []
+}

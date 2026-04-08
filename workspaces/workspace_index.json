@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "workspaces": [
+    {
+      "workspace_id": "default",
+      "workspace_name": "workspace_default",
+      "display_name": "默认研究主题",
+      "description": "项目原有研究内容迁移",
+      "template": "default",
+      "status": "inactive",
+      "created_at": "2026-04-07T00:00:00",
+      "updated_at": "2026-04-07T17:41:16"
+    },
+    {
+      "workspace_id": "test_new_project",
+      "workspace_name": "workspace_test_new_project",
+      "display_name": "默认研究主题",
+      "description": "项目原有研究内容迁移",
+      "template": "default",
+      "status": "inactive",
+      "created_at": "2026-04-07T17:41:48",
+      "updated_at": "2026-04-07T17:41:48"
+    },
+    {
+      "workspace_id": "electricity_forecast",
+      "workspace_name": "workspace_electricity_forecast",
+      "display_name": "电力尖峰预测研究",
+      "description": "基于MTGNN/TimesNet/XGBoost的电力尖峰预测专项研究",
+      "template": "default",
+      "status": "active",
+      "created_at": "2026-04-07T18:12:01",
+      "updated_at": "2026-04-07T18:12:01"
+    }
+  ],
+  "current_active": "workspace_electricity_forecast"
+}

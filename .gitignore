@@ -55,6 +55,22 @@ __pycache__/
 Thumbs.db
 ~$*.docx
 
+# ==================== 工作区隔离产物 ====================
+workspaces/*/data/
+workspaces/*/literature/pdf/
+workspaces/*/literature/structured/
+workspaces/*/experiment/
+workspaces/*/logs/
+workspaces/*/memory/
+workspaces/*/knowledge_base/
+workspaces/*/report/*.log
+workspaces/*/report/*.tmp
+workspaces/*/report/*.zip
+workspaces/*/experiment/models/
+.current_workspace
+.current_workspace.bak
+archives/
+
 # ==================== 实验结果（可选） ====================
 # experiment/raw_results/
 # experiment/large_outputs/
@@ -79,3 +95,34 @@ build/
 # ==================== Browser/Driver ====================
 chrome-win32/
 code/chromedriver-win32/
+
+# ==================== 临时 Benchmark 克隆目录 ====================
+**/benchmark_projects/*_retry_*/
+**/benchmark_projects/ai_scientist_retry_*/
+**/benchmark_projects/aider_retry_*/
+**/benchmark_projects/aris_retry_*/
+**/benchmark_projects/autoresearch_retry_*/
+**/benchmark_projects/evoscientist_retry_*/
+**/benchmark_projects/ml_agent_research_retry_*/
+**/benchmark_projects/openclaw_retry_*/
+**/benchmark_projects/openresearch_retry_*/
+**/benchmark_projects/paperagent_retry_*/
+**/benchmark_projects/sciphi_retry_*/
+**/benchmark_projects/zotero_retry_*/
+**/benchmark_projects/zotero_gpt_retry_*/
+
+# ==================== 嵌入的 Git 子模块（基准项目） ====================
+**/code/baseline/MTGNN_root/
+**/code/baseline/TimesNet_root/
+**/code/benchmark_projects/ai_scientist/
+**/code/benchmark_projects/aider/
+**/code/benchmark_projects/aris/
+**/code/benchmark_projects/autoresearch/
+**/code/benchmark_projects/evoscientist/
+**/code/benchmark_projects/ml_agent_research/
+**/code/benchmark_projects/openclaw/
+**/code/benchmark_projects/openresearch/
+**/code/benchmark_projects/paperagent/
+**/code/benchmark_projects/sciphi/
+**/code/benchmark_projects/zotero/
+**/code/benchmark_projects/zotero_gpt/

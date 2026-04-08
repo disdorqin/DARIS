@@ -1,0 +1,167 @@
+# DARIS v3.1 钉钉机器人配置文件
+
+# ==================== 基础配置 ====================
+enabled: true
+name: "DARIS 科研助手"
+description: "DARIS 项目钉钉管控机器人"
+
+# ==================== Webhook 配置 ====================
+# Webhook URL 环境变量名
+webhook_url_env: "WEBHOOK_URL"
+
+# ==================== 加签密钥配置 ====================
+# 加签密钥环境变量名（用于验证消息来源）
+secret_env: "DINGTALK_SECRET"
+
+# ==================== 消息模板配置 ====================
+message_template:
+  # 消息体模板
+  body: "[{level}] stage={stage} agent={agent} action={action} result={result} duration={duration}s"
+  
+  # Markdown 消息模板（用于复杂通知）
+  markdown: |
+    ## {title}
+    
+    **时间**: {timestamp}
+    **级别**: {level}
+    **阶段**: {stage}
+    
+    ### 详情
+    {content}
+    
+    ---
+    *DARIS OpenClaw 自动推送*
+  
+  # 卡片消息模板（用于重要通知）
+  card:
+    title: "{title}"
+    text: "{content}"
+    single_title: "查看详情"
+    single_url: "{link}"
+
+# ==================== 推送规则配置 ====================
+push_rules:
+  # 紧急告警 - 立即推送
+  emergency:
+    push_immediately: true
+    at_all: true
+    phone_notification: false  # 是否电话通知
+  
+  # 预警告警 -10 分钟内推送
+  warning:
+    push_within_minutes: 10
+    at_all: false
+    aggregate: true  # 是否聚合推送
+  
+  # 通知告警 - 事件触发推送
+  notice:
+    push_on_event: true
+    at_all: false
+    aggregate: false
+
+# ==================== 指令监听配置 ====================
+command_listening:
+  enabled: true
+  
+  # 指令前缀（用于识别钉钉消息中的指令）
+  prefix: "/"
+  
+  # 支持的指令列表
+  supported_commands:
+    - command: "/start"
+      description: "启动一轮完整的 DARIS 科研闭环工作流"
+      permission: "admin"
+    - command: "/pause"
+      description: "暂停当前执行的工作流"
+      permission: "admin"
+    - command: "/resume"
+      description: "恢复暂停的工作流"
+      permission: "admin"
+    - command: "/rollback"
+      description: "回滚到上一稳定版本"
+      permission: "admin"
+    - command: "/status"
+      description: "查询当前项目执行状态"
+      permission: "all"
+    - command: "/stop"
+      description: "终止当前执行的工作流"
+      permission: "admin"
+    - command: "/clean"
+      description: "触发项目冗余文件自动清理"
+      permission: "admin"
+    - command: "/help"
+      description: "显示帮助信息"
+      permission: "all"
+  
+  # 权限配置
+  permissions:
+    admin:
+      # 管理员用户（钉钉用户 ID）
+      user_ids: []
+      # 管理员角色
+      roles: ["admin", "owner"]
+    all:
+      # 所有群成员都可以执行的指令
+      user_ids: []
+      roles: []
+
+# ==================== 接收人配置 ====================
+recipients:
+  # 默认接收人（钉钉用户 ID）
+  default_user_ids: []
+  
+  # 按告警级别配置接收人
+  by_level:
+    emergency:
+      user_ids: []
+      role_ids: ["admin"]
+    warning:
+      user_ids: []
+      role_ids: ["developer"]
+    notice:
+      user_ids: []
+      role_ids: ["all"]
+
+# ==================== 推送频率限制 ====================
+rate_limit:
+  # 单用户每分钟最大消息数
+  max_per_minute: 5
+  
+  # 单用户每小时最大消息数
+  max_per_hour: 50
+  
+  # 聚合推送时间窗口（秒）
+  aggregate_window: 300
+
+# ==================== 消息格式配置 ====================
+message_format:
+  # 时间格式
+  time_format: "%Y-%m-%d %H:%M:%S"
+  
+  # 数字精度
+  number_precision: 2
+  
+  # 是否显示 emoji
+  show_emoji: true
+  
+  # Emoji 映射
+  emoji_map:
+    emergency: "🚨"
+    warning: "⚠️"
+    notice: "📢"
+    success: "✅"
+    failed: "❌"
+    running: "⚙️"
+    paused: "⏸️"
+    stopped: "⏹️"
+
+# ==================== 日志配置 ====================
+logging:
+  # 是否记录发送历史
+  enabled: true
+  
+  # 日志路径
+  log_dir: "7_monitor_system/dingtalk_log"
+  
+  # 日志保留天数
+  retention_days: 30
