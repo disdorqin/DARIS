@@ -1,0 +1,342 @@
+{
+  "timestamp": "2026-04-07T21:15:49.482132",
+  "moved": [
+    {
+      "source": "config\\agent_config.yaml",
+      "target": "1_config\\base\\agent_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\alert_config.yaml",
+      "target": "1_config\\alert\\alert_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\cost_config.yaml",
+      "target": "1_config\\research\\cost_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\data_feature.yaml",
+      "target": "1_config\\research\\data_feature.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\fuse_config.yaml",
+      "target": "1_config\\research\\fuse_config.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\innovation_prompt.md",
+      "target": "4_research_hypothesis\\innovation_prompt.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\program.md",
+      "target": "6_experiment_execution\\pipeline\\program.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\search_rules.yaml",
+      "target": "3_literature_workflow\\search_rules.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\zotero_sync.yaml",
+      "target": "3_literature_workflow\\zotero_sync\\zotero_sync.yaml",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "config\\prompts",
+      "target": "2_agent_system\\prompts",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\crawler",
+      "target": "3_literature_workflow\\crawler",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\utils",
+      "target": "3_literature_workflow\\downloaders",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_crawler.py",
+      "target": "3_literature_workflow\\run_crawler.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\install_chromedriver.py",
+      "target": "3_literature_workflow\\install_chromedriver.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\power_models",
+      "target": "5_code_base\\optimized\\power_models",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\test_model.py",
+      "target": "5_code_base\\demo\\test_model.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\prepare_mtg_data.py",
+      "target": "6_experiment_execution\\pipeline\\prepare_mtg_data.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_stage3_local.ps1",
+      "target": "6_experiment_execution\\pipeline\\run_stage3_local.ps1",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\run_round_fixed_pipeline.py",
+      "target": "6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_round2_deps.py",
+      "target": "6_experiment_execution\\pipeline\\check_round2_deps.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\check_torch.py",
+      "target": "6_experiment_execution\\pipeline\\check_torch.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\get_num_nodes.py",
+      "target": "6_experiment_execution\\pipeline\\get_num_nodes.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\dynamic_mtg nn_model.py",
+      "target": "5_code_base\\optimized\\dynamic_mtg_nn_model.py",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\chromedriver-win32.zip",
+      "target": "3_literature_workflow\\crawler\\chromedriver-win32.zip",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SERVER_DEPLOY.md",
+      "target": "8_knowledge_asset\\docs\\SERVER_DEPLOY.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_SETUP.md",
+      "target": "8_knowledge_asset\\docs\\SSH_SETUP.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SSH_PUBKEY.txt",
+      "target": "8_knowledge_asset\\docs\\SSH_PUBKEY.txt",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\SKILLS.md",
+      "target": "8_knowledge_asset\\docs\\SKILLS.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "code\\program.md",
+      "target": "8_knowledge_asset\\docs\\program.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "data",
+      "target": "6_experiment_execution\\data",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "experiment\\auto_demo_metrics.json",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs\\auto_demo_metrics.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "experiment",
+      "target": "6_experiment_execution\\tuning_log\\raw_runs",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature\\pdf",
+      "target": "3_literature_workflow\\literature_asset\\pdf",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature\\structured_summary\\agent_reading_round1.md",
+      "target": "3_literature_workflow\\literature_asset\\structured_summary\\agent_reading_round1_migrated_20260407_211549.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\structured_summary\\auto_literature_20260407_210929.json",
+      "target": "3_literature_workflow\\literature_asset\\structured_summary\\auto_literature_20260407_210929.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "literature\\structured_summary",
+      "target": "3_literature_workflow\\literature_asset\\structured_summary",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "literature",
+      "target": "3_literature_workflow\\literature_asset",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\innovation_round1.md",
+      "target": "4_research_hypothesis\\history\\innovation_round1_migrated_20260407_211549.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\review_report\\innovation_review_round1.md",
+      "target": "4_research_hypothesis\\history\\review_report\\innovation_review_round1_migrated_20260407_211549.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis\\review_report",
+      "target": "4_research_hypothesis\\history\\review_report",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "hypothesis",
+      "target": "4_research_hypothesis\\history",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "knowledge_base",
+      "target": "8_knowledge_asset\\knowledge_base",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "memory\\skills_library.md",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory\\skills_library_migrated_20260407_211549.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "memory",
+      "target": "8_knowledge_asset\\iteration_memory\\legacy_memory",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "docs",
+      "target": "8_knowledge_asset\\docs",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "report\\benchmark_integration_20260407_211546.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\benchmark_integration_20260407_211546.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\benchmark_integration_20260407_211546.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\benchmark_integration_20260407_211546.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_211210.json",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_211210.json",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report\\cleanup_report_20260407_211210.md",
+      "target": "8_knowledge_asset\\final_report\\history_report\\cleanup_report_20260407_211210.md",
+      "status": "moved",
+      "detail": ""
+    },
+    {
+      "source": "report",
+      "target": "8_knowledge_asset\\final_report\\history_report",
+      "status": "merged",
+      "detail": ""
+    },
+    {
+      "source": "MTGNN",
+      "target": "5_code_base\\baseline\\MTGNN_root",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "TimesNet",
+      "target": "5_code_base\\baseline\\TimesNet_root",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "research_definition.md",
+      "target": "1_config\\research\\research_definition.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "DARIS v3.docx",
+      "target": "8_knowledge_asset\\docs\\DARIS_v3.docx",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "~$RIS v3.docx",
+      "target": "8_knowledge_asset\\docs\\~$RIS v3.docx",
+      "status": "skipped",
+      "detail": "source_missing"
+    },
+    {
+      "source": "README.md",
+      "target": "8_knowledge_asset\\docs\\README_legacy.md",
+      "status": "skipped",
+      "detail": "source_missing"
+    }
+  ],
+  "removed_empty_dirs": []
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-04-07T21:01:17.626775",
+  "request": "尖峰电价预测",
+  "rounds": 1,
+  "duration_seconds": 8.622066,
+  "success": true,
+  "workflow_log": [
+    "[2026-04-07 21:01:09] 启动前冗余清理 开始 (attempt=1)",
+    "[2026-04-07 21:01:15] 清理完成: 删除 2 项，跳过 0 项",
+    "[2026-04-07 21:01:17] 未配置 WEBHOOK_URL，跳过钉钉告警。",
+    "[2026-04-07 21:01:17] Git add 失败: The following paths are ignored by one of your .gitignore files:",
+    "workspaces/workspace_electricity_forecast/memory",
+    "hint: Use -f if you really want to add them.",
+    "hint: Disable this message with \"git conf",
+    "{\"json_report\": \"D:\\\\computer learning\\\\science_workflow\\\\workspaces\\\\workspace_electricity_forecast\\\\report\\\\openclaw_full_auto_20260407_210117.json\", \"md_report\": \"D:\\\\computer learning\\\\science_workflow\\\\workspaces\\\\workspace_electricity_forecast\\\\report\\\\openclaw_full_auto_20260407_210117.md\", \"status\": \"failed\"}"
+  ]
+}

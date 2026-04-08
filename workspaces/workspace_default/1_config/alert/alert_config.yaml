@@ -1,0 +1,247 @@
+# DARIS 告警规则配置
+# v3.0 新增模块
+
+# ==================== 告警级别定义 ====================
+alert_levels:
+  info:
+    priority: 1
+    description: 信息性通知，无需立即处理
+    color: blue
+    notify_channels:
+      - local_log
+  warning:
+    priority: 2
+    description: 警告，需要关注但可继续执行
+    color: yellow
+    notify_channels:
+      - local_log
+      - console
+  error:
+    priority: 3
+    description: 错误，需要及时处理
+    color: orange
+    notify_channels:
+      - local_log
+      - console
+      - email
+  critical:
+    priority: 4
+    description: 严重错误，必须立即处理
+    color: red
+    notify_channels:
+      - local_log
+      - console
+      - email
+      - webhook
+    auto_pause: true
+
+# ==================== 告警触发规则 ====================
+alert_rules:
+  # 环节执行告警
+  stage_execution:
+    stage_timeout:
+      level: error
+      description: 环节执行超时
+      threshold_minutes: 60
+    stage_failure:
+      level: critical
+      description: 环节执行失败
+      consecutive_failures: 2
+    validation_failure:
+      level: error
+      description: 环节校验失败
+  
+  # 文献调研告警
+  literature_search:
+    no_results:
+      level: warning
+      description: 文献检索无结果
+    api_failure:
+      level: error
+      description: 文献 API 调用失败
+      consecutive_failures: 3
+    zotero_sync_failure:
+      level: error
+      description: Zotero 同步失败
+      consecutive_failures: 5
+  
+  # 创新挖掘告警
+  innovation_mining:
+    insufficient_innovations:
+      level: warning
+      description: 创新点数量不足
+      threshold: 2
+    innovation_validation_failure:
+      level: error
+      description: 创新点预验证失败
+    knowledge_graph_failure:
+      level: error
+      description: 知识图谱构建失败
+  
+  # 代码实现告警
+  code_implementation:
+    build_failure:
+      level: critical
+      description: 代码构建失败
+    test_failure:
+      level: error
+      description: 单元测试失败
+      consecutive_failures: 5
+    sync_failure:
+      level: critical
+      description: 云端同步失败
+  
+  # 实验调优告警
+  experiment_tuning:
+    metrics_decline:
+      level: error
+      description: 指标持续下降
+      consecutive_rounds: 5
+    resource_exhaustion:
+      level: critical
+      description: 资源耗尽
+    cost_overrun:
+      level: critical
+      description: 成本超支
+  
+  # 系统资源告警
+  system_resource:
+    gpu_memory_high:
+      level: warning
+      description: GPU 显存占用过高
+      threshold: 85
+    gpu_memory_critical:
+      level: critical
+      description: GPU 显存占用严重过高
+      threshold: 95
+    disk_space_low:
+      level: warning
+      description: 磁盘空间不足
+      threshold: 10  # GB
+    memory_high:
+      level: warning
+      description: 内存占用过高
+      threshold: 85
+
+# ==================== 告警渠道配置 ====================
+alert_channels:
+  # 本地日志
+  local_log:
+    enabled: true
+    file: ./experiment/alerts.log
+    format: json
+    include_stack_trace: true
+    max_file_size_mb: 100
+    rotate_count: 5
+  
+  # 控制台输出
+  console:
+    enabled: true
+    color: true
+    include_timestamp: true
+    include_source: true
+  
+  # 邮件通知
+  email:
+    enabled: false
+    smtp_server: smtp.example.com
+    smtp_port: 587
+    use_tls: true
+    sender: daris@example.com
+    recipients:
+      - user@example.com
+    subject_prefix: "[DARIS Alert]"
+  
+  # Webhook 通知
+  webhook:
+    enabled: false
+    url: https://your-webhook-url.com/alert
+    method: POST
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer YOUR_TOKEN
+    retry_count: 3
+    timeout_seconds: 30
+
+# ==================== 告警聚合规则 ====================
+alert_aggregation:
+  enabled: true
+  
+  # 时间窗口聚合
+  time_window:
+    enabled: true
+    window_minutes: 5
+    max_alerts_per_window: 10
+    aggregate_action: summarize
+  
+  # 同类告警聚合
+  same_type_aggregation:
+    enabled: true
+    max_same_alert: 5
+    aggregate_action: count_and_suppress
+  
+  # 告警风暴抑制
+  storm_suppression:
+    enabled: true
+    threshold_per_minute: 20
+    suppression_duration_minutes: 10
+    only_critical: false
+
+# ==================== 告警升级规则 ====================
+alert_escalation:
+  enabled: true
+  
+  # 超时升级
+  timeout_escalation:
+    enabled: true
+    escalation_after_minutes: 30
+    escalate_from: warning
+    escalate_to: error
+  
+  # 连续告警升级
+  consecutive_escalation:
+    enabled: true
+    consecutive_count: 5
+    escalate_from: warning
+    escalate_to: error
+  
+  # 无响应升级
+  no_response_escalation:
+    enabled: false
+    escalate_after_minutes: 60
+    escalate_to_channels:
+      - webhook
+
+# ==================== 告警历史记录 ====================
+alert_history:
+  enabled: true
+  storage:
+    type: file
+    file: ./experiment/alert_history.json
+    max_entries: 1000
+    archive_after_days: 30
+    archive_file: ./experiment/alert_history_archive.json
+  
+  # 告警统计
+  statistics:
+    enabled: true
+    calculate_daily: true
+    calculate_weekly: true
+    calculate_monthly: true
+    report_file: ./experiment/alert_statistics.json
+
+# ==================== 告警恢复规则 ====================
+alert_recovery:
+  auto_recovery:
+    enabled: true
+    check_interval_minutes: 5
+    recovery_conditions:
+      - resource_status_normal
+      - error_rate_below_threshold
+      - no_new_alerts_for_minutes: 10
+  
+  recovery_notification:
+    enabled: true
+    channels:
+      - local_log
+      - console

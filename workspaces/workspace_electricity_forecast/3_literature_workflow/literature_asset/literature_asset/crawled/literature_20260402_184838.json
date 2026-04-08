@@ -1,0 +1,159 @@
+{
+    "crawl_summary": {
+        "total_keywords": 3,
+        "total_articles": 15,
+        "crawl_time": "2026-04-02T18:48:38.106887"
+    },
+    "articles": [
+        {
+            "keyword": "MTGNN",
+            "title": "MTGNN: Multi-Task Graph Neural Network based few-shot learning for disease similarity measurement.",
+            "authors": "Gao J, Zhang X, Tian L, Liu Y, Wang J, Li Z, Hu X.",
+            "journal": "Methods. 2022 Feb;198:88-95. doi: 10.1016/j.ymeth.2021.10.005. Epub 2021 Oct 24.",
+            "abstract": "No abstract available",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34700014/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:19.039565"
+        },
+        {
+            "keyword": "MTGNN",
+            "title": "MTGNN: A Drug-Target-Disease Triplet Association Prediction Model Based on Multimodal Heterogeneous Graph Neural Networks and Direction-Aware Metapaths.",
+            "authors": "Zheng L, Zhang S, Li Y, Liu Y, Ge Q, Gu L, Xie Y, Wang X, Ma Y, Liu J, Lu M, Chen Y, Zhu Y, Liu H.",
+            "journal": "J Chem Inf Model. 2025 Jun 23;65(12):5921-5933. doi: 10.1021/acs.jcim.5c00817. Epub 2025 Jun 5.",
+            "abstract": "No abstract available",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40474342/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:21.921551"
+        },
+        {
+            "keyword": "MTGNN",
+            "title": "Dynamic Spatial-Temporal Memory Augmentation Network for Traffic Prediction.",
+            "authors": "Zhang H, Xie Q, Shou Z, Gao Y.",
+            "journal": "Sensors (Basel). 2024 Oct 16;24(20):6659. doi: 10.3390/s24206659.",
+            "abstract": "Traffic flow prediction plays a crucial role in the development of smart cities. However, existing studies face challenges in effectively capturing spatio-temporal contexts, handling hierarchical temporal features, and understanding spatial heterogeneity. To better manage the spatio-temporal correlations inherent in traffic flow, we present a novel model calledDynamicSpatio-TemporalMemory-AugmentedNetwork (DSTMAN). Firstly, we design three spatial-temporal embeddings to capture dynamic spatial-temporal contexts and encode the unique characteristics of time units and spatial states. Secondly, these three spatial-temporal components are integrated to form a multi-scale spatial-temporal block, which effectively extracts hierarchical spatial-temporal dependencies. Finally, we introduce a meta-memory node bank to construct an adaptive neighborhood graph, implicitly representing spatial relationships and enhancing the learning of spatial heterogeneity through a secondary memory mechanism. Evaluation on four public datasets, including METR-LA and PEMS-BAY, demonstrates that the proposed model outperforms benchmark models such as MTGNN, DCRNN, and AGCRN. On the METR-LA dataset, our model reduces the MAE by 4% compared to MTGNN, 6.9% compared to DCRNN, and 5.8% compared to AGCRN, confirming its efficacy in traffic flow prediction.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/39460139/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:25.853105"
+        },
+        {
+            "keyword": "MTGNN",
+            "title": "A Sensor Data Prediction and Early-Warning Method for Coal Mining Faces Based on theMTGNN-Bayesian-IF-DBSCAN Algorithm.",
+            "authors": "Liu M, Wang X, Qiao W, Shang H, Yan Z, Qin Z.",
+            "journal": "Sensors (Basel). 2025 Jul 31;25(15):4717. doi: 10.3390/s25154717.",
+            "abstract": "No abstract available",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40807882/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:28.561878"
+        },
+        {
+            "keyword": "MTGNN",
+            "title": "Mine Gas Time-Series Data Prediction and Fluctuation Monitoring Method Based on Decomposition-Enhanced Cross-Graph Forecasting and Anomaly Finding.",
+            "authors": "Yuan L.",
+            "journal": "Sensors (Basel). 2025 Nov 17;25(22):7014. doi: 10.3390/s25227014.",
+            "abstract": "No abstract available",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41305220/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:31.356898"
+        },
+        {
+            "keyword": "TimesNet",
+            "title": "EEG-based emotion recognition with autoencoder feature fusion and MSC-TimesNetmodel.",
+            "authors": "Yin J, Qiao Z, Han L, Zhang X.",
+            "journal": "Comput Methods Biomech Biomed Engin. 2025 Mar 17:1-18. doi: 10.1080/10255842.2025.2477801. Online ahead of print.",
+            "abstract": "Electroencephalography (EEG) signals are widely employed due to their spontaneity and robustness against artifacts in emotion recognition. However, existing methods are often unable to fully integrate high-dimensional features and capture changing patterns in time series when processing EEG signals, which results in limited classification performance. This paper proposes an emotion recognition method (AEF-DL) based on autoencoder fusion features and MSC-TimesNet models. Firstly, we segment the EEG signal in five frequency bands into time windows of 0.5 s, extract power spectral density (PSD) features and differential entropy (DE) features, and implement feature fusion using the autoencoder to enhance feature representation. Based on the TimesNet model and incorporating the multi-scale convolutional kernels, this paper proposes an innovative deep learning model (MSC-TimesNet) for processing fused features. MSC-TimesNet efficiently extracts inter-period and intra-period information. To validate the performance of the proposed method, we conducted systematic experiments on the public datasets DEAP and Dreamer. In dependent experiments with subjects, the classification accuracies reached 98.97% and 95.71%, respectively; in independent experiments with subjects, the accuracies reached 97.23% and 92.95%, respectively. These results demonstrate that the proposed method exhibits significant advantages over existing methods, highlighting its effectiveness and broad applicability in emotion recognition tasks.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40096584/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:48.542338"
+        },
+        {
+            "keyword": "TimesNet",
+            "title": "TimesNet-BFT: Mitigating Network State Uncertainty in Byzantine Consensus via Deep Temporal Modeling.",
+            "authors": "Wang H, Liu H, Liu Y, Ma H, Gao P.",
+            "journal": "Entropy (Basel). 2026 Mar 8;28(3):302. doi: 10.3390/e28030302.",
+            "abstract": "Byzantine fault tolerance (BFT) protocols serve as the cornerstone of data consistency in permissioned blockchains; however, their scalability is inherently constrained by stochastic leader-centric bottlenecks and rigid, non-adaptive timeout mechanisms. Existing rule-based heuristics often fail to capture high-entropy and time-varying network latency, leading to frequent view changes and severe performance degradation under network volatility. To mitigate this epistemic uncertainty, this paper proposes TimesNet-BFT, a novel entropy-aware optimization framework. By leveraging TimesNet's transformation of one-dimensional time series into two-dimensional tensors for multi-periodicity analysis, the framework accurately characterizes stochastic nodal latency patterns to facilitate entropy-minimized dynamic leader election and adaptive timeout strategies. Extensive evaluations conducted on simulated and real-world trace-driven Internet of Vehicles (IoV) scenarios validate the proposed approach, achieving a prediction MAPE below 5% alongside robust zero-shot generalization. Notably, under high-entropy network conditions, the framework demonstrates up to a 191.9% increase in throughput and mitigates latency variance by 73.3%, effectively neutralizing the structural bottlenecks inherent to traditional information-agnostic protocols. Crucially, by mathematically decoupling consensus safety from AI prediction errors, the system introduces an aggressive liveness paradigm that maintains minimal control plane overhead while significantly enhancing the entropic stability of the consensus process.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41899954/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:53.497402"
+        },
+        {
+            "keyword": "TimesNet",
+            "title": "Short-Term Forecast of Tropospheric Zenith Wet Delay Based onTimesNet.",
+            "authors": "Zhao X, Gu S, Mi J, Dong J, Xiao L, Chu B.",
+            "journal": "Sensors (Basel). 2026 Feb 3;26(3):991. doi: 10.3390/s26030991.",
+            "abstract": "The tropospheric zenith wet delay (ZWD) serves as a pivotal parameter for atmospheric water vapour inversion. By converting it into precipitable water vapour, high-temporal-resolution atmospheric humidity monitoring becomes feasible, providing crucial support for enhancing short-term rainfall forecast accuracy. However, ZWD exhibits significant non-stationarity due to complex influencing factors, and traditional models struggle to achieve precise predictions across all scenarios owing to limitations in local feature extraction. This article employs a ZWD prediction method based on the dynamic temporal decomposition module of TimesNet, re-constructing one-dimensional high-frequency ZWD time series into two-dimensional tensors to overcome the technical limitations of conventional models. Comprehensively considering topographical characteristics, climatic features, and seasonal factors, experiments were conducted using 30 s ZWD data from 20 IGS stations. This dataset comprised four consecutive days of PPP solutions for each season in 2023. Through comparative experiments with CNN-ATT and Informer models, the global prediction accuracy, seasonal adaptability, and topographical robustness of TimesNet were systematically evaluated. Results demonstrate that under the input-prediction window configuration where each can achieve the optimal accuracy, TimesNet achieves an average seasonal Root Mean Square Error (RMSE) of 5.73 mm across all seasonal station samples, outperforming Informer (7.89 mm) and CNN-ATT (10.02 mm) by 27.4% and 42.8%, respectively. It maintains robust performance under the most challenging conditions-including summer severe convection, high-altitude terrain, and climatically variable maritime zones-while achieving sub-5 mm precision in stable environments. This provides a reliable algorithmic foundation for short-term precipitation forecasting in Global Navigation Satellite System (GNSS) real-time meteorology.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41682509/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:56.978751"
+        },
+        {
+            "keyword": "TimesNet",
+            "title": "Box-meter integrated solution for power data imputation through device design and deep learning integration.",
+            "authors": "Gao C, Lin H, Lin Y.",
+            "journal": "Sci Rep. 2025 Oct 21;15(1):36543. doi: 10.1038/s41598-025-18439-3.",
+            "abstract": "No abstract available",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41120411/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:47:59.740560"
+        },
+        {
+            "keyword": "TimesNet",
+            "title": "Ultrasound Image Temperature Monitoring Based on a Temporal-Informed Neural Network.",
+            "authors": "Han Y, Du Y, He L, Meng X, Li M, Cao F.",
+            "journal": "Sensors (Basel). 2024 Jul 30;24(15):4934. doi: 10.3390/s24154934.",
+            "abstract": "Real-time and accurate temperature monitoring during microwave hyperthermia (MH) remains a critical challenge for ensuring treatment efficacy and patient safety. This study presents a novel approach to simulate real MH and precisely determine the temperature of the target region within biological tissues using a temporal-informed neural network. We conducted MH experiments on 30 sets of phantoms and 10 sets of ex vivo pork tissues. We proposed a novel perspective: the evolving tissue responses to continuous electromagnetic radiation stimulation are a joint evolution in temporal and spatial dimensions. Our model leverages TimesNet to extract periodic features and Cloblock to capture global information relevance in two-dimensional periodic vectors from ultrasound images. By assimilating more ultrasound temporal data, our model improves temperature-estimation accuracy. In the temperature range 25-65 °C, our neural network achieved temperature-estimation root mean squared errors of approximately 0.886 °C and 0.419 °C for fresh ex vivo pork tissue and phantoms, respectively. The proposed temporal-informed neural network has a modest parameter count, rendering it suitable for deployment on ultrasound mobile devices. Furthermore, it achieves temperature accuracy close to that prescribed by clinical standards, making it effective for non-destructive temperature monitoring during MH of biological tissues.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/39123982/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:03.573909"
+        },
+        {
+            "keyword": "power load forecasting",
+            "title": "Shippowerloadforecastingbased on PSO-SVM.",
+            "authors": "Dai X, Sheng K, Shu F.",
+            "journal": "Math Biosci Eng. 2022 Mar 4;19(5):4547-4567. doi: 10.3934/mbe.2022210.",
+            "abstract": "Compared with the land power grid, power capacity of ship power system is small, its power load has randomness. Ship power load forecasting is of great significance for the stability and safety of ship power system. Support vector machine (SVM) load forecasting algorithm is a common method of ship power load forecasting. In this paper, water flow velocity, wind speed and ship speed are used as the features of SVM to train the load forecasting algorithm, which strengthens the correlation between features and predicted values. At the same time, regularization parameter C and standardization parameter σ of SVM has a great influence on the prediction accuracy. Therefore, the improved particle swarm optimization algorithm is used to optimize these two parameters in real time to form a new improved particle swarm optimization support vector machine algorithm (IPSO-SVM), which reduces the load forecasting error, improves the prediction accuracy of ship power load, and improves the performance of ship energy management system.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/35430827/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:20.452873"
+        },
+        {
+            "keyword": "power load forecasting",
+            "title": "Short-termpowerloadforecastingbased on the CEEMDAN-TCN-ESN model.",
+            "authors": "Huang J, Zhang X, Jiang X.",
+            "journal": "PLoS One. 2023 Oct 26;18(10):e0284604. doi: 10.1371/journal.pone.0284604. eCollection 2023.",
+            "abstract": "Ensuring an adequate electric power supply while minimizing redundant generation is the main objective of power load forecasting, as this is essential for the power system to operate efficiently. Therefore, accurate power load forecasting is of great significance to save social resources and promote economic development. In the current study, a hybrid CEEMDAN-TCN-ESN forecasting model based on complete ensemble empirical mode decomposition with adaptive noise (CEEMDAN) and higher-frequency and lower-frequency component reconstruction is proposed for short-term load forecasting research. In this paper, we select the historical national electricity load data of Panama as the research subject and make hourly forecasts of its electricity load data. The results show that the RMSE and MAE predicted by the CEEMDAN-TCN-ESN model on this dataset are 15.081 and 10.944, respectively, and R2 is 0.994. Compared to the second-best model (CEEMDAN-TCN), the RMSE is reduced by 9.52%, and the MAE is reduced by 17.39%. The hybrid model proposed in this paper effectively extracts the complex features of short-term power load data and successfully merges subseries according to certain similar features. It learns the complex and varying features of higher-frequency series and the obvious regularity of the lower-frequency-trend series well, which could be applicable to real-world short-term power load forecasting work.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37883410/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:24.528244"
+        },
+        {
+            "keyword": "power load forecasting",
+            "title": "Short-termpowerloadforecastingmethod based on Bagging-stochastic configuration networks.",
+            "authors": "Pang X, Sun W, Li H, Liu W, Luan C.",
+            "journal": "PLoS One. 2024 Mar 19;19(3):e0300229. doi: 10.1371/journal.pone.0300229. eCollection 2024.",
+            "abstract": "Accurate short-term load forecasting is of great significance in improving the dispatching efficiency of power grids, ensuring the safe and reliable operation of power grids, and guiding power systems to formulate reasonable production plans and reduce waste of resources. However, the traditional short-term load forecasting method has limited nonlinear mapping ability and weak generalization ability to unknown data, and it is prone to the loss of time series information, further suggesting that its forecasting accuracy can still be improved. This study presents a short-term power load forecasting method based on Bagging-stochastic configuration networks (SCNs). First, the missing values in the original data are filled with the average values. Second, the influencing factors, such as the weather- and week-type data, are coded. Then, combined with the data of influencing factors after coding, the Bagging-SCNs integration algorithm is used to predict the short-term load. Finally, by taking the daily load data of Quanzhou City, Zhejiang Province as an example, the program of the abovementioned method is compiled in Python language and then compared with the long short-term memory neural network algorithm and the single-SCNs algorithm. Simulation results show that the proposed method for medium- and short-term load forecasting has a high forecasting accuracy and a significant effect on improving the accuracy of load forecasting.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/38502675/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:28.605936"
+        },
+        {
+            "keyword": "power load forecasting",
+            "title": "IndustrialPowerLoadForecastingMethod Based on Reinforcement Learning and PSO-LSSVM.",
+            "authors": "Ge Q, Guo C, Jiang H, Lu Z, Yao G, Zhang J, Hua Q.",
+            "journal": "IEEE Trans Cybern. 2022 Feb;52(2):1112-1124. doi: 10.1109/TCYB.2020.2983871. Epub 2022 Feb 16.",
+            "abstract": "Influenced by many complex factors, it is very difficult to obtain high-performance industrial power load forecasting. The industrial power load forecasting is deeply studied by fusing some machine-learning methods for industrial enterprise power consumers. As a result, a novel power load forecasting method is proposed by taking into account the variation of load characteristics in different regions, industries, and production patterns. First, through the improved K -means clustering analysis, the historical load data are classified as the production patterns to which they belong. Then, the prediction algorithm combining reinforcement learning with particle swarm optimization and the least-squares support vector machine is proposed. Finally, the improved algorithm in this article is used for short-term load forecasting separately by the load data in different patterns after the above processing. The forecasting method in this article is based on data driven with real datasets. The results of the simulation experiment show that the improved prediction algorithm can distinguish the changes in different production patterns and identify the load characteristics of different regions and industries with high prediction accuracy, which has practical application value.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/32386173/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:32.146027"
+        },
+        {
+            "keyword": "power load forecasting",
+            "title": "Research on ImpulsePowerLoadForecastingBased on Improved Recurrent Neural Networks.",
+            "authors": "Feng C, Xu K, Ma H.",
+            "journal": "Comput Intell Neurosci. 2022 Apr 23;2022:2784563. doi: 10.1155/2022/2784563. eCollection 2022.",
+            "abstract": "Deep learning is good at extracting the required feature quantity from the massive input information through multiple hidden layers and completing the learning through training to achieve the task of load forecasting. The impulse power load data contain a lot of noise, burrs, and strong randomness. As an improved recurrent neural networks, the output of long short-term memory (LSTM) network is not only related to the current input, but also closely related to the historical information, which can effectively predict the impact power load. An impulse power load forecasting model based on improved recurrent neural networks is proposed. To solve the training difficulties caused by deep networks, database is divided into training data set and test data set. To accelerate running speed and improve accuracy and reliability, parameter setting in deep learning neural network is analyzed. The proposed load forecasting model is verified by simulation and compared with the existing methods. Taking the average relative error as the standard, the effectiveness of the proposed model for the forecasting of impulse power load connected to the bus is verified.",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/35502351/",
+            "source": "PubMed",
+            "crawl_time": "2026-04-02T18:48:35.801707"
+        }
+    ]
+}

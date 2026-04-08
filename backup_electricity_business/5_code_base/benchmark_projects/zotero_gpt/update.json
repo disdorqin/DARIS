@@ -1,0 +1,26 @@
+{
+  "addons": {
+    "zoterogpt@polygon.org": {
+      "updates": [
+        {
+          "version": "0.2.9",
+          "update_link": "",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "60.0"
+            }
+          }
+        },
+        {
+          "version": "0.2.8",
+          "update_link": "",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "6.999"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

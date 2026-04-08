@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-04-07T20:59:43.954873",
+  "request": "尖峰电价预测",
+  "rounds": 1,
+  "duration_seconds": 0.367878,
+  "success": false,
+  "workflow_log": [
+    "Traceback (most recent call last):",
+    "File \"D:\\computer learning\\science_workflow\\workspaces\\workspace_electricity_forecast\\2_agent_system\\1_research_manager\\run.py\", line 20, in <module>",
+    "from core.utils.path_resolver import resolve_first_existing, resolve_workspace_root",
+    "ModuleNotFoundError: No module named 'core'"
+  ]
+}

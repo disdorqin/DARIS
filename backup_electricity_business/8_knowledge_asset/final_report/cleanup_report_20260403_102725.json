@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-04-03T10:27:25.614316",
+  "preview": {
+    "timestamp": "2026-04-03T10:27:23.637605",
+    "total_dirs": 857,
+    "total_files": 11719,
+    "top_level": {
+      ".vscode": {
+        "dirs": 0,
+        "files": 1
+      },
+      "1_config": {
+        "dirs": 4,
+        "files": 24
+      },
+      "2_agent_system": {
+        "dirs": 10,
+        "files": 38
+      },
+      "3_literature_workflow": {
+        "dirs": 10,
+        "files": 35
+      },
+      "4_research_hypothesis": {
+        "dirs": 3,
+        "files": 11
+      },
+      "5_code_base": {
+        "dirs": 800,
+        "files": 11518
+      },
+      "6_experiment_execution": {
+        "dirs": 7,
+        "files": 24
+      },
+      "7_monitor_system": {
+        "dirs": 4,
+        "files": 4
+      },
+      "8_knowledge_asset": {
+        "dirs": 9,
+        "files": 60
+      },
+      "code": {
+        "dirs": 0,
+        "files": 1
+      }
+    }
+  },
+  "cleanup_candidates": [],
+  "deleted": [],
+  "skipped": []
+}

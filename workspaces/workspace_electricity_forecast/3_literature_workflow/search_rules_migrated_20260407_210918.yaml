@@ -1,0 +1,89 @@
+search_config:
+  core_keywords:
+    - "电力尖峰预测"
+    - "尖峰负荷预测"
+    - "peak load forecasting"
+    - "MTGNN 尖峰预测"
+    - "TimesNet 尖峰预测"
+    - "XGBoost 尖峰预测"
+    - "PatchTST 尖峰预测"
+    - "spatiotemporal peak forecasting"
+
+  expand_keywords:
+    - "短期尖峰预测"
+    - "电力尖峰识别"
+    - "负荷极值特征工程"
+    - "极端负荷预测"
+    - "尖峰负荷特性分析"
+
+  exclude_keywords:
+    - "综述"
+    - "长期负荷预测"
+    - "纯理论无实验"
+    - "教学案例"
+
+  year_range:
+    start: 2021
+    end: 2026
+
+  min_citation: 10
+  max_paper_num: 20
+  request_interval: 5
+
+  # 兼容旧流程：保留旧字段，便于文献脚本和规则读取代码同时可用
+  keywords:
+    - "电力尖峰预测"
+    - "尖峰负荷预测"
+    - "peak load forecasting"
+    - "MTGNN 尖峰预测"
+    - "TimesNet 尖峰预测"
+    - "XGBoost 尖峰预测"
+    - "PatchTST 尖峰预测"
+    - "spatiotemporal peak forecasting"
+
+  api_sources:
+    - name: arXiv
+      enabled: true
+      priority: 1
+      api_type: "arxiv"
+      api_url: "https://api.arxiv.org"
+      max_results: 20
+      request_interval: 5
+    - name: Semantic Scholar
+      enabled: false
+      priority: 2
+    - name: 学校图书馆 (Selenium)
+      enabled: true
+      priority: 3
+      platforms:
+        - CNKI
+        - ScienceDirect
+        - Nature
+      download_path: "literature/pdf/"
+
+  filter_rules:
+    year_range:
+      start: 2021
+      end: 2026
+    min_citations: 10
+    venue_types:
+      - 顶刊
+      - 核心期刊
+    exclude_types:
+      - 综述
+      - 长期负荷预测
+      - 纯理论无实验
+      - 教学案例
+    max_results: 20
+    deduplicate: true
+
+  error_handling:
+    api_failure:
+      action: switch_source
+      max_retries: 3
+    download_failure:
+      action: skip_after_retries
+      max_retries: 3
+    zotero_sync_failure:
+      action: alert_after_retries
+      max_retries: 5

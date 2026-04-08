@@ -1,0 +1,818 @@
+{
+  "request": "daris_v3_full_run",
+  "start_time": "2026-04-03T10:38:44.451679",
+  "rounds": 1,
+  "auto_migrate": true,
+  "skip_full_baseline": false,
+  "steps": [
+    {
+      "round": 1,
+      "keywords": [
+        "daris_v3_full_run",
+        "daris_v3_full_run time series forecasting",
+        "daris_v3_full_run graph neural network"
+      ],
+      "literature_json": "3_literature_workflow\\structured_summary\\auto_literature_20260403_105232.json",
+      "reading_summary": "3_literature_workflow\\structured_summary\\agent_reading_round1.md",
+      "innovation": "4_research_hypothesis\\innovation_round1.md",
+      "innovation_review": "4_research_hypothesis\\review_report\\innovation_review_round1.md",
+      "changed_files": [
+        "5_code_base\\optimized\\power_models\\timesnet_model.py"
+      ],
+      "demo_metrics": {
+        "MAE": 45.474403381347656,
+        "RMSE": 64.61547167426312,
+        "R2": 0.871709406375885
+      },
+      "full_test_log": "6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+      "round_metrics": {
+        "timestamp": "2026-04-03 10:58:40",
+        "innovation": {
+          "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+          "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+          "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+          "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+        },
+        "results": {
+          "XGBoost": {
+            "baseline": {
+              "MAE": 35.546630859375,
+              "RMSE": 55.607320311858444,
+              "R2": 0.9012383222579956
+            },
+            "optimized": {
+              "MAE": 37.82931900024414,
+              "RMSE": 56.51379334189685,
+              "R2": 0.8980273008346558
+            }
+          },
+          "TimesNet": {
+            "baseline": {
+              "MAE": 87.47589111328125,
+              "RMSE": 122.99695912145552,
+              "R2": 0.5168153047561646
+            },
+            "optimized": {
+              "MAE": 72.52911376953125,
+              "RMSE": 97.80694373196363,
+              "R2": 0.6947954893112183
+            }
+          },
+          "MTGNN": {
+            "baseline": {
+              "MAE": 74.5829849243164,
+              "RMSE": 106.59104273167141,
+              "R2": 0.6371176242828369
+            },
+            "optimized": {
+              "MAE": 93.80503845214844,
+              "RMSE": 114.72801991966696,
+              "R2": 0.5800567865371704
+            }
+          }
+        },
+        "improvement": {
+          "XGBoost": {
+            "MAE_improve_%": -6.421672281403032,
+            "RMSE_improve_%": -1.6301325526112382,
+            "R2_gain": -0.0032110214233398438
+          },
+          "TimesNet": {
+            "MAE_improve_%": 17.08673916152958,
+            "RMSE_improve_%": 20.480193631956027,
+            "R2_gain": 0.1779801845550537
+          },
+          "MTGNN": {
+            "MAE_improve_%": -25.77270613040996,
+            "RMSE_improve_%": -7.633828302514405,
+            "R2_gain": -0.057060837745666504
+          }
+        },
+        "stage3_notes": {
+          "XGBoost": [
+            "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+          ],
+          "TimesNet": [
+            "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+          ],
+          "MTGNN": [
+            "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+          ]
+        }
+      }
+    }
+  ],
+  "git_commits": [
+    {
+      "status": "success",
+      "output": "[main 3327faf] [DARIS-v3][stage:cleanup] auto redundant cleanup\n 2 files changed, 102 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_103847.json\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_103847.md"
+    },
+    {
+      "status": "success",
+      "output": "[main c4f9f52] [DARIS-v3][stage:benchmark] integrate benchmark open-source capabilities\n 2 files changed, 582 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_105225.json\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_105225.md"
+    },
+    {
+      "status": "success",
+      "output": "[main aad84ca] [DARIS-v3][stage:migration] workspace reorganization\n 2 files changed, 318 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260403_105226.json\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260403_105226.md"
+    },
+    {
+      "status": "failed",
+      "step": "add",
+      "error": "The following paths are ignored by one of your .gitignore files:\n6_experiment_execution/tuning_log/auto_full_pipeline_stdout.log\nhint: Use -f if you really want to add them.\nhint: Disable this message with \"git config set advice.addIgnoredFile false\"\n"
+    }
+  ],
+  "non_blocking_failures": [
+    {
+      "name": "OpenClaw.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "EvoScientist.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "SciPhi.core_logic",
+      "attempts": 3,
+      "error": "probe_not_found",
+      "non_blocking": true
+    },
+    {
+      "name": "PaperAgent.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "ARIS.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "Aider.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "ML-Agent-Research.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "AutoResearch.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    },
+    {
+      "name": "Zotero.clone",
+      "attempts": 3,
+      "error": "clone_failed",
+      "non_blocking": true
+    }
+  ],
+  "skills_library": "8_knowledge_asset/iteration_memory/skills_library.md",
+  "cleanup": {
+    "json_report": "8_knowledge_asset/final_report/cleanup_report_20260403_103847.json",
+    "md_report": "8_knowledge_asset/final_report/cleanup_report_20260403_103847.md",
+    "deleted": [
+      {
+        "path": "5_code_base/benchmark_projects/ml_agent_research/MLAgentBench/agents/Auto-GPT/autogpt/plugins/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "5_code_base/benchmark_projects/ml_agent_research/MLAgentBench/agents/Auto-GPT/autogpt/workspace/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "5_code_base/optimized/power_models/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      }
+    ],
+    "skipped": [],
+    "touched": [
+      "8_knowledge_asset/final_report/cleanup_report_20260403_103847.json",
+      "8_knowledge_asset/final_report/cleanup_report_20260403_103847.md",
+      "5_code_base/benchmark_projects/ml_agent_research/MLAgentBench/agents/Auto-GPT/autogpt/plugins/__pycache__",
+      "5_code_base/benchmark_projects/ml_agent_research/MLAgentBench/agents/Auto-GPT/autogpt/workspace/__pycache__",
+      "5_code_base/optimized/power_models/__pycache__"
+    ]
+  },
+  "benchmark_config": "1_config/base/benchmark_projects.json",
+  "benchmark_integration": {
+    "json_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_105225.json",
+    "md_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_105225.md",
+    "records": [
+      {
+        "name": "OpenClaw",
+        "agent": "global_scheduler",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Recv failure: Connection was reset",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Failed to connect to github.com port 443 after 21068 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/openclaw/openclaw/': Failed to connect to github.com port 443 after 21059 ms: Could not connect to server",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "EvoScientist",
+        "agent": "research_manager_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "name": "SciPhi",
+        "agent": "research_manager_agent",
+        "status": "partial",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": false,
+          "found_probes": [],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/sciphi_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "OpenResearch",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero-GPT",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/MuiseDestiny/zotero-gpt/': Failed to connect to github.com port 443 after 21052 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": true,
+            "detail": "",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "PaperAgent",
+        "agent": "literature_summary_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "name": "AI-Scientist",
+        "agent": "innovation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ],
+          "required_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "error: RPC failed; curl 56 Recv failure: Connection was reset\nfatal: expected flush after ref listing",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": true,
+            "detail": "",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ARIS",
+        "agent": "innovation_review_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "name": "Aider",
+        "agent": "code_implementation_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21097 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21088 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21083 ms: Could not connect to server",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ML-Agent-Research",
+        "agent": "code_implementation_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21095 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21132 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after 21084 ms: Could not connect to server",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "AutoResearch",
+        "agent": "experiment_tuning_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "all clone candidates failed",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "name": "Zotero",
+        "agent": "literature_agent",
+        "status": "non_blocking_failed",
+        "clone": {
+          "ok": false,
+          "source": ""
+        },
+        "core_logic": {},
+        "adaptation": {},
+        "usability": {},
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21093 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 2,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21104 ms: Could not connect to server",
+            "source": "existing_repo"
+          },
+          {
+            "step": "clone",
+            "attempt": 3,
+            "ok": false,
+            "detail": "fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21082 ms: Could not connect to server",
+            "source": "existing_repo"
+          }
+        ]
+      }
+    ],
+    "non_blocking_failures": [
+      {
+        "name": "OpenClaw.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "EvoScientist.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "SciPhi.core_logic",
+        "attempts": 3,
+        "error": "probe_not_found",
+        "non_blocking": true
+      },
+      {
+        "name": "PaperAgent.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "ARIS.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "Aider.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "ML-Agent-Research.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "AutoResearch.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      },
+      {
+        "name": "Zotero.clone",
+        "attempts": 3,
+        "error": "clone_failed",
+        "non_blocking": true
+      }
+    ],
+    "touched": [
+      "2_agent_system/integration/sciphi_adapter.md",
+      "2_agent_system/integration/openresearch_adapter.md",
+      "2_agent_system/integration/zotero_gpt_adapter.md",
+      "2_agent_system/integration/ai_scientist_adapter.md",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_105225.json",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_105225.md"
+    ]
+  },
+  "migration": {
+    "json_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_105226.json",
+    "md_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_105226.md",
+    "removed_empty_dirs": [
+      "code"
+    ]
+  },
+  "retrospectives": [
+    {
+      "bottlenecks": [
+        "标杆项目中存在 9 个非阻断失败项，影响能力完全落地率。"
+      ],
+      "root_causes": [
+        "部分仓库地址不可用或网络不可达。"
+      ],
+      "optimization_paths": [
+        "维护企业内部镜像仓库并在配置中优先使用镜像地址。"
+      ],
+      "reusable_capability_iterations": [
+        "将仓库候选地址与探针文件写入配置并执行自动三次重试。"
+      ]
+    }
+  ],
+  "status": "success",
+  "events": [
+    "[2026-04-03 10:38:44] 启动前冗余清理 开始 (attempt=1)",
+    "[2026-04-03 10:38:47] 清理完成: 删除 3 项，跳过 0 项",
+    "[2026-04-03 10:38:47] 12标杆项目能力集成 开始 (attempt=1)",
+    "[2026-04-03 10:38:47] 开始集成标杆项目: OpenClaw",
+    "[2026-04-03 10:40:10] 开始集成标杆项目: EvoScientist",
+    "[2026-04-03 10:42:00] 开始集成标杆项目: SciPhi",
+    "[2026-04-03 10:42:01] 开始集成标杆项目: OpenResearch",
+    "[2026-04-03 10:42:02] 开始集成标杆项目: Zotero-GPT",
+    "[2026-04-03 10:42:43] 开始集成标杆项目: PaperAgent",
+    "[2026-04-03 10:44:53] 开始集成标杆项目: AI-Scientist",
+    "[2026-04-03 10:45:49] 开始集成标杆项目: ARIS",
+    "[2026-04-03 10:47:35] 开始集成标杆项目: Aider",
+    "[2026-04-03 10:48:42] 开始集成标杆项目: ML-Agent-Research",
+    "[2026-04-03 10:49:49] 开始集成标杆项目: AutoResearch",
+    "[2026-04-03 10:51:19] 开始集成标杆项目: Zotero",
+    "[2026-04-03 10:52:25] 标杆项目集成完成: 成功/部分=12，非阻断失败=9",
+    "[2026-04-03 10:52:26] 目录归位 开始 (attempt=1)",
+    "[2026-04-03 10:52:26] 目录重构完成，报告: D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_105226.md",
+    "[2026-04-03 10:52:26] 开始执行自动化轮次 1/1",
+    "[2026-04-03 10:52:26] 文献抓取 开始 (attempt=1)",
+    "[2026-04-03 10:52:26] 抓取文献关键词: daris_v3_full_run",
+    "[2026-04-03 10:52:28] 抓取文献关键词: daris_v3_full_run time series forecasting",
+    "[2026-04-03 10:52:30] 抓取文献关键词: daris_v3_full_run graph neural network",
+    "[2026-04-03 10:52:32] 文献抓取完成: D:\\computer learning\\science_workflow\\3_literature_workflow\\structured_summary\\auto_literature_20260403_105232.json",
+    "[2026-04-03 10:52:32] 智能体阅读文献 开始 (attempt=1)",
+    "[2026-04-03 10:52:32] 尝试模型: qwen3.5-plus",
+    "[2026-04-03 10:52:32] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"8754dd1b-e0b2-99b2-88bc-473e6f8b3716\"}",
+    "[2026-04-03 10:52:32] 尝试模型: qwen3-coder-next",
+    "[2026-04-03 10:52:32] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"e6e253d2-180f-9692-8571-1ce436989878\"}",
+    "[2026-04-03 10:52:32] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-03 10:52:33] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"ae268f19-0046-912d-b80c-390d6fbdbbe6\"}",
+    "[2026-04-03 10:52:33] 尝试模型: qwen3-coder-plus",
+    "[2026-04-03 10:52:33] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"b2a9c435-3d13-962c-b9cb-fd591ff47e47\"}",
+    "[2026-04-03 10:52:33] 尝试模型: kimi-k2.5",
+    "[2026-04-03 10:52:33] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"63193b35-6d6f-931a-905d-c6a88cc3392c\"}",
+    "[2026-04-03 10:52:33] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"63193b35-6d6f-931a-905d-c6a88cc3392c\"}",
+    "[2026-04-03 10:52:33] 提出创新点 开始 (attempt=1)",
+    "[2026-04-03 10:52:33] 尝试模型: qwen3.5-plus",
+    "[2026-04-03 10:52:33] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"dd766174-3f7b-93b8-9190-c7d0b35cb093\"}",
+    "[2026-04-03 10:52:33] 尝试模型: qwen3-coder-next",
+    "[2026-04-03 10:52:33] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"58bbee5b-20a2-9b40-a756-e6fcfca2f3ea\"}",
+    "[2026-04-03 10:52:33] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-03 10:52:33] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"1ef105ef-e69b-9fc7-a979-79055e4f63fe\"}",
+    "[2026-04-03 10:52:33] 尝试模型: qwen3-coder-plus",
+    "[2026-04-03 10:52:34] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"1c080566-6fe7-9bfb-9c0e-37599b572e17\"}",
+    "[2026-04-03 10:52:34] 尝试模型: kimi-k2.5",
+    "[2026-04-03 10:52:34] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"b6bf4691-8f3f-9e46-96ba-d33b44c9d93c\"}",
+    "[2026-04-03 10:52:34] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"b6bf4691-8f3f-9e46-96ba-d33b44c9d93c\"}",
+    "[2026-04-03 10:52:34] 智能体审阅创新点 开始 (attempt=1)",
+    "[2026-04-03 10:52:34] 尝试模型: qwen3.5-plus",
+    "[2026-04-03 10:52:34] 模型 qwen3.5-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"453fbe58-d450-90e5-9438-e10552229944\"}",
+    "[2026-04-03 10:52:34] 尝试模型: qwen3-coder-next",
+    "[2026-04-03 10:52:34] 模型 qwen3-coder-next 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"4873731c-76de-98bd-a489-f461bba7d183\"}",
+    "[2026-04-03 10:52:34] 尝试模型: qwen3-max-2026-01-23",
+    "[2026-04-03 10:52:34] 模型 qwen3-max-2026-01-23 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"ced5e230-956f-9ddf-8e59-7117bde5fb7e\"}",
+    "[2026-04-03 10:52:34] 尝试模型: qwen3-coder-plus",
+    "[2026-04-03 10:52:35] 模型 qwen3-coder-plus 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"f4fdb451-0d10-9581-a86e-4bfe0b862db8\"}",
+    "[2026-04-03 10:52:35] 尝试模型: kimi-k2.5",
+    "[2026-04-03 10:52:35] 模型 kimi-k2.5 失败: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"c6af6f7b-d67d-90a1-a63e-9cb525d11164\"}",
+    "[2026-04-03 10:52:35] 全部模型调用失败，切换本地兜底生成。最近错误: HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_api_key\"},\"request_id\":\"c6af6f7b-d67d-90a1-a63e-9cb525d11164\"}",
+    "[2026-04-03 10:52:35] 智能体改动代码 开始 (attempt=1)",
+    "[2026-04-03 10:52:35] 自动代码改动完成，涉及文件数: 1",
+    "[2026-04-03 10:52:35] Demo 评估 开始 (attempt=1)",
+    "[2026-04-03 10:53:20] Demo 评估完成: {'MAE': 45.474403381347656, 'RMSE': 64.61547167426312, 'R2': 0.871709406375885}",
+    "[2026-04-03 10:53:20] 三基线改动测试 开始 (attempt=1)",
+    "[2026-04-03 10:53:20] 执行三基线+优化测试脚本: D:\\computer learning\\science_workflow\\6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+    "[2026-04-03 10:58:41] 全量测试完成，日志: D:\\computer learning\\science_workflow\\6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+    "[2026-04-03 10:58:41] Git add 失败: The following paths are ignored by one of your .gitignore files:\n6_experiment_execution/tuning_log/auto_full_pipeline_stdout.log\nhint: Use -f if you really want to add them.\nhint: Disable this message"
+  ],
+  "end_time": "2026-04-03T10:58:41.206657"
+}

@@ -1,0 +1,550 @@
+"""
+文件操作工具模块
+提供文件写入、目录树显示等基础文件操作功能
+"""
+
+import os
+import logging
+from typing import Optional, Union, Dict, Any, List
+from pathlib import Path
+from ..core_managers.stream_manager import StreamOutputManager
+
+logger = logging.getLogger(__name__)
+
+
+class FileTools:
+    """文件操作工具类"""
+
+    def __init__(self, stream_manager: Optional[StreamOutputManager] = None):
+        # 获取工作空间目录
+        workspace_dir = os.getenv("WORKSPACE_DIR")
+        if not workspace_dir:
+            # 必须设置工作空间目录，不能使用默认路径
+            raise ValueError("必须设置WORKSPACE_DIR环境变量，指定具体的工作空间目录（包含work_id）")
+
+        self.workspace_dir = workspace_dir
+        self.stream_manager = stream_manager
+
+        # 确保工作空间目录存在
+        os.makedirs(self.workspace_dir, exist_ok=True)
+        logger.info(f"FileTools初始化完成，workspace目录: {self.workspace_dir}")
+
+    def writemd(self, filename: str, content: str, mode: str = "overwrite") -> str:
+        """
+        写入Markdown文件到workspace目录，支持多种写入模式
+
+        Args:
+            filename: 文件名（不需要.md后缀）
+            content: Markdown内容
+            mode: 写入模式
+                - "append": 附加模式，在文件末尾追加内容
+                - "overwrite": 重写覆盖模式，完全覆盖原文件内容
+                - "modify": 修改模式，替换文件中的特定内容
+                - "insert": 插入模式，在文件开头插入内容
+
+        Returns:
+            操作结果信息
+        """
+        try:
+            # 确保文件名有.md后缀
+            if not filename.endswith('.md'):
+                filename = filename + '.md'
+
+            # 构建完整路径
+            file_path = os.path.join(self.workspace_dir, filename)
+
+            # 确保目录存在
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+            if mode == "append":
+                # 附加模式：在文件末尾追加内容
+                with open(file_path, 'a', encoding='utf-8') as f:
+                    f.write('\n\n' + content)
+                result = f"成功附加内容到Markdown文件: {filename}"
+
+            elif mode == "overwrite":
+                # 重写覆盖模式：完全覆盖原文件内容
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                result = f"成功重写覆盖Markdown文件: {filename}"
+
+            elif mode == "modify":
+                # 修改模式：替换文件中的特定内容
+                if os.path.exists(file_path):
+                    # 读取原文件内容
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        original_content = f.read()
+
+                    # 这里可以根据需要实现更复杂的修改逻辑
+                    # 目前简单地将新内容替换原内容
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"成功修改Markdown文件: {filename}"
+                else:
+                    # 如果文件不存在，创建新文件
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"文件不存在，创建并写入Markdown文件: {filename}"
+
+            elif mode == "insert":
+                # 插入模式：在文件开头插入内容
+                if os.path.exists(file_path):
+                    # 读取原文件内容
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        original_content = f.read()
+
+                    # 在开头插入新内容
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content + '\n\n' + original_content)
+                    result = f"成功在文件开头插入内容到Markdown文件: {filename}"
+                else:
+                    # 如果文件不存在，创建新文件
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"文件不存在，创建并写入Markdown文件: {filename}"
+
+            elif mode == "smart_replace":
+                # 智能替换模式：根据内容特征智能替换
+                if os.path.exists(file_path):
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        original_content = f.read()
+                    
+                    # 智能替换逻辑：保持模板结构，替换内容部分
+                    # 这里可以实现更复杂的智能替换算法
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"成功智能替换Markdown文件: {filename}"
+                else:
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"文件不存在，创建并写入Markdown文件: {filename}"
+
+            elif mode == "section_update":
+                # 章节更新模式：更新特定章节内容
+                if os.path.exists(file_path):
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        original_content = f.read()
+                    
+                    # 这里可以实现章节级别的更新逻辑
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"成功更新章节内容到Markdown文件: {filename}"
+                else:
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    result = f"文件不存在，创建并写入Markdown文件: {filename}"
+
+            else:
+                return f"无效的写入模式: {mode}，支持的模式: append, overwrite, modify, insert, smart_replace, section_update"
+
+            # 获取文件信息
+            file_size = os.path.getsize(file_path)
+            result += f"\n文件路径: {file_path}\n文件大小: {file_size} 字节"
+
+            if self.stream_manager:
+                self._send_json_block_sync("writemd_result", result)
+
+            return result
+
+        except Exception as e:
+            error_msg = f"写入Markdown文件失败: {str(e)}"
+            logger.error(error_msg)
+
+            if self.stream_manager:
+                self._send_json_block_sync("writemd_result", error_msg)
+
+            return error_msg
+
+    def update_template(self, template_name: str = "paper.md", content: str = "", section: str = "") -> str:
+        """
+        专门用于更新论文文件的工具方法，只支持章节级别更新
+
+        Args:
+            template_name: 论文文件名，默认为paper.md
+            content: 要更新的内容
+            section: 要更新的章节名称（必需）
+
+        Returns:
+            操作结果信息
+        """
+        try:
+            file_path = os.path.join(self.workspace_dir, template_name)
+
+            if not os.path.exists(file_path):
+                return f"模板文件不存在: {template_name}"
+
+            if not section.strip():
+                return f"错误：必须指定章节名称。update_template工具只支持章节级别更新，不支持全文覆盖。"
+
+            # 读取原模板内容
+            with open(file_path, 'r', encoding='utf-8') as f:
+                original_content = f.read()
+
+            # 更新指定章节
+            updated_content = self._update_section_content(original_content, section, content)
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(updated_content)
+            result = f"成功更新论文文件 {template_name} 的章节 '{section}'"
+            
+            # 获取文件信息
+            file_size = os.path.getsize(file_path)
+            result += f"\n文件路径: {file_path}\n文件大小: {file_size} 字节"
+            
+            if self.stream_manager:
+                self._send_json_block_sync("template_update_result", result)
+            
+            return result
+            
+        except Exception as e:
+            error_msg = f"更新论文文件失败: {str(e)}"
+            logger.error(error_msg)
+            
+            if self.stream_manager:
+                self._send_json_block_sync("template_update_result", error_msg)
+            
+            return error_msg
+
+    def _update_section_content(self, original_content: str, section_name: str, new_content: str) -> str:
+        """
+        更新指定章节的内容
+        
+        Args:
+            original_content: 原始文件内容
+            section_name: 章节名称
+            new_content: 新的章节内容
+            
+        Returns:
+            更新后的完整文件内容
+        """
+        lines = original_content.split('\n')
+        updated_lines = []
+        section_found = False
+        i = 0
+        
+        while i < len(lines):
+            line = lines[i]
+            line_matched = False
+            
+            # 简化的匹配方式：检查是否包含章节名称且以#开头
+            stripped_line = line.strip()
+            if (stripped_line.startswith('#') and 
+                section_name in stripped_line):
+                
+                # 找到目标章节
+                section_found = True
+                line_matched = True
+                
+                logger.info(f"找到匹配章节: {stripped_line}")
+                
+                # 添加章节标题
+                updated_lines.append(line)
+                
+                # 计算当前章节的级别
+                section_level = len(line) - len(line.lstrip('#'))
+                
+                # 跳过空行
+                i += 1
+                while i < len(lines) and lines[i].strip() == '':
+                    updated_lines.append(lines[i])
+                    i += 1
+                
+                # 添加新内容
+                if new_content.strip():
+                    updated_lines.append('')
+                    updated_lines.append(new_content.strip())
+                    updated_lines.append('')
+                
+                # 跳过原有章节内容直到下一个同级或更高级标题
+                while i < len(lines):
+                    next_line = lines[i]
+                    # 检查是否是新的章节标题
+                    if next_line.strip().startswith('#'):
+                        next_level = len(next_line) - len(next_line.lstrip('#'))
+                        if next_level <= section_level:
+                            # 遇到同级或更高级标题，停止跳过
+                            logger.info(f"遇到新章节，停止跳过: {next_line.strip()}")
+                            break
+                    i += 1
+                
+                break
+            
+            if not line_matched:
+                updated_lines.append(line)
+                i += 1
+        
+        # 如果没有找到章节，在文件末尾添加
+        if not section_found:
+            logger.warning(f"没有找到匹配的章节: {section_name}，将在末尾添加")
+            if original_content.strip():
+                updated_lines.append('')
+            updated_lines.append(f'# **{section_name}**')
+            updated_lines.append('')
+            if new_content.strip():
+                updated_lines.append(new_content.strip())
+                updated_lines.append('')
+        
+        return '\n'.join(updated_lines)
+
+    def tree(self, directory: Optional[str] = None) -> str:
+        """显示目录树结构，只允许访问workspace_dir内的目录"""
+        try:
+            # 始终使用workspace_dir作为根目录
+            base_dir = self.workspace_dir
+            
+            if directory is not None:
+                # 如果传入了directory，将其解析为相对于workspace_dir的路径
+                # 处理相对路径
+                if not os.path.isabs(directory):
+                    target_dir = os.path.join(base_dir, directory)
+                else:
+                    target_dir = directory
+                
+                # 解析为绝对路径并规范化
+                target_dir = os.path.realpath(target_dir)
+                base_dir_real = os.path.realpath(base_dir)
+                
+                # 安全检查：确保目标目录在workspace_dir内
+                if not target_dir.startswith(base_dir_real):
+                    return f"安全限制：只能访问workspace目录内的内容，不允许访问: {directory}"
+                
+                directory = target_dir
+            else:
+                directory = base_dir
+
+            if not os.path.exists(directory):
+                return f"目录不存在: {directory}"
+
+            def _tree_helper(path: str, prefix: str = "", is_last: bool = True) -> str:
+                result = []
+                items = os.listdir(path)
+                items.sort()
+
+                for i, item in enumerate(items):
+                    item_path = os.path.join(path, item)
+                    is_last_item = i == len(items) - 1
+
+                    if os.path.isdir(item_path):
+                        result.append(
+                            f"{prefix}{'└── ' if is_last_item else '├── '}{item}/")
+                        new_prefix = prefix + \
+                            ('    ' if is_last_item else '│   ')
+                        result.append(_tree_helper(
+                            item_path, new_prefix, is_last_item))
+                    else:
+                        result.append(
+                            f"{prefix}{'└── ' if is_last_item else '├── '}{item}")
+
+                return '\n'.join(result)
+
+            tree_result = f"{os.path.basename(directory)}/\n" + \
+                _tree_helper(directory)
+
+            if self.stream_manager:
+                self._send_json_block_sync("tree_result", tree_result)
+
+            return tree_result
+
+        except Exception as e:
+            error_msg = f"生成目录树失败: {str(e)}"
+            logger.error(error_msg)
+            return error_msg
+
+    def get_workspace_dir(self) -> str:
+        """获取工作空间目录"""
+        return self.workspace_dir
+
+    def file_exists(self, filename: str) -> bool:
+        """检查文件是否存在"""
+        filepath = os.path.join(self.workspace_dir, filename)
+        return os.path.exists(filepath)
+
+    def read_file(self, filename: str) -> Optional[str]:
+        """读取文件内容"""
+        filepath = os.path.join(self.workspace_dir, filename)
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return f.read()
+        except Exception as e:
+            logger.error(f"读取文件失败: {e}")
+            return None
+
+    def list_files(self, directory: Optional[str] = None) -> list:
+        """列出目录中的文件"""
+        if directory is None:
+            directory = self.workspace_dir
+
+        if not os.path.exists(directory):
+            return []
+
+        try:
+            return os.listdir(directory)
+        except Exception as e:
+            logger.error(f"列出目录失败: {e}")
+            return []
+
+    def list_attachments(self) -> str:
+        """
+        列出工作空间中所有附件文件
+
+        Returns:
+            附件文件列表信息
+        """
+        try:
+            attachment_dir = os.path.join(self.workspace_dir, "attachment")
+
+            if not os.path.exists(attachment_dir):
+                return "工作空间中没有附件目录或没有上传任何附件"
+
+            attachments = []
+
+            # 递归遍历附件目录
+            for root, dirs, files in os.walk(attachment_dir):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    relative_path = os.path.relpath(file_path, attachment_dir)
+                    file_size = os.path.getsize(file_path)
+
+                    # 获取文件类型
+                    file_ext = Path(file).suffix.lower()
+                    file_type = self._get_file_type_description(file_ext)
+
+                    attachments.append({
+                        "name": file,
+                        "path": relative_path,
+                        "size": file_size,
+                        "type": file_type,
+                        "extension": file_ext
+                    })
+
+            logger.info(f"成功处理 {len(attachments)} 个附件，开始格式化输出")
+
+            if not attachments:
+                return "附件目录为空"
+
+            # 格式化输出 - 添加详细日志
+            try:
+                logger.info("开始格式化输出")
+                result = f"发现 {len(attachments)} 个附件文件：\n\n"
+                logger.info(f"结果字符串初始化完成: {len(result)} 字符")
+
+                for i, att in enumerate(attachments, 1):
+                    logger.info(f"处理附件 {i}: {att}")
+                    result += f"{i}. **{att['name']}**\n"
+                    result += f"   - 路径: {att['path']}\n"
+                    result += f"   - 大小: {self._format_file_size(att['size'])}\n"
+                    result += f"   - 类型: {att['type']}\n\n"
+                    logger.info(f"附件 {i} 格式化完成")
+
+                logger.info("格式化输出完成，准备发送JSON块")
+
+                if self.stream_manager:
+                    import json
+                    json_data = {
+                        "count": len(attachments),
+                        "attachments": attachments
+                    }
+                    json_content = json.dumps(json_data, ensure_ascii=False)
+                    self._send_json_block_sync("attachments_list", json_content)
+                    logger.info("JSON块发送完成")
+
+                logger.info("准备返回结果")
+                return result.strip()
+
+            except Exception as format_error:
+                logger.error(f"格式化输出时出错: {format_error}")
+                logger.error(f"attachments内容: {attachments}")
+                logger.error(f"当前结果长度: {len(result) if 'result' in locals() else '未定义'}")
+                raise format_error
+
+        except Exception as e:
+            error_msg = f"列出附件失败: {str(e)}"
+            logger.error(error_msg)
+            return error_msg
+
+
+
+    # 辅助方法
+    def _get_file_type_description(self, file_ext: str) -> str:
+        """获取文件类型描述"""
+        type_map = {
+            # 文本文档
+            '.txt': '纯文本文件',
+            '.md': 'Markdown文档',
+            '.rtf': '富文本格式',
+
+            # Word文档
+            '.doc': 'Word文档 (旧版)',
+            '.docx': 'Word文档',
+
+            # PDF文档
+            '.pdf': 'PDF文档',
+
+            # 表格文件
+            '.csv': 'CSV表格文件',
+            '.xlsx': 'Excel表格文件',
+            '.xls': 'Excel表格文件 (旧版)',
+
+            # 代码文件
+            '.py': 'Python源代码',
+            '.js': 'JavaScript源代码',
+            '.ts': 'TypeScript源代码',
+            '.java': 'Java源代码',
+            '.cpp': 'C++源代码',
+            '.c': 'C源代码',
+            '.html': 'HTML文件',
+            '.css': 'CSS样式表',
+            '.vue': 'Vue组件',
+            '.json': 'JSON数据文件',
+            '.xml': 'XML文件',
+            '.yaml': 'YAML配置文件',
+            '.yml': 'YAML配置文件',
+            '.toml': 'TOML配置文件',
+            '.ini': 'INI配置文件',
+            '.sql': 'SQL脚本',
+            '.sh': 'Shell脚本',
+            '.bat': '批处理文件',
+        }
+        return type_map.get(file_ext, f'{file_ext} 文件')
+
+    def _format_file_size(self, size_bytes: int) -> str:
+        """格式化文件大小"""
+        if size_bytes < 1024:
+            return f"{size_bytes} B"
+        elif size_bytes < 1024 * 1024:
+            return f"{size_bytes / 1024:.1f} KB"
+        elif size_bytes < 1024 * 1024 * 1024:
+            return f"{size_bytes / (1024 * 1024):.1f} MB"
+        else:
+            return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"
+
+    def _format_timestamp(self, timestamp: float) -> str:
+        """格式化时间戳"""
+        import datetime
+        return datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+
+
+
+
+
+    def _send_json_block_sync(self, block_type: str, data: Any):
+        """同步发送JSON块到stream_manager"""
+        try:
+            if self.stream_manager:
+                import asyncio
+                try:
+                    # 尝试获取当前事件循环
+                    loop = asyncio.get_event_loop()
+                    if loop.is_running():
+                        # 如果循环正在运行，使用create_task
+                        asyncio.create_task(self.stream_manager.send_json_block(block_type, data))
+                    else:
+                        # 如果循环没有运行，直接运行
+                        loop.run_until_complete(self.stream_manager.send_json_block(block_type, data))
+                except RuntimeError:
+                    # 如果没有事件循环，创建新的
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    loop.run_until_complete(self.stream_manager.send_json_block(block_type, data))
+                    loop.close()
+        except Exception as e:
+            logger.warning(f"发送JSON块失败: {e}")

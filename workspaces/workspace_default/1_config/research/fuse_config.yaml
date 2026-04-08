@@ -1,0 +1,163 @@
+# DARIS 熔断规则配置
+# v3.0 新增模块
+
+# ==================== 资源熔断规则 ====================
+resource_fuse:
+  # GPU 资源熔断
+  gpu_fuse:
+    enabled: true
+    thresholds:
+      memory_usage: 95         # 显存占用超过 95% 触发熔断
+      temperature: 85          # GPU 温度超过 85°C 触发熔断
+      utilization: 100         # GPU 利用率持续 100% 超过阈值触发熔断
+    action: pause_and_alert    # 暂停并告警
+    cooldown_minutes: 30       # 熔断后冷却时间（分钟）
+  
+  # CPU 资源熔断
+  cpu_fuse:
+    enabled: true
+    thresholds:
+      usage: 95                # CPU 使用率超过 95% 触发熔断
+      temperature: 90          # CPU 温度超过 90°C 触发熔断
+    action: throttle_and_alert # 降频并告警
+    cooldown_minutes: 15
+  
+  # 内存资源熔断
+  memory_fuse:
+    enabled: true
+    thresholds:
+      usage: 90                # 内存使用率超过 90% 触发熔断
+      swap_usage: 50           # 交换空间使用率超过 50% 触发熔断
+    action: free_and_alert     # 释放内存并告警
+    cooldown_minutes: 10
+  
+  # 磁盘资源熔断
+  disk_fuse:
+    enabled: true
+    thresholds:
+      usage: 90                # 磁盘使用率超过 90% 触发熔断
+      write_speed: 0           # 写入速度低于阈值触发熔断
+    action: cleanup_and_alert  # 清理空间并告警
+    cleanup_targets:
+      - ./logs/*.old
+      - ./cache/*
+      - ./temp/*
+
+# ==================== 指标熔断规则 ====================
+metrics_fuse:
+  # 指标异常熔断
+  metrics_anomaly:
+    enabled: true
+    conditions:
+      - condition: "loss == NaN or loss == Inf"
+        action: immediate_stop
+        alert_level: critical
+      - condition: "loss > 10 * baseline_loss"
+        action: immediate_stop
+        alert_level: error
+      - condition: "metrics_unchanged for 20 iterations"
+        action: early_stop
+        alert_level: warning
+  
+  # 指标下降熔断
+  metrics_decline:
+    enabled: true
+    conditions:
+      - condition: "consecutive_decline >= 5"
+        action: rollback
+        alert_level: error
+      - condition: "decline_rate > 50%"
+        action: immediate_stop
+        alert_level: critical
+  
+  # 指标波动熔断
+  metrics_volatility:
+    enabled: true
+    conditions:
+      - condition: "volatility > 3 * average_volatility"
+        action: pause_and_review
+        alert_level: warning
+
+# ==================== 成本熔断规则 ====================
+cost_fuse:
+  # 预算超支熔断
+  budget_overrun:
+    enabled: true
+    thresholds:
+      - percentage: 100
+        action: immediate_stop
+        alert_level: critical
+      - percentage: 80
+        action: warn_and_slowdown
+        alert_level: error
+      - percentage: 50
+        action: warn
+        alert_level: warning
+  
+  # 单次调用成本熔断
+  single_call_overrun:
+    enabled: true
+    threshold_multiplier: 2.0  # 超过估算成本 2 倍触发熔断
+    action: abort_and_alert
+
+# ==================== 重试熔断规则 ====================
+retry_fuse:
+  # 最大重试次数熔断
+  max_retries:
+    enabled: true
+    limits:
+      api_call: 3              # API 调用最大重试 3 次
+      code_fix: 5              # 代码修复最大重试 5 次
+      ssh_connect: 5           # SSH 连接最大重试 5 次
+      experiment_run: 3        # 实验运行最大重试 3 次
+    action: fallback_or_stop   # 使用备用方案或停止
+  
+  # 连续失败熔断
+  consecutive_failures:
+    enabled: true
+    limits:
+      stage_execution: 2       # 环节执行连续失败 2 次触发熔断
+      iteration: 5             # 迭代连续失败 5 次触发熔断
+      api_call: 3              # API 调用连续失败 3 次触发熔断
+    action: escalate_and_stop  # 升级告警并停止
+
+# ==================== 熔断处理策略 ====================
+fuse_handling:
+  # 熔断后处理流程
+  post_fuse_actions:
+    immediate:
+      - stop_current_operation     # 停止当前操作
+      - save_current_state         # 保存当前状态
+      - log_fuse_details           # 记录熔断详情
+    short_term:
+      - notify_research_manager    # 通知研究管理智能体
+      - generate_fuse_report       # 生成熔断报告
+      - wait_for_instructions      # 等待进一步指令
+    long_term:
+      - analyze_root_cause         # 分析根本原因
+      - update_prevention_rules    # 更新预防规则
+      - optimize_resource_usage    # 优化资源使用
+  
+  # 熔断恢复策略
+  recovery_strategy:
+    auto_recovery: false           # 默认不自动恢复
+    require_manual_approval: true  # 需要人工审批
+    recovery_checks:
+      - resource_status_normal     # 资源状态正常
+      - root_cause_addressed       # 根本原因已解决
+      - prevention_measures_in_place # 预防措施已到位
+
+# ==================== 告警渠道配置 ====================
+alert_channels:
+  local_log:
+    enabled: true
+    file: ./experiment/fuse_alerts.log
+  console:
+    enabled: true
+    color: true
+  email:
+    enabled: false
+    recipient: user@example.com
+  webhook:
+    enabled: false
+    url: https://your-webhook-url.com/alert

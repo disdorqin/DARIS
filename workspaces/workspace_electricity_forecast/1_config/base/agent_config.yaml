@@ -1,0 +1,297 @@
+# DARIS 智能体分工配置
+# 适配模型：MTGNN / TimesNet / XGBoost
+
+# ==================== 智能体总览 ====================
+# 六智能体架构：
+# 1. 研究管理智能体（大脑）
+# 2. 文献调研智能体
+# 3. 创新挖掘智能体
+# 4. 工程实现智能体
+# 5. 实验调优智能体
+# 6. 质量评估智能体（v3.0 新增）
+
+# ==================== 研究管理智能体 ====================
+research_manager_agent:
+  name: 研究管理智能体
+  role: 全流程调度大脑
+  description: 负责流程调度、迭代决策、记忆库维护、异常处理
+  
+  # 复用模块
+  modules:
+    - EvoScientist
+    - SciPhi
+  
+  # 绑定工具
+  tools:
+    - OpenClaw
+    - Obsidian
+    - Git
+  
+  # 标准化输入
+  inputs:
+    - research_rules: research_definition.md
+    - stage_results: 各环节执行结果
+    - memory: 持久记忆库
+  
+  # 标准化输出
+  outputs:
+    - stage_trigger: 环节触发指令
+    - iteration_decision: 迭代/回溯决策
+  
+  # 校验规则
+  validation:
+    - no_blocking: 流程无阻塞
+    - traceable: 状态可追溯
+  
+  # 核心职责
+  responsibilities:
+    - 流程调度：按环节顺序触发下一环节
+    - 迭代决策：根据实验指标决定是否继续迭代
+    - 回溯决策：根据失败原因决定回溯环节
+    - 记忆库维护：更新持久记忆库
+    - 异常处理：协调处理各环节异常
+
+# ==================== 文献调研智能体 ====================
+literature_agent:
+  name: 文献调研智能体
+  role: 文献检索与归档
+  description: 负责三模型专属文献检索、Zotero 归档、结构化解析
+  
+  # 复用模块
+  modules:
+    - OpenResearch
+    - Zotero-GPT
+  
+  # 绑定工具
+  tools:
+    - OpenClaw
+    - Zotero
+    - 小绿鲸
+  
+  # 标准化输入
+  inputs:
+    - search_rules: config/search_rules.yaml
+    - keywords: 检索关键词
+    - backtrack_request: 回溯需求
+  
+  # 标准化输出
+  outputs:
+    - categorized_library: 分类文献库
+    - structured_data: 结构化解析数据
+  
+  # 校验规则
+  validation:
+    - archive_rate: 文献 100% 归档 Zotero
+    - metadata_completeness: 元数据完整率 100%
+  
+  # 核心职责
+  responsibilities:
+    - 文献检索：调用 API 检索 MTGNN/TimesNet/XGBoost 文献
+    - 文献过滤：按时间、引用量、期刊过滤
+    - Zotero 归档：自动导入、分类、补全元数据
+    - 小绿鲸联动：全文翻译、图表提取、公式识别
+    - 结构化解析：生成 Markdown 文献笔记
+    - 知识库同步：同步至 Obsidian
+
+# ==================== 创新挖掘智能体 ====================
+innovation_agent:
+  name: 创新挖掘智能体
+  role: 创新点发现与拆解
+  description: 负责三模型优劣势分析、研究空白识别、创新点拆解
+  
+  # 复用模块
+  modules:
+    - AI-Scientist
+    - PaperAgent
+  
+  # 绑定工具
+  tools:
+    - OpenClaw
+    - Obsidian
+  
+  # 标准化输入
+  inputs:
+    - literature_data: 结构化文献数据
+    - memory: 持久记忆库
+  
+  # 标准化输出
+  outputs:
+    - innovation_list: 创新点清单
+    - technical_roadmap: 技术路线拆解文档
+  
+  # 校验规则
+  validation:
+    - actionable: 创新点可落地
+    - atomic_modules: 技术路线拆解到原子模块
+    - verifiable: 研究假说可通过代码验证
+  
+  # 核心职责
+  responsibilities:
+    - 知识图谱构建：构建时序预测方向科研知识图谱
+    - 研究脉络梳理：梳理研究方法演进脉络
+    - 研究空白识别：识别公认研究局限与空白
+    - 创新点生成：生成 3-5 个分级创新点
+    - 创新点预验证：排除已发表、不可行、无差异创新
+    - 技术路线拆解：拆解为可编码的原子技术模块
+
+# ==================== 工程实现智能体 ====================
+engineering_agent:
+  name: 工程实现智能体
+  role: 代码实现与部署
+  description: 负责三模型官方仓库克隆、基线复现、代码同步阿里云
+  
+  # 复用模块
+  modules:
+    - Aider
+    - ML-Agent-Research
+  
+  # 绑定工具
+  tools:
+    - VSCode
+    - Cline
+    - Copilot
+    - 阿里云
+  
+  # 标准化输入
+  inputs:
+    - technical_roadmap: 技术路线拆解文档
+    - experiment_constraints: 实验约束条件
+  
+  # 标准化输出
+  outputs:
+    - baseline_code: 可运行基线代码
+    - cloud_sync_package: 云端同步包
+  
+  # 校验规则
+  validation:
+    - no_error: 代码无报错运行
+    - mvp_passed: 最小可行性验证通过
+    - cloud_synced: 云端同步与验证成功
+  
+  # 核心职责
+  responsibilities:
+    - 仓库克隆：克隆 MTGNN/TimesNet/XGBoost 官方仓库
+    - 依赖安装：安装所有依赖
+    - 基线复现：复刻基线代码
+    - 数据接口适配：适配自定义数据集
+    - 最小验证：执行 1 个 epoch 验证
+    - 创新点模块实现：实现原子技术模块
+    - 代码同步：同步至阿里云服务器
+    - 云端验证：执行云端验证
+
+# ==================== 实验调优智能体 ====================
+experiment_agent:
+  name: 实验调优智能体
+  role: 云端调优与迭代
+  description: 负责云端调优、ARIS 校验、AutoResearch 迭代、结果回传
+  
+  # 复用模块
+  modules:
+    - ARIS
+    - AutoResearch
+  
+  # 绑定工具
+  tools:
+    - 阿里云
+    - OpenClaw
+    - Obsidian
+  
+  # 标准化输入
+  inputs:
+    - baseline_code: 基线代码
+    - tuning_rules: 调优规则（program.md）
+  
+  # 标准化输出
+  outputs:
+    - optimal_model: 最优模型
+    - experiment_report: 实验报告
+    - iteration_log: 迭代日志
+  
+  # 校验规则
+  validation:
+    - iterations_completed: 完成指定迭代轮次
+    - metrics_valid: 最优指标符合约束规则
+    - log_complete: 实验日志完整
+    - synced: 结果全量同步
+  
+  # 核心职责
+  responsibilities:
+    - SSH 连接：连接阿里云服务器
+    - 启动双模型：启动 ARIS 执行 + 评审模型
+    - 执行调优：执行代码修改、超参优化、训练执行
+    - 评审评估：评估指标是否符合优化目标
+    - 保留/回滚：决定保留或回滚
+    - 日志记录：记录迭代日志
+    - 结果回传：回传最优模型与实验结果
+
+# ==================== 质量评估智能体（v3.0 新增） ====================
+quality_agent:
+  name: 质量评估智能体
+  role: 全流程质量监控
+  description: 负责各环节质量评估、合规性检查、异常检测
+  
+  # 复用模块
+  modules:
+    - ARIS
+    - EvoScientist
+  
+  # 绑定工具
+  tools:
+    - OpenClaw
+    - Git
+    - Obsidian
+  
+  # 标准化输入
+  inputs:
+    - stage_outputs: 各环节输出
+    - quality_rules: 质量规则配置
+    - compliance_rules: 合规规则配置
+  
+  # 标准化输出
+  outputs:
+    - quality_report: 质量评估报告
+    - compliance_report: 合规性报告
+    - anomaly_alert: 异常告警
+  
+  # 校验规则
+  validation:
+    - report_generated: 报告生成完成
+    - alert_triggered: 异常及时告警
+  
+  # 核心职责
+  responsibilities:
+    - 环节质量评估：评估各环节输出质量
+    - 合规性检查：检查是否符合 v3.0 规范
+    - 异常检测：检测流程异常
+    - 质量报告生成：生成质量评估报告
+    - 告警触发：触发异常告警
+    - 改进建议：生成改进建议
+
+# ==================== 智能体协作规则 ====================
+collaboration_rules:
+  # 调度顺序
+  stage_order:
+    - research_manager_agent  # 研究管理
+    - literature_agent        # 文献调研
+    - innovation_agent        # 创新挖掘
+    - engineering_agent       # 工程实现
+    - experiment_agent        # 实验调优
+    - quality_agent           # 质量评估
+  
+  # 通信协议
+  communication:
+    format: JSON
+    channel: memory_queue
+    acknowledgment: true
+  
+  # 异常上报
+  exception_reporting:
+    report_to: research_manager_agent
+    include_details: true
+    auto_retry: true
+  
+  # 状态同步
+  state_sync:
+    sync_to: memory/
+    format: JSON
+    auto_commit: true

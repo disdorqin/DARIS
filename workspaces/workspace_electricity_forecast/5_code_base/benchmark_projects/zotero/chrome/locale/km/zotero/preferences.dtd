@@ -1,0 +1,199 @@
+<!ENTITY zotero.preferences.title "ជម្រើសអាទិភាពហ្ស៊ូតេរ៉ូ">
+
+<!ENTITY zotero.preferences.helpButton.label "ជំនួយ">
+
+<!ENTITY zotero.preferences.default "លំនាំដើម:">
+<!ENTITY zotero.preferences.items "ឯកសារ">
+<!ENTITY zotero.preferences.period ".">
+<!ENTITY zotero.preferences.custom "Custom…">
+
+<!ENTITY zotero.preferences.prefpane.general "ទូទៅ">
+
+<!ENTITY zotero.preferences.interface "Interface">
+<!ENTITY zotero.preferences.fileHandling "File Handling">
+<!ENTITY zotero.preferences.automaticSnapshots "ថតយកអត្ថបទចេញពីគេហទំព័រដោយស្វ័យប្រវត្តិ">
+<!ENTITY zotero.preferences.downloadAssociatedFiles "ភ្ជាប់មកជាមួយដោយស្វ័យប្រវត្តិនូវឯកសារភីឌីអែហ្វ និង ឯកសារដទៃទៀត ខណៈពេលទាញរក្សាឯកសារទុក">
+<!ENTITY zotero.preferences.autoRenameFiles.renameLinked "Rename linked files">
+<!ENTITY zotero.preferences.fileHandler.openPDFsUsing "Open PDFs using">
+<!ENTITY zotero.preferences.fileHandler.systemDefault "System Default">
+
+<!ENTITY zotero.preferences.miscellaneous "ជម្រើសនានា">
+<!ENTITY zotero.preferences.autoUpdate "Automatically check for updated translators and styles">
+<!ENTITY zotero.preferences.updateNow "ធ្វើទំនើបកម្មឥលូវ">
+<!ENTITY zotero.preferences.reportTranslationFailure "រាយការណ៍កូដចម្លងគេហទំព័រខូច">
+<!ENTITY zotero.preferences.parseRISRefer "Use Zotero for downloaded BibTeX/RIS/Refer files">
+<!ENTITY zotero.preferences.automaticTags "ដាក់ស្លាកឯកសារដោយប្រើពាក្យគន្លឹះ និង ចំណងជើងអត្ថបទដោយស្វ័យ​ប្រវត្តិ">
+<!ENTITY zotero.preferences.trashAutoEmptyDaysPre "លុបឯកសារចេញពីធុងសំរាមដោយស្វ័យប្រវត្តិ កាលណាត្រូវបានលុបយូរ​ជាង">
+<!ENTITY zotero.preferences.trashAutoEmptyDaysPost "ថ្ងៃកន្លងហើយ">
+
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+
+<!ENTITY zotero.preferences.groups "ក្រុម">
+<!ENTITY zotero.preferences.groups.whenCopyingInclude "នៅពេលចម្លងឯកសារពីបណ្ណាល័យមួយទៅបណ្ណាល័យមួយទៀត ត្រូវបញ្ចូល​ទាំង:">
+<!ENTITY zotero.preferences.groups.childNotes "កំណត់ត្រាកម្ជាប់">
+<!ENTITY zotero.preferences.groups.childFiles "រូបភាពកម្ជាប់ និង ឯកសារនាំចូល">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
+<!ENTITY zotero.preferences.groups.childLinks "កម្ជាប់រណប">
+<!ENTITY zotero.preferences.groups.tags "ស្លាក">
+
+<!ENTITY zotero.preferences.feeds "Feeds">
+<!ENTITY zotero.preferences.feeds.sorting.label "Sorting:">
+<!ENTITY zotero.preferences.feeds.sorting.newest "Newest items first">
+<!ENTITY zotero.preferences.feeds.sorting.oldest "Oldest items first">
+<!ENTITY zotero.preferences.feeds.feedDefaults "Feed Defaults">
+
+<!ENTITY zotero.preferences.prefpane.sync "សមកាលកម្ម">
+<!ENTITY zotero.preferences.sync.username "ឈ្មោះអ្នកប្រើ:">
+<!ENTITY zotero.preferences.sync.password "លេខសម្ងាត់:">
+<!ENTITY zotero.preferences.sync.syncServer "Data Syncing">
+<!ENTITY zotero.preferences.sync.setUpSync "Set Up Syncing">
+<!ENTITY zotero.preferences.sync.unlinkAccount "Unlink Account…">
+<!ENTITY zotero.preferences.sync.createAccount "បង្កើតគណនី">
+<!ENTITY zotero.preferences.sync.lostPassword "ភ្លេចលេខសម្ងាត់?">
+<!ENTITY zotero.preferences.sync.syncAutomatically "ធ្វើសមកាលកម្មដោយស្វ័យប្រវត្តិ">
+<!ENTITY zotero.preferences.sync.syncFullTextContent "Sync full-text content">
+<!ENTITY zotero.preferences.sync.syncFullTextContent.desc "Zotero can sync the full-text content of files in your Zotero libraries with zotero.org and other linked devices, allowing you to easily search for your files wherever you are. The full-text content of your files will not be shared publicly.">
+<!ENTITY zotero.preferences.sync.about "អំពីសមកាលកម្ម">
+<!ENTITY zotero.preferences.sync.fileSyncing "ឯកសារកំពុងធ្វើសមកាលកម្ម">
+<!ENTITY zotero.preferences.sync.fileSyncing.url "គេហទំព័រ:">
+<!ENTITY zotero.preferences.sync.fileSyncing.myLibrary "ធ្វើសមកាលកម្មឯកសារកម្ជាប់ក្នុងស្វ័យបណ្ណាល័យ">
+<!ENTITY zotero.preferences.sync.fileSyncing.groups "ធ្វើសមកាលកម្មមឯកសារភ្ជាប់នៅក្នុងបណ្ណាល័យក្រុមដោយប្រើបន្ទុកហ្ស៊ូតេរ៉ូ">
+<!ENTITY zotero.preferences.sync.fileSyncing.download "ទាញយកឯកសារ">
+<!ENTITY zotero.preferences.sync.fileSyncing.download.atSyncTime "នៅដំណាក់កាលសមកាលកម្មណាមួយ">
+<!ENTITY zotero.preferences.sync.fileSyncing.download.onDemand "តាមការចាំបាច់">
+<!ENTITY zotero.preferences.sync.fileSyncing.verifyServer "Verify Server">
+<!ENTITY zotero.preferences.sync.fileSyncing.tos1 "តាមរយៈការប្រើបន្ទុកហ្ស៊ូតេរ៉ូ អ្នកត្រូវគោរពទៅតាម">
+<!ENTITY zotero.preferences.sync.fileSyncing.tos2 "លក្ខខណ្ឌ​ និង ខសន្យា។">
+<!ENTITY zotero.preferences.sync.librariesToSync "Libraries to Sync">
+<!ENTITY zotero.preferences.sync.librariesToSync.button "Choose Libraries…">
+<!ENTITY zotero.preferences.sync.librariesToSync.sync "សមកាលកម្ម">
+<!ENTITY zotero.preferences.sync.librariesToSync.library "បណ្ណាល័យ">
+<!ENTITY zotero.preferences.sync.reset.warning1 "The following operations are for use only in rare, specific situations and should not be used for general troubleshooting. In many cases, resetting will cause additional problems. See ">
+<!ENTITY zotero.preferences.sync.reset.warning2 "Sync Reset Options">
+<!ENTITY zotero.preferences.sync.reset.warning3 "សម្រាប់ព័ត៌មានបន្ថែម។">
+<!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory "Reset Data Sync History">
+<!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Merge local data with remote data, ignoring sync history">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
+<!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "កំណត់រៀបចំប្រវត្តិឯកសារសមកាលកម្ម">
+<!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compare all attachment files with the storage service">
+<!ENTITY zotero.preferences.sync.reset "កំណត់ជាថ្មី">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
+<!ENTITY zotero.preferences.sync.reset.button "Reset…">
+
+
+<!ENTITY zotero.preferences.prefpane.search "ស្វែងរក">
+<!ENTITY zotero.preferences.search.fulltextCache "បន្ទុកពេញអត្ថបទ">
+<!ENTITY zotero.preferences.search.indexStats "ដាក់លិបិក្រមស្ថិតិ">
+
+<!ENTITY zotero.preferences.search.indexStats.indexed "បានដាក់លិបិក្រម">
+<!ENTITY zotero.preferences.search.indexStats.partial "បានដាក់ដោយផ្នែក:">
+<!ENTITY zotero.preferences.search.indexStats.unindexed "មិនបានដាក់លិបិក្រម:">
+<!ENTITY zotero.preferences.search.indexStats.words "ពាក្យ:">
+
+<!ENTITY zotero.preferences.fulltext.textMaxLength "ចំនួនអក្សរអតិបរមាដែលត្រូវដាក់លិបិក្រមរាល់ឯកសារ:">
+<!ENTITY zotero.preferences.fulltext.pdfMaxPages "ចំនួនទំព័រអតិបរមាដែលត្រូវដាក់លិបិក្រមរាល់ឯកសារ:">
+
+<!ENTITY zotero.preferences.prefpane.export "នាំចេញ">
+
+<!ENTITY zotero.preferences.citationOptions.caption "ជម្រើសអាគតដ្ឋាន">
+<!ENTITY zotero.preferences.export.citePaperJournalArticleURL "បញ្ចូលគេហទំព័រនៃអត្ថបទស្រាវជ្រាវក្នុងឯកសារយោង">
+<!ENTITY zotero.preferences.export.citePaperJournalArticleURL.description "នៅពេលដែលជម្រើសនេះអស់លទ្ធភាព ហ្ស៊ូតេរ៉ូបញ្ចូលគេហទំព័រ នៅពេលយោងអត្ថបទទនានុប្បវត្តិ ទស្សនាវដ្តី និង កាសែត លើកលែង​តែអត្ថបទដែលពុំមានទំព័រជាក់លាក់។">
+
+<!ENTITY zotero.preferences.quickCopy.caption "ចម្លងលឿន">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
+<!ENTITY zotero.preferences.quickCopy.copyAsHTML "ចម្លងជាអេចធីអេមអិល">
+<!ENTITY zotero.preferences.quickCopy.siteEditor.setings "កំណត់គេហទំព័រជាក់លាក់:">
+<!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "វិស័យ/ផ្លូវ">
+<!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(e.g., wikipedia.org)">
+<!ENTITY zotero.preferences.quickCopy.siteEditor.format "ទម្រង់">
+<!ENTITY zotero.preferences.quickCopy.siteEditor.locale "ភាសា">
+<!ENTITY zotero.preferences.quickCopy.dragLimit "ចម្លងលឿនមិនអាចដំណើរការបាន នៅពេលទាញយកឯកសារច្រើនជាង">
+
+<!ENTITY zotero.preferences.prefpane.cite "អាគតដ្ឋាន">
+<!ENTITY zotero.preferences.cite.wordProcessors "កម្មវិធីវាយអត្ថបទ">
+<!ENTITY zotero.preferences.styleEditor "Style Editor">
+<!ENTITY zotero.preferences.stylePreview "Style Preview">
+
+<!ENTITY zotero.preferences.cite.styles.styleManager "គ្រប់គ្រងរចនាបថ">
+<!ENTITY zotero.preferences.cite.styles.styleManager.title "ចំណងជើង">
+<!ENTITY zotero.preferences.cite.styles.styleManager.updated "បានធ្វើទំនើបកម្ម">
+<!ENTITY zotero.preferences.cite.styles.styleManager.csl "ស៊ីអេសអិល">
+
+<!ENTITY zotero.preferences.keys.saveToZotero "Save to Zotero (address bar icon)">
+<!ENTITY zotero.preferences.keys.focusLibrariesPane "Focus Libraries Pane">
+<!ENTITY zotero.preferences.keys.quicksearch "ស្វែងរកលឿន">
+<!ENTITY zotero.preferences.keys.newItem "Create a New Item">
+<!ENTITY zotero.preferences.keys.newNote "Create a New Note">
+<!ENTITY zotero.preferences.keys.toggleAllRead "Mark All Feed Items As Read/Unread">
+<!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "ចម្លងអាគតដ្ឋានឯកសារដែលបានជ្រើសរើសទៅកាន់កន្លែងរក្សាទុកឯកសារបណ្តោះអាសន្ន">
+<!ENTITY zotero.preferences.keys.copySelectedItemsToClipboard "ចម្លងឯកសារដែលបានជ្រើសរើសកន្លែងរក្សាទុកឯកសារបណ្តោះអាសន្ន">
+<!ENTITY zotero.preferences.keys.importFromClipboard "ទាញឯកសារចេញពីកន្លែងរក្សាទុកឯកសារបណ្តោះអាសន្ន">
+<!ENTITY zotero.preferences.keys.changesTakeEffect "Changes take effect after restart">
+
+<!ENTITY zotero.preferences.prefpane.proxies "សិទ្ធិប្រទាន">
+
+<!ENTITY zotero.preferences.proxies.proxyOptions "ជម្រើសសិទ្ធិប្រទាន">
+<!ENTITY zotero.preferences.proxies.desc_before_link "ហ្ស៊ូតេរ៉ូនឹងប្តូរទិសសំណើដោយតម្លាភាពតាមរយៈសិទ្ធិប្រទានដែលបានទាញរក្សាទុក។ សូមមើល">
+<!ENTITY zotero.preferences.proxies.desc_link "ឯកសារសិទ្ធិប្រទាន">
+<!ENTITY zotero.preferences.proxies.desc_after_link "សម្រាប់ព័ត៌មានបន្ថែម។">
+<!ENTITY zotero.preferences.proxies.transparent "អាចប្តូរទិសសិទ្ធិប្រទាន">
+<!ENTITY zotero.preferences.proxies.autoRecognize "ប្រភពសិទ្ធិប្រទានដែលទទួលស្គាល់ដោយស្វ័យប្រវត្តិ">
+<!ENTITY zotero.preferences.proxies.showRedirectNotification "Show notification when redirecting through a proxy">
+<!ENTITY zotero.preferences.proxies.disableByDomain "សិទ្ធិប្រទានមិនអាចប្តូរទិសបាន កាលណាឈ្មោះដែនរបស់ខ្ញុំមាននៅក្នុង">
+<!ENTITY zotero.preferences.proxies.configured "សិទ្ធិប្រទានដែលបានកំណត់រចនាសម្ព័ន្ធ">
+<!ENTITY zotero.preferences.proxies.hostname "ឈ្មោះម៉ាស៊ីន">
+<!ENTITY zotero.preferences.proxies.scheme "គម្រោងការ">
+
+<!ENTITY zotero.preferences.proxies.multiSite "ពហុគេហទំព័រ">
+<!ENTITY zotero.preferences.proxies.autoAssociate "ចូលទៅកាន់ម៉ាស៊ីនថ្មីដោយស្វ័យប្រវត្តិ">
+<!ENTITY zotero.preferences.proxies.variables "អ្នកអាចប្រើធាតុផ្សេងៗដូចខាងក្រោមនៅក្នុងគម្រោការសិទិ្ធប្រទានរបស់អ្នក:">
+<!ENTITY zotero.preferences.proxies.h_variable "&#37;h - ឈ្មោះម៉ាស៊ីននៃគេហទំព័រដែលទទួលបានសិទ្ធិប្រទាន (ឧទាហរណ៍ www.zotero.org)">
+<!ENTITY zotero.preferences.proxies.p_variable "&#37;p - ផ្លូវនែទំព័រមានសិទ្ធិប្រទានរួមទាំងបន្ទាត់ទ្រេត (ឧទាហរណ៍ about/index.html)">
+<!ENTITY zotero.preferences.proxies.d_variable "&#37;d - ផ្លូវថត (ឧទាហរណ៍ about/)">
+<!ENTITY zotero.preferences.proxies.f_variable "&#37;f - ឈ្មោះឯកសារ (ឧទាហរណ៍ index.html)">
+<!ENTITY zotero.preferences.proxies.a_variable "&#37;a - ខ្សែណាមួយ">
+
+<!ENTITY zotero.preferences.prefpane.advanced "ជាន់ខ្ពស់">
+<!ENTITY zotero.preferences.advanced.filesAndFolders "ឯកសារនិងថតឯកសារ">
+<!ENTITY zotero.preferences.advanced.keys "ផ្លូវកាត់">
+
+<!ENTITY zotero.preferences.advanced.advancedConfiguration "Advanced Configuration">
+
+<!ENTITY zotero.preferences.prefpane.locate "ទីតាំងឯកសារ">
+<!ENTITY zotero.preferences.locate.locateEngineManager "ម៉ាស៊ីនគ្រប់គ្រងស្វែងរកអត្ថបទ">
+<!ENTITY zotero.preferences.locate.description "ពិពណ៌នា">
+<!ENTITY zotero.preferences.locate.name "ឈ្មោះ">
+<!ENTITY zotero.preferences.locate.addDescription "To add a Lookup Engine that is not on the list, visit the desired search engine in your browser and select “Add” from Zotero’s Locate menu.">
+<!ENTITY zotero.preferences.locate.restoreDefaults "ស្តារលំនាំដើម">
+
+<!ENTITY zotero.preferences.charset "បញ្ចូលកូដអក្សរ">
+<!ENTITY zotero.preferences.charset.importCharset "ទាញបញ្ចូលកូដអក្សរ">
+<!ENTITY zotero.preferences.charset.displayExportOption "បង្ហាញជម្រើសបញ្ចូលកូដអក្សរលើការទាញចេញ">
+
+<!ENTITY zotero.preferences.dataDir "ទីតាំងថតទិន្នន័យ">
+<!ENTITY zotero.preferences.dataDir.useProfile "ប្រើថតទម្រង់ហ្វៃអ៊ើហ្វក់ស៍">
+<!ENTITY zotero.preferences.dataDir.custom "ធម្មតា:">
+<!ENTITY zotero.preferences.dataDir.choose "ជ្រើសរើស...">
+<!ENTITY zotero.preferences.dataDir.viaCommandLine "(specified via command line)">
+<!ENTITY zotero.preferences.dataDir.reveal "បង្ហាញថតទិន្នន័យ">
+<!ENTITY zotero.preferences.dataDir.migrate "Migrate To New Default Location…">
+
+<!ENTITY zotero.preferences.attachmentBaseDir.caption "Linked Attachment Base Directory">
+<!ENTITY zotero.preferences.attachmentBaseDir.message "Zotero will use relative paths for linked file attachments within the base directory, allowing you to access files on different computers as long as the file structure within the base directory remains the same.">
+<!ENTITY zotero.preferences.attachmentBaseDir.basePath "Base directory:">
+<!ENTITY zotero.preferences.attachmentBaseDir.selectBasePath "ជ្រើសរើស...">
+<!ENTITY zotero.preferences.attachmentBaseDir.resetBasePath "Revert to Absolute Paths…">
+
+<!ENTITY zotero.preferences.dbMaintenance "ថែរក្សាទិន្នន័យ">
+<!ENTITY zotero.preferences.dbMaintenance.integrityCheck "ពិនិត្យដែនទិន្នន័យ">
+<!ENTITY zotero.preferences.dbMaintenance.resetTranslatorsAndStyles "Reset Translators and Styles…">
+<!ENTITY zotero.preferences.dbMaintenance.resetTranslators "Reset Translators…">
+
+<!ENTITY zotero.preferences.configEditor "Config Editor">

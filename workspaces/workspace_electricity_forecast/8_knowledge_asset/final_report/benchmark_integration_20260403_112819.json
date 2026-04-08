@@ -1,0 +1,458 @@
+{
+  "timestamp": "2026-04-03T11:28:19.527341",
+  "total": 12,
+  "records": [
+    {
+      "name": "OpenClaw",
+      "agent": "global_scheduler",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/openclaw_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=0fdb55c4e4; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "0fdb55c4e4",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "EvoScientist",
+      "agent": "research_manager_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/evoscientist_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=897b444; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "897b444",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "SciPhi",
+      "agent": "research_manager_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          ".env.example"
+        ],
+        "required_probes": [
+          "README.md",
+          ".env.example"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/sciphi_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "9c5a94d1",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "OpenResearch",
+      "agent": "literature_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/openresearch_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "2ef7c14",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "Zotero-GPT",
+      "agent": "literature_summary_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "8045362",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "PaperAgent",
+      "agent": "literature_summary_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/paperagent_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=be55aff; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "be55aff",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "AI-Scientist",
+      "agent": "innovation_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md",
+          "launch_scientist.py"
+        ],
+        "required_probes": [
+          "README.md",
+          "launch_scientist.py"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "1de1dbc",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "ARIS",
+      "agent": "innovation_review_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/aris_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=549db5a; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "549db5a",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "Aider",
+      "agent": "code_implementation_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md",
+          "aider"
+        ],
+        "required_probes": [
+          "README.md",
+          "aider"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/aider_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=bdb4d9ff8; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "bdb4d9ff8",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "ML-Agent-Research",
+      "agent": "code_implementation_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/ml_agent_research_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=5d71205; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "5d71205",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "AutoResearch",
+      "agent": "experiment_tuning_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md"
+        ],
+        "required_probes": [
+          "README.md"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/autoresearch_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=228791f; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "228791f",
+          "source": "existing_repo"
+        }
+      ]
+    },
+    {
+      "name": "Zotero",
+      "agent": "literature_agent",
+      "status": "success",
+      "clone": {
+        "ok": true,
+        "source": "existing_repo"
+      },
+      "core_logic": {
+        "ok": true,
+        "found_probes": [
+          "README.md",
+          "chrome"
+        ],
+        "required_probes": [
+          "README.md",
+          "chrome"
+        ]
+      },
+      "adaptation": {
+        "ok": true,
+        "adapter": "2_agent_system/integration/zotero_adapter.md"
+      },
+      "usability": {
+        "ok": true,
+        "checks": [
+          "cmd=git rev-parse --short HEAD; code=0; out=5a347f4be; err="
+        ]
+      },
+      "attempts": [
+        {
+          "step": "clone",
+          "attempt": 1,
+          "ok": true,
+          "detail": "5a347f4be",
+          "source": "existing_repo"
+        }
+      ]
+    }
+  ],
+  "non_blocking_failures": []
+}

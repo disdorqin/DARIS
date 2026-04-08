@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-04-03T11:25:33.713577",
+  "preview": {
+    "timestamp": "2026-04-03T11:25:30.458328",
+    "total_dirs": 1584,
+    "total_files": 18770,
+    "top_level": {
+      ".vscode": {
+        "dirs": 0,
+        "files": 1
+      },
+      "1_config": {
+        "dirs": 4,
+        "files": 24
+      },
+      "2_agent_system": {
+        "dirs": 10,
+        "files": 45
+      },
+      "3_literature_workflow": {
+        "dirs": 10,
+        "files": 39
+      },
+      "4_research_hypothesis": {
+        "dirs": 3,
+        "files": 11
+      },
+      "5_code_base": {
+        "dirs": 1528,
+        "files": 18515
+      },
+      "6_experiment_execution": {
+        "dirs": 7,
+        "files": 25
+      },
+      "7_monitor_system": {
+        "dirs": 4,
+        "files": 5
+      },
+      "8_knowledge_asset": {
+        "dirs": 9,
+        "files": 102
+      }
+    }
+  },
+  "cleanup_candidates": [
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "deleted": [
+    {
+      "path": "5_code_base/optimized/power_models/__pycache__",
+      "type": "dir",
+      "reason": "cache_dir:__pycache__"
+    }
+  ],
+  "skipped": []
+}

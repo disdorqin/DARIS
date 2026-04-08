@@ -1,0 +1,13 @@
+﻿repository:
+  url_env: GIT_REPO_URL
+  default_branch: main
+identity:
+  user_name_env: GIT_USER_NAME
+  user_email_env: GIT_USER_EMAIL
+policy:
+  commit_per_stage: true
+  commit_message_format: "[DARIS-v3][stage:{stage}] {summary}"
+  protected_paths:
+    - .env
+    - 1_config/base/.env.backup
+    - 1_config/base/openclaw_config.yaml

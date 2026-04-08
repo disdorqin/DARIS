@@ -1,0 +1,742 @@
+{
+  "request": "严格按照 DARIS_v3.md 文档执行",
+  "start_time": "2026-04-04T23:13:33.003061",
+  "rounds": 1,
+  "auto_migrate": true,
+  "skip_full_baseline": false,
+  "steps": [
+    {
+      "round": 1,
+      "keywords": [
+        "严格按照 DARIS_v3.md 文档执行",
+        "严格按照 DARIS_v3.md 文档执行 time series forecasting",
+        "严格按照 DARIS_v3.md 文档执行 graph neural network"
+      ],
+      "literature_json": "3_literature_workflow\\structured_summary\\auto_literature_20260404_231739.json",
+      "reading_summary": "3_literature_workflow\\structured_summary\\agent_reading_round1.md",
+      "innovation": "4_research_hypothesis\\innovation_round1.md",
+      "innovation_review": "4_research_hypothesis\\review_report\\innovation_review_round1.md",
+      "changed_files": [
+        "5_code_base\\optimized\\power_models\\timesnet_model.py"
+      ],
+      "demo_metrics": {
+        "MAE": 45.474403381347656,
+        "RMSE": 64.61547167426312,
+        "R2": 0.871709406375885
+      },
+      "full_test_log": "6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+      "round_metrics": {
+        "timestamp": "2026-04-04 23:23:59",
+        "innovation": {
+          "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+          "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+          "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+          "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+        },
+        "results": {
+          "XGBoost": {
+            "baseline": {
+              "MAE": 35.546630859375,
+              "RMSE": 55.607320311858444,
+              "R2": 0.9012383222579956
+            },
+            "optimized": {
+              "MAE": 37.82931900024414,
+              "RMSE": 56.51379334189685,
+              "R2": 0.8980273008346558
+            }
+          },
+          "TimesNet": {
+            "baseline": {
+              "MAE": 72.76934814453125,
+              "RMSE": 106.47266191081634,
+              "R2": 0.6379232406616211
+            },
+            "optimized": {
+              "MAE": 76.0815200805664,
+              "RMSE": 98.09473557962986,
+              "R2": 0.6929967403411865
+            }
+          },
+          "MTGNN": {
+            "baseline": {
+              "MAE": 76.72600555419922,
+              "RMSE": 111.91747622411346,
+              "R2": 0.5999444723129272
+            },
+            "optimized": {
+              "MAE": 103.48138427734375,
+              "RMSE": 124.0025437617108,
+              "R2": 0.5094166398048401
+            }
+          }
+        },
+        "improvement": {
+          "XGBoost": {
+            "MAE_improve_%": -6.421672281403032,
+            "RMSE_improve_%": -1.6301325526112382,
+            "R2_gain": -0.0032110214233398438
+          },
+          "TimesNet": {
+            "MAE_improve_%": -4.551603141279577,
+            "RMSE_improve_%": 7.86861733409465,
+            "R2_gain": 0.05507349967956543
+          },
+          "MTGNN": {
+            "MAE_improve_%": -34.87133017011363,
+            "RMSE_improve_%": -10.798195192855431,
+            "R2_gain": -0.09052783250808716
+          }
+        },
+        "stage3_notes": {
+          "XGBoost": [
+            "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+          ],
+          "TimesNet": [
+            "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+          ],
+          "MTGNN": [
+            "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+          ]
+        }
+      }
+    }
+  ],
+  "git_commits": [
+    {
+      "status": "success",
+      "output": "[main 57bca56] [DARIS-v3][stage:cleanup] auto redundant cleanup\n 2 files changed, 168 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260404_231337.json\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260404_231337.md"
+    },
+    {
+      "status": "success",
+      "output": "[main 0970509] [DARIS-v3][stage:benchmark] integrate benchmark open-source capabilities\n 2 files changed, 536 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260404_231729.json\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260404_231729.md"
+    },
+    {
+      "status": "success",
+      "output": "[main 2ed50a0] [DARIS-v3][stage:migration] workspace reorganization\n 2 files changed, 316 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260404_231730.json\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260404_231730.md"
+    },
+    {
+      "status": "failed",
+      "step": "add",
+      "error": "warning: in the working copy of '8_knowledge_asset/iteration_memory/skills_library.md', LF will be replaced by CRLF the next time Git touches it\nThe following paths are ignored by one of your .gitignore files:\n6_experiment_execution/tuning_log/auto_full_pipeline_stdout.log\nhint: Use -f if you really want to add them.\nhint: Disable this message with \"git config set advice.addIgnoredFile false\"\n"
+    }
+  ],
+  "non_blocking_failures": [],
+  "skills_library": "8_knowledge_asset/iteration_memory/skills_library.md",
+  "cleanup": {
+    "json_report": "8_knowledge_asset/final_report/cleanup_report_20260404_231337.json",
+    "md_report": "8_knowledge_asset/final_report/cleanup_report_20260404_231337.md",
+    "deleted": [
+      {
+        "path": "2_agent_system/1_research_manager/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/2_literature_agent/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/3_literature_summary_agent/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/4_innovation_agent/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/5_innovation_review_agent/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/6_code_implementation_agent/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "2_agent_system/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "5_code_base/optimized/power_models/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      }
+    ],
+    "skipped": [],
+    "touched": [
+      "8_knowledge_asset/final_report/cleanup_report_20260404_231337.json",
+      "8_knowledge_asset/final_report/cleanup_report_20260404_231337.md",
+      "2_agent_system/1_research_manager/__pycache__",
+      "2_agent_system/2_literature_agent/__pycache__",
+      "2_agent_system/3_literature_summary_agent/__pycache__",
+      "2_agent_system/4_innovation_agent/__pycache__",
+      "2_agent_system/5_innovation_review_agent/__pycache__",
+      "2_agent_system/6_code_implementation_agent/__pycache__",
+      "2_agent_system/__pycache__",
+      "5_code_base/optimized/power_models/__pycache__",
+      "__pycache__"
+    ]
+  },
+  "benchmark_config": "1_config/base/benchmark_projects.json",
+  "benchmark_integration": {
+    "json_report": "8_knowledge_asset/final_report/benchmark_integration_20260404_231729.json",
+    "md_report": "8_knowledge_asset/final_report/benchmark_integration_20260404_231729.md",
+    "records": [
+      {
+        "name": "OpenClaw",
+        "agent": "global_scheduler",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openclaw_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=0fdb55c4e4; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/openclaw/openclaw/': Failed to connect to github.com port 443 after 21121 ms",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "EvoScientist",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/evoscientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=897b444; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/EvoScientist/EvoScientist/': Recv failure: Connection was reset",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "SciPhi",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            ".env.example"
+          ],
+          "required_probes": [
+            "README.md",
+            ".env.example"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/sciphi_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/SciPhi-AI/R2R/': Failed to connect to github.com port 443 after 21094 ms: Co",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "OpenResearch",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "2ef7c14",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero-GPT",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/MuiseDestiny/zotero-gpt/': Failed to connect to github.com port 443 after 21",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "PaperAgent",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/paperagent_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=be55aff; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/songhahaha66/PaperAgent/': Failed to connect to github.com port 443 after 21",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "AI-Scientist",
+        "agent": "innovation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ],
+          "required_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "1de1dbc",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ARIS",
+        "agent": "innovation_review_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aris_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=549db5a; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/abekek/arise/': Recv failure: Connection was reset",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "Aider",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "aider"
+          ],
+          "required_probes": [
+            "README.md",
+            "aider"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aider_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=bdb4d9ff8; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/Aider-AI/aider/': Failed to connect to github.com port 443 after 21076 ms: C",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "ML-Agent-Research",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ml_agent_research_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5d71205; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/snap-stanford/MLAgentBench/': Failed to connect to github.com port 443 after",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "AutoResearch",
+        "agent": "experiment_tuning_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/autoresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=228791f; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/karpathy/autoresearch/': Failed to connect to github.com port 443 after 2111",
+            "source": "existing_repo_local"
+          }
+        ]
+      },
+      {
+        "name": "Zotero",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo_local"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "chrome"
+          ],
+          "required_probes": [
+            "README.md",
+            "chrome"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5a347f4be; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "fetch_failed_but_local_available:fatal: unable to access 'https://github.com/zotero/zotero/': Failed to connect to github.com port 443 after 21137 ms: Co",
+            "source": "existing_repo_local"
+          }
+        ]
+      }
+    ],
+    "non_blocking_failures": [],
+    "touched": [
+      "2_agent_system/integration/openclaw_adapter.md",
+      "2_agent_system/integration/evoscientist_adapter.md",
+      "2_agent_system/integration/sciphi_adapter.md",
+      "2_agent_system/integration/openresearch_adapter.md",
+      "2_agent_system/integration/zotero_gpt_adapter.md",
+      "2_agent_system/integration/paperagent_adapter.md",
+      "2_agent_system/integration/ai_scientist_adapter.md",
+      "2_agent_system/integration/aris_adapter.md",
+      "2_agent_system/integration/aider_adapter.md",
+      "2_agent_system/integration/ml_agent_research_adapter.md",
+      "2_agent_system/integration/autoresearch_adapter.md",
+      "2_agent_system/integration/zotero_adapter.md",
+      "8_knowledge_asset/final_report/benchmark_integration_20260404_231729.json",
+      "8_knowledge_asset/final_report/benchmark_integration_20260404_231729.md"
+    ]
+  },
+  "migration": {
+    "json_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260404_231730.json",
+    "md_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260404_231730.md",
+    "removed_empty_dirs": []
+  },
+  "retrospectives": [
+    {
+      "bottlenecks": [
+        "本轮主流程执行顺畅，未出现显著阻断。"
+      ],
+      "root_causes": [
+        "前置清理与重试机制降低了偶发错误率。"
+      ],
+      "optimization_paths": [
+        "继续强化阶段内指标门禁，缩短无效迭代。"
+      ],
+      "reusable_capability_iterations": [
+        "保持阶段日志与能力沉淀同步写入 skills 知识库。"
+      ]
+    }
+  ],
+  "status": "success",
+  "events": [
+    "[2026-04-04 23:13:33] 启动前冗余清理 开始 (attempt=1)",
+    "[2026-04-04 23:13:37] 清理完成: 删除 9 项，跳过 0 项",
+    "[2026-04-04 23:13:38] 12标杆项目能力集成 开始 (attempt=1)",
+    "[2026-04-04 23:13:38] 开始集成标杆项目: OpenClaw",
+    "[2026-04-04 23:13:59] 开始集成标杆项目: EvoScientist",
+    "[2026-04-04 23:14:27] 开始集成标杆项目: SciPhi",
+    "[2026-04-04 23:14:49] 开始集成标杆项目: OpenResearch",
+    "[2026-04-04 23:14:53] 开始集成标杆项目: Zotero-GPT",
+    "[2026-04-04 23:15:14] 开始集成标杆项目: PaperAgent",
+    "[2026-04-04 23:15:36] 开始集成标杆项目: AI-Scientist",
+    "[2026-04-04 23:15:39] 开始集成标杆项目: ARIS",
+    "[2026-04-04 23:16:04] 开始集成标杆项目: Aider",
+    "[2026-04-04 23:16:25] 开始集成标杆项目: ML-Agent-Research",
+    "[2026-04-04 23:16:47] 开始集成标杆项目: AutoResearch",
+    "[2026-04-04 23:17:08] 开始集成标杆项目: Zotero",
+    "[2026-04-04 23:17:29] 标杆项目集成完成: 成功/部分=12，非阻断失败=0",
+    "[2026-04-04 23:17:30] 目录归位 开始 (attempt=1)",
+    "[2026-04-04 23:17:30] 目录重构完成，报告: D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260404_231730.md",
+    "[2026-04-04 23:17:30] 开始执行自动化轮次 1/1",
+    "[2026-04-04 23:17:30] 文献抓取 开始 (attempt=1)",
+    "[2026-04-04 23:17:30] 抓取文献关键词: 严格按照 DARIS_v3.md 文档执行",
+    "[2026-04-04 23:17:33] 抓取文献关键词: 严格按照 DARIS_v3.md 文档执行 time series forecasting",
+    "[2026-04-04 23:17:35] 抓取文献关键词: 严格按照 DARIS_v3.md 文档执行 graph neural network",
+    "[2026-04-04 23:17:39] 文献抓取完成: D:\\computer learning\\science_workflow\\3_literature_workflow\\structured_summary\\auto_literature_20260404_231739.json",
+    "[2026-04-04 23:17:39] 智能体阅读文献 开始 (attempt=1)",
+    "[2026-04-04 23:17:39] 尝试模型: qwen3.5-plus @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:17:39] 模型 qwen3.5-plus 失败: HTTP 403: {\"error\":{\"message\":\"The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the \\\"use free tier only\\\" mode in the management console.\",\"type\":\"AllocationQuota.FreeTierOnly\",\"param\":null,\"code\":\"AllocationQuota.FreeTierOnly\"},\"id\":\"cha",
+    "[2026-04-04 23:17:39] 尝试模型: qwen3-max @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:17:50] 模型 qwen3-max 成功返回。",
+    "[2026-04-04 23:17:50] 提出创新点 开始 (attempt=1)",
+    "[2026-04-04 23:17:50] 尝试模型: qwen3.5-plus @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:17:50] 模型 qwen3.5-plus 失败: HTTP 403: {\"error\":{\"message\":\"The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the \\\"use free tier only\\\" mode in the management console.\",\"type\":\"AllocationQuota.FreeTierOnly\",\"param\":null,\"code\":\"AllocationQuota.FreeTierOnly\"},\"id\":\"cha",
+    "[2026-04-04 23:17:50] 尝试模型: qwen3-max @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:18:25] 模型 qwen3-max 成功返回。",
+    "[2026-04-04 23:18:25] 智能体审阅创新点 开始 (attempt=1)",
+    "[2026-04-04 23:18:25] 尝试模型: qwen3.5-plus @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:18:26] 模型 qwen3.5-plus 失败: HTTP 403: {\"error\":{\"message\":\"The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the \\\"use free tier only\\\" mode in the management console.\",\"type\":\"AllocationQuota.FreeTierOnly\",\"param\":null,\"code\":\"AllocationQuota.FreeTierOnly\"},\"id\":\"cha",
+    "[2026-04-04 23:18:26] 尝试模型: qwen3-max @ https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "[2026-04-04 23:18:59] 模型 qwen3-max 成功返回。",
+    "[2026-04-04 23:18:59] 智能体改动代码 开始 (attempt=1)",
+    "[2026-04-04 23:18:59] 自动代码改动完成，涉及文件数: 1",
+    "[2026-04-04 23:18:59] Demo 评估 开始 (attempt=1)",
+    "[2026-04-04 23:19:44] Demo 评估完成: {'MAE': 45.474403381347656, 'RMSE': 64.61547167426312, 'R2': 0.871709406375885}",
+    "[2026-04-04 23:19:44] 三基线改动测试 开始 (attempt=1)",
+    "[2026-04-04 23:19:44] 执行三基线+优化测试脚本: D:\\computer learning\\science_workflow\\6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+    "[2026-04-04 23:24:00] 全量测试完成，日志: D:\\computer learning\\science_workflow\\6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+    "[2026-04-04 23:24:00] Git add 失败: warning: in the working copy of '8_knowledge_asset/iteration_memory/skills_library.md', LF will be replaced by CRLF the next time Git touches it\nThe following paths are ignored by one of your .gitigno"
+  ],
+  "end_time": "2026-04-04T23:24:00.570066",
+  "execution_validation": {
+    "md_report": "8_knowledge_asset/final_report/DARIS_V3_EXECUTION_VALIDATION_20260404_232400.md",
+    "json_report": "8_knowledge_asset/final_report/DARIS_V3_EXECUTION_VALIDATION_20260404_232400.json"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-04-07 22:04:55",
+  "innovation": {
+    "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+    "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+    "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120，并扩展到 PatchTST 轻量补充分支。",
+    "expected": "降低 MAE/RMSE/SMAPE/WAPE，提升 R2 与跨波动区间稳定性。"
+  },
+  "results": {
+    "XGBoost": {
+      "baseline": {
+        "MAE": 35.546630859375,
+        "RMSE": 55.607320311858444,
+        "SMAPE": 25.37345314025879,
+        "WAPE": 11.09683609008789,
+        "R2": 0.9012383222579956
+      },
+      "optimized": {
+        "MAE": 37.82931900024414,
+        "RMSE": 56.51379334189685,
+        "SMAPE": 35.15073776245117,
+        "WAPE": 11.809751510620117,
+        "R2": 0.8980273008346558
+      }
+    },
+    "TimesNet": {
+      "baseline": {
+        "MAE": 79.95181274414062,
+        "RMSE": 116.35964671144589,
+        "SMAPE": 41.15951919555664,
+        "WAPE": 24.9591064453125,
+        "R2": 0.567556619644165
+      },
+      "optimized": {
+        "MAE": 77.54456329345703,
+        "RMSE": 99.37425805540639,
+        "SMAPE": 46.865779876708984,
+        "WAPE": 24.212175369262695,
+        "R2": 0.6849355697631836
+      }
+    },
+    "MTGNN": {
+      "baseline": {
+        "MAE": 93.67764282226562,
+        "RMSE": 128.72653002101003,
+        "SMAPE": 47.893882751464844,
+        "WAPE": 29.243993759155273,
+        "R2": 0.4707503318786621
+      },
+      "optimized": {
+        "MAE": 78.13668823242188,
+        "RMSE": 100.30753005601075,
+        "SMAPE": 51.491512298583984,
+        "WAPE": 24.397058486938477,
+        "R2": 0.6789898872375488
+      }
+    },
+    "PatchTST": {
+      "baseline": {
+        "MAE": 125.95637512207031,
+        "RMSE": 164.05660703702245,
+        "SMAPE": 53.125614166259766,
+        "WAPE": 39.3206672668457,
+        "R2": 0.14036935567855835
+      },
+      "optimized": {
+        "MAE": 114.69381713867188,
+        "RMSE": 160.74631240910318,
+        "SMAPE": 47.386966705322266,
+        "WAPE": 35.81149673461914,
+        "R2": 0.17560821771621704
+      }
+    }
+  },
+  "improvement": {
+    "XGBoost": {
+      "MAE_improve_%": -6.421672281403032,
+      "RMSE_improve_%": -1.6301325526112382,
+      "SMAPE_improve_%": -38.533519927877904,
+      "WAPE_improve_%": -6.4244926638956965,
+      "R2_gain": -0.0032110214233398438
+    },
+    "TimesNet": {
+      "MAE_improve_%": 3.010875386136898,
+      "RMSE_improve_%": 14.597318861031495,
+      "SMAPE_improve_%": -13.863769044630534,
+      "WAPE_improve_%": 2.992619458097963,
+      "R2_gain": 0.11737895011901855
+    },
+    "MTGNN": {
+      "MAE_improve_%": 16.589822418279212,
+      "RMSE_improve_%": 22.077034128365685,
+      "SMAPE_improve_%": -7.511668172297236,
+      "WAPE_improve_%": 16.574122235610826,
+      "R2_gain": 0.20823955535888672
+    },
+    "PatchTST": {
+      "MAE_improve_%": 8.941633936736713,
+      "RMSE_improve_%": 2.017775868772071,
+      "SMAPE_improve_%": 10.802035046556002,
+      "WAPE_improve_%": 8.9244938505543,
+      "R2_gain": 0.03523886203765869
+    }
+  },
+  "stage3_notes": {
+    "XGBoost": [
+      "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+    ],
+    "TimesNet": [
+      "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+    ],
+    "MTGNN": [
+      "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+    ],
+    "PatchTST": [
+      "5_code_base/optimized/power_models/patchtst_model.py: Patch token encoder + decouple输入 + physics penalty + 长窗口(120)"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+﻿server:
+  ip_env: ALIYUN_SERVER_IP
+  port_env: ALIYUN_SERVER_PORT
+  user_env: ALIYUN_SERVER_USER
+  password_env: ALIYUN_SERVER_PASSWORD
+  work_dir_env: ALIYUN_SERVER_WORK_DIR
+sync:
+  include_paths:
+    - 5_code_base
+    - 1_config
+    - 6_experiment_execution
+  exclude_patterns:
+    - "*.pt"
+    - "*.pth"
+    - "*.ckpt"
+    - "__pycache__/"
+healthcheck:
+  commands:
+    - "python --version"
+    - "nvidia-smi"
+    - "df -h"

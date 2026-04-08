@@ -1,0 +1,9 @@
+﻿model: TimesNet
+task: multivariate_long_horizon_forecast
+baseline:
+  seq_len: 96
+  pred_len: 24
+optimization:
+  seq_len: 120
+  physics_constraint: true
+metrics: [MAE, RMSE, R2]

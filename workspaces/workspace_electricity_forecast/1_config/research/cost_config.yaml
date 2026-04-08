@@ -1,0 +1,101 @@
+# DARIS 成本预算配置
+# v3.0 新增模块
+
+# ==================== API 成本配置 ====================
+api_cost_config:
+  # 单次调用成本上限
+  single_call_limits:
+    literature_search: 0.50    # 单次文献检索成本上限（美元）
+    innovation_mining: 0.30    # 单次创新点挖掘成本上限
+    code_generation: 0.20      # 单次代码生成成本上限
+    quality_evaluation: 0.10   # 单次质量评估成本上限
+  
+  # 单日成本上限
+  daily_limits:
+    total_api_cost: 5.00       # 单日 API 调用总成本上限
+    literature_search: 2.00    # 单日文献检索成本上限
+    innovation_mining: 1.50    # 单日创新点挖掘成本上限
+    code_generation: 1.00      # 单日代码生成成本上限
+  
+  # 单项目总成本上限
+  project_limits:
+    total_api_cost: 50.00      # 单项目总 API 成本上限
+    total_gpu_hours: 100       # 单项目总 GPU 时长上限（小时）
+
+# ==================== 成本追踪配置 ====================
+cost_tracking:
+  enabled: true
+  track_per_call: true         # 追踪每次 API 调用成本
+  track_per_stage: true        # 追踪每个环节成本
+  track_per_iteration: true    # 追踪每次迭代成本
+  
+  # 成本记录文件
+  log_file: ./experiment/cost_log.json
+  update_frequency: real_time  # 实时更新
+
+# ==================== 告警阈值配置 ====================
+alert_thresholds:
+  # 成本百分比告警
+  percentage_alerts:
+    - threshold: 50            # 达到 50% 时告警
+      level: warning
+    - threshold: 80            # 达到 80% 时告警
+      level: error
+    - threshold: 100           # 达到 100% 时告警
+      level: critical
+  
+  # 绝对值告警（美元）
+  absolute_alerts:
+    - threshold: 25.00
+      level: warning
+    - threshold: 40.00
+      level: error
+    - threshold: 50.00
+      level: critical
+
+# ==================== 成本优化规则 ====================
+optimization_rules:
+  # 自动优化策略
+  auto_optimize: true
+  
+  # 低成本模式触发
+  low_cost_mode:
+    enabled: true
+    trigger_threshold: 80      # 达到 80% 预算时触发
+    actions:
+      - reduce_api_calls: true           # 减少 API 调用
+      - use_cache: true                  # 使用缓存
+      - skip_non_essential: true         # 跳过非必要调用
+  
+  # 成本超支处理
+  over_budget_handling:
+    action: pause_and_alert    # 暂停并告警
+    require_manual_approval: true  # 需要人工审批继续
+
+# ==================== API 对接规则 ====================
+api_integration_rules:
+  # 成本计算方式
+  cost_calculation:
+    method: token_based        # 基于 token 数量计算
+    token_price_input: 0.000001   # 输入 token 单价（美元）
+    token_price_output: 0.000002  # 输出 token 单价（美元）
+  
+  # 成本估算
+  cost_estimation:
+    enabled: true
+    estimate_before_call: true # 调用前估算成本
+    reject_if_over_budget: true # 超预算则拒绝调用
+
+# ==================== 异常处理配置 ====================
+error_handling:
+  cost_tracking_failure:
+    action: log_and_continue   # 记录日志并继续
+    max_retries: 3
+  over_budget:
+    action: pause_and_alert    # 暂停并告警
+    alert_channels:
+      - local_log
+      - console
+  api_cost_anomaly:
+    action: alert_and_review  # 告警并人工审核
+    anomaly_threshold: 2.0     # 成本异常倍数（超过平均值 2 倍）

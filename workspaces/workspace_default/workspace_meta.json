@@ -1,0 +1,10 @@
+{
+  "workspace_id": "default",
+  "workspace_name": "workspace_default",
+  "display_name": "默认研究主题",
+  "description": "项目原有研究内容迁移",
+  "template": "default",
+  "status": "active",
+  "created_at": "2026-04-07T00:00:00",
+  "updated_at": "2026-04-07T11:57:07"
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "created_at": "2026-04-01",
+  "updated_at": "2026-04-01",
+  "description": "DARIS 实验持久记忆库 - 记录实验迭代经验与结果",
+  
+  "experiment_history": [],
+  
+  "success_directions": [],
+  "failed_directions": [],
+  "pending_directions": [],
+  
+  "hyperparameter_memory": {
+    "best_configs": [],
+    "failed_configs": [],
+    "promising_configs": []
+  },
+  
+  "model_memory": {
+    "MTGNN": {
+      "best_version": null,
+      "best_metrics": {},
+      "failed_attempts": [],
+      "lessons": []
+    },
+    "TimesNet": {
+      "best_version": null,
+      "best_metrics": {},
+      "failed_attempts": [],
+      "lessons": []
+    },
+    "XGBoost": {
+      "best_version": null,
+      "best_metrics": {},
+      "failed_attempts": [],
+      "lessons": []
+    }
+  },
+  
+  "lessons_learned": {
+    "what_works": [],
+    "what_failed": [],
+    "recommendations": []
+  },
+  
+  "metadata": {
+    "total_experiments": 0,
+    "successful_count": 0,
+    "failed_count": 0,
+    "pending_count": 0,
+    "best_overall_model": null,
+    "best_overall_metrics": {}
+  }
+}

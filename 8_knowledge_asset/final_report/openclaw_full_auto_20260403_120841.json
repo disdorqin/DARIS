@@ -1,0 +1,700 @@
+{
+  "request": "严格按照DARIS_v3md文档执行",
+  "start_time": "2026-04-03T12:02:34.824518",
+  "rounds": 1,
+  "auto_migrate": true,
+  "skip_full_baseline": false,
+  "steps": [
+    {
+      "round": 1,
+      "keywords": [
+        "严格按照DARIS_v3md文档执行",
+        "严格按照DARIS_v3md文档执行 time series forecasting",
+        "严格按照DARIS_v3md文档执行 graph neural network"
+      ],
+      "literature_json": "3_literature_workflow\\structured_summary\\auto_literature_20260403_120311.json",
+      "reading_summary": "3_literature_workflow\\structured_summary\\agent_reading_round1.md",
+      "innovation": "4_research_hypothesis\\innovation_round1.md",
+      "innovation_review": "4_research_hypothesis\\review_report\\innovation_review_round1.md",
+      "changed_files": [
+        "5_code_base\\optimized\\power_models\\timesnet_model.py"
+      ],
+      "demo_metrics": {
+        "MAE": 45.474403381347656,
+        "RMSE": 64.61547167426312,
+        "R2": 0.871709406375885
+      },
+      "full_test_log": "6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+      "round_metrics": {
+        "timestamp": "2026-04-03 12:08:40",
+        "innovation": {
+          "name": "FDP-LF: Feature Decoupling + Physics Constraint + Long-horizon Forecast",
+          "theory": "近三年时序研究普遍显示：趋势/残差解耦提升可预测性，物理边界约束增强稳健性，长窗口增强长时依赖建模。",
+          "logic": "输入特征做趋势-残差解耦；训练/推理施加物理约束（非负+坡度约束）；窗口长度从72提升到120。",
+          "expected": "降低 MAE/RMSE，提升 R2 与跨波动区间稳定性。"
+        },
+        "results": {
+          "XGBoost": {
+            "baseline": {
+              "MAE": 35.546630859375,
+              "RMSE": 55.607320311858444,
+              "R2": 0.9012383222579956
+            },
+            "optimized": {
+              "MAE": 37.82931900024414,
+              "RMSE": 56.51379334189685,
+              "R2": 0.8980273008346558
+            }
+          },
+          "TimesNet": {
+            "baseline": {
+              "MAE": 74.90747833251953,
+              "RMSE": 104.44300273504444,
+              "R2": 0.6515960097312927
+            },
+            "optimized": {
+              "MAE": 66.19697570800781,
+              "RMSE": 91.53274900616172,
+              "R2": 0.732696533203125
+            }
+          },
+          "MTGNN": {
+            "baseline": {
+              "MAE": 78.48780059814453,
+              "RMSE": 110.9621583511131,
+              "R2": 0.6067450046539307
+            },
+            "optimized": {
+              "MAE": 74.28858184814453,
+              "RMSE": 98.36647735477518,
+              "R2": 0.691293478012085
+            }
+          }
+        },
+        "improvement": {
+          "XGBoost": {
+            "MAE_improve_%": -6.421672281403032,
+            "RMSE_improve_%": -1.6301325526112382,
+            "R2_gain": -0.0032110214233398438
+          },
+          "TimesNet": {
+            "MAE_improve_%": 11.62834848857839,
+            "RMSE_improve_%": 12.36105185680463,
+            "R2_gain": 0.08110052347183228
+          },
+          "MTGNN": {
+            "MAE_improve_%": 5.35015469665138,
+            "RMSE_improve_%": 11.351330204376442,
+            "R2_gain": 0.0845484733581543
+          }
+        },
+        "stage3_notes": {
+          "XGBoost": [
+            "5_code_base/optimized/power_models/xgboost_model.py: decouple特征 + 物理后处理 + 长窗口(96)"
+          ],
+          "TimesNet": [
+            "5_code_base/optimized/power_models/timesnet_model.py: TimesNetLite + decouple输入 + physics penalty + 长窗口(120)"
+          ],
+          "MTGNN": [
+            "5_code_base/optimized/power_models/mtgnn_model.py: 图相关邻接 + decouple输入 + physics penalty + 长窗口(120)"
+          ]
+        }
+      }
+    }
+  ],
+  "git_commits": [
+    {
+      "status": "success",
+      "output": "[main 08afb04] [DARIS-v3][stage:cleanup] auto redundant cleanup\n 2 files changed, 87 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_120238.json\n create mode 100644 8_knowledge_asset/final_report/cleanup_report_20260403_120238.md"
+    },
+    {
+      "status": "success",
+      "output": "[main 670f34d] [DARIS-v3][stage:benchmark] integrate benchmark open-source capabilities\n 2 files changed, 536 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_120304.json\n create mode 100644 8_knowledge_asset/final_report/benchmark_integration_20260403_120304.md"
+    },
+    {
+      "status": "success",
+      "output": "[main acbbaa9] [DARIS-v3][stage:migration] workspace reorganization\n 2 files changed, 316 insertions(+)\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260403_120304.json\n create mode 100644 8_knowledge_asset/final_report/workspace_reorg_20260403_120304.md"
+    },
+    {
+      "status": "failed",
+      "step": "add",
+      "error": "The following paths are ignored by one of your .gitignore files:\n6_experiment_execution/tuning_log/auto_full_pipeline_stdout.log\nhint: Use -f if you really want to add them.\nhint: Disable this message with \"git config set advice.addIgnoredFile false\"\n"
+    }
+  ],
+  "non_blocking_failures": [],
+  "skills_library": "8_knowledge_asset/iteration_memory/skills_library.md",
+  "cleanup": {
+    "json_report": "8_knowledge_asset/final_report/cleanup_report_20260403_120238.json",
+    "md_report": "8_knowledge_asset/final_report/cleanup_report_20260403_120238.md",
+    "deleted": [
+      {
+        "path": "5_code_base/optimized/power_models/__pycache__",
+        "type": "dir",
+        "reason": "cache_dir:__pycache__"
+      },
+      {
+        "path": "~$RIS v3.docx",
+        "type": "file",
+        "reason": "office_lock_file"
+      }
+    ],
+    "skipped": [],
+    "touched": [
+      "8_knowledge_asset/final_report/cleanup_report_20260403_120238.json",
+      "8_knowledge_asset/final_report/cleanup_report_20260403_120238.md",
+      "5_code_base/optimized/power_models/__pycache__",
+      "~$RIS v3.docx"
+    ]
+  },
+  "benchmark_config": "1_config/base/benchmark_projects.json",
+  "benchmark_integration": {
+    "json_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_120304.json",
+    "md_report": "8_knowledge_asset/final_report/benchmark_integration_20260403_120304.md",
+    "records": [
+      {
+        "name": "OpenClaw",
+        "agent": "global_scheduler",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openclaw_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=0fdb55c4e4; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "0fdb55c4e4",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "EvoScientist",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/evoscientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=897b444; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "897b444",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "SciPhi",
+        "agent": "research_manager_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            ".env.example"
+          ],
+          "required_probes": [
+            "README.md",
+            ".env.example"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/sciphi_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=9c5a94d1; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "9c5a94d1",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "OpenResearch",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/openresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=2ef7c14; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "2ef7c14",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero-GPT",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_gpt_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=8045362; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "8045362",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "PaperAgent",
+        "agent": "literature_summary_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/paperagent_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=be55aff; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "be55aff",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "AI-Scientist",
+        "agent": "innovation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ],
+          "required_probes": [
+            "README.md",
+            "launch_scientist.py"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ai_scientist_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=1de1dbc; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "1de1dbc",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ARIS",
+        "agent": "innovation_review_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aris_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=549db5a; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "549db5a",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Aider",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "aider"
+          ],
+          "required_probes": [
+            "README.md",
+            "aider"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/aider_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=bdb4d9ff8; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "bdb4d9ff8",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "ML-Agent-Research",
+        "agent": "code_implementation_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/ml_agent_research_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5d71205; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "5d71205",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "AutoResearch",
+        "agent": "experiment_tuning_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md"
+          ],
+          "required_probes": [
+            "README.md"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/autoresearch_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=228791f; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "228791f",
+            "source": "existing_repo"
+          }
+        ]
+      },
+      {
+        "name": "Zotero",
+        "agent": "literature_agent",
+        "status": "success",
+        "clone": {
+          "ok": true,
+          "source": "existing_repo"
+        },
+        "core_logic": {
+          "ok": true,
+          "found_probes": [
+            "README.md",
+            "chrome"
+          ],
+          "required_probes": [
+            "README.md",
+            "chrome"
+          ]
+        },
+        "adaptation": {
+          "ok": true,
+          "adapter": "2_agent_system/integration/zotero_adapter.md"
+        },
+        "usability": {
+          "ok": true,
+          "checks": [
+            "cmd=git rev-parse --short HEAD; code=0; out=5a347f4be; err="
+          ]
+        },
+        "attempts": [
+          {
+            "step": "clone",
+            "attempt": 1,
+            "ok": true,
+            "detail": "5a347f4be",
+            "source": "existing_repo"
+          }
+        ]
+      }
+    ],
+    "non_blocking_failures": [],
+    "touched": [
+      "2_agent_system/integration/openclaw_adapter.md",
+      "2_agent_system/integration/evoscientist_adapter.md",
+      "2_agent_system/integration/sciphi_adapter.md",
+      "2_agent_system/integration/openresearch_adapter.md",
+      "2_agent_system/integration/zotero_gpt_adapter.md",
+      "2_agent_system/integration/paperagent_adapter.md",
+      "2_agent_system/integration/ai_scientist_adapter.md",
+      "2_agent_system/integration/aris_adapter.md",
+      "2_agent_system/integration/aider_adapter.md",
+      "2_agent_system/integration/ml_agent_research_adapter.md",
+      "2_agent_system/integration/autoresearch_adapter.md",
+      "2_agent_system/integration/zotero_adapter.md",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_120304.json",
+      "8_knowledge_asset/final_report/benchmark_integration_20260403_120304.md"
+    ]
+  },
+  "migration": {
+    "json_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_120304.json",
+    "md_report": "D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_120304.md",
+    "removed_empty_dirs": []
+  },
+  "retrospectives": [
+    {
+      "bottlenecks": [
+        "本轮主流程执行顺畅，未出现显著阻断。"
+      ],
+      "root_causes": [
+        "前置清理与重试机制降低了偶发错误率。"
+      ],
+      "optimization_paths": [
+        "继续强化阶段内指标门禁，缩短无效迭代。"
+      ],
+      "reusable_capability_iterations": [
+        "保持阶段日志与能力沉淀同步写入 skills 知识库。"
+      ]
+    }
+  ],
+  "status": "success",
+  "events": [
+    "[2026-04-03 12:02:34] 启动前冗余清理 开始 (attempt=1)",
+    "[2026-04-03 12:02:38] 清理完成: 删除 2 项，跳过 0 项",
+    "[2026-04-03 12:02:38] 12标杆项目能力集成 开始 (attempt=1)",
+    "[2026-04-03 12:02:38] 开始集成标杆项目: OpenClaw",
+    "[2026-04-03 12:02:40] 开始集成标杆项目: EvoScientist",
+    "[2026-04-03 12:02:42] 开始集成标杆项目: SciPhi",
+    "[2026-04-03 12:02:44] 开始集成标杆项目: OpenResearch",
+    "[2026-04-03 12:02:45] 开始集成标杆项目: Zotero-GPT",
+    "[2026-04-03 12:02:51] 开始集成标杆项目: PaperAgent",
+    "[2026-04-03 12:02:53] 开始集成标杆项目: AI-Scientist",
+    "[2026-04-03 12:02:54] 开始集成标杆项目: ARIS",
+    "[2026-04-03 12:02:56] 开始集成标杆项目: Aider",
+    "[2026-04-03 12:02:58] 开始集成标杆项目: ML-Agent-Research",
+    "[2026-04-03 12:02:59] 开始集成标杆项目: AutoResearch",
+    "[2026-04-03 12:03:01] 开始集成标杆项目: Zotero",
+    "[2026-04-03 12:03:04] 标杆项目集成完成: 成功/部分=12，非阻断失败=0",
+    "[2026-04-03 12:03:04] 目录归位 开始 (attempt=1)",
+    "[2026-04-03 12:03:04] 目录重构完成，报告: D:\\computer learning\\science_workflow\\8_knowledge_asset\\final_report\\workspace_reorg_20260403_120304.md",
+    "[2026-04-03 12:03:04] 开始执行自动化轮次 1/1",
+    "[2026-04-03 12:03:04] 文献抓取 开始 (attempt=1)",
+    "[2026-04-03 12:03:04] 抓取文献关键词: 严格按照DARIS_v3md文档执行",
+    "[2026-04-03 12:03:07] 抓取文献关键词: 严格按照DARIS_v3md文档执行 time series forecasting",
+    "[2026-04-03 12:03:09] 抓取文献关键词: 严格按照DARIS_v3md文档执行 graph neural network",
+    "[2026-04-03 12:03:11] 文献抓取完成: D:\\computer learning\\science_workflow\\3_literature_workflow\\structured_summary\\auto_literature_20260403_120311.json",
+    "[2026-04-03 12:03:11] 智能体阅读文献 开始 (attempt=1)",
+    "[2026-04-03 12:03:11] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:12] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"f010b156-09f3-9439-b90b-d47820ade379\"}",
+    "[2026-04-03 12:03:12] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:17] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 12:03:17] 提出创新点 开始 (attempt=1)",
+    "[2026-04-03 12:03:17] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:18] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"f51eeef2-86fa-9bb4-a1f7-ab61eeca593f\"}",
+    "[2026-04-03 12:03:18] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:39] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 12:03:39] 智能体审阅创新点 开始 (attempt=1)",
+    "[2026-04-03 12:03:39] 尝试模型: qwen3.6-plus @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:41] 模型 qwen3.6-plus 失败: HTTP 400: {\"error\":{\"code\":\"invalid_parameter_error\",\"message\":\"model `qwen3.6-plus` is not supported.\",\"param\":null,\"type\":\"invalid_request_error\"},\"request_id\":\"bd209c88-a4ab-9132-aad7-2597909c6b47\"}",
+    "[2026-04-03 12:03:41] 尝试模型: qwen3-coder-next @ https://coding.dashscope.aliyuncs.com/v1",
+    "[2026-04-03 12:03:56] 模型 qwen3-coder-next 成功返回。",
+    "[2026-04-03 12:03:56] 智能体改动代码 开始 (attempt=1)",
+    "[2026-04-03 12:03:56] 自动代码改动完成，涉及文件数: 1",
+    "[2026-04-03 12:03:56] Demo 评估 开始 (attempt=1)",
+    "[2026-04-03 12:04:38] Demo 评估完成: {'MAE': 45.474403381347656, 'RMSE': 64.61547167426312, 'R2': 0.871709406375885}",
+    "[2026-04-03 12:04:38] 三基线改动测试 开始 (attempt=1)",
+    "[2026-04-03 12:04:38] 执行三基线+优化测试脚本: D:\\computer learning\\science_workflow\\6_experiment_execution\\pipeline\\run_round_fixed_pipeline.py",
+    "[2026-04-03 12:08:41] 全量测试完成，日志: D:\\computer learning\\science_workflow\\6_experiment_execution\\tuning_log\\auto_full_pipeline_stdout.log",
+    "[2026-04-03 12:08:41] Git add 失败: The following paths are ignored by one of your .gitignore files:\n6_experiment_execution/tuning_log/auto_full_pipeline_stdout.log\nhint: Use -f if you really want to add them.\nhint: Disable this message"
+  ],
+  "end_time": "2026-04-03T12:08:41.642887",
+  "execution_validation": {
+    "md_report": "8_knowledge_asset/final_report/DARIS_V3_EXECUTION_VALIDATION_20260403_120841.md",
+    "json_report": "8_knowledge_asset/final_report/DARIS_V3_EXECUTION_VALIDATION_20260403_120841.json"
+  }
+}
