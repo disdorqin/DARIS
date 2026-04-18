@@ -7,6 +7,8 @@ credentials.json
 secrets/
 *password*
 *secret*
+env_key_names*
+*env_key*
 
 # ==================== 训练模型 ====================
 *.pth
@@ -88,7 +90,6 @@ build/
 .jupyter/
 
 # ==================== Obsidian ====================
-# 仅忽略临时文件，知识库内容需保留
 .obsidian/plugins/
 .obsidian/workspace.json
 
