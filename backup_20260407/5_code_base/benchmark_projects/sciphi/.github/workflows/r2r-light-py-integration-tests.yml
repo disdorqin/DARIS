@@ -1,0 +1,325 @@
+name: R2R Light Python Integration Test (ubuntu)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'py/**'
+      - '.github/workflows/**'
+      - 'tests/**'
+  pull_request:
+    branches:
+      - dev
+      - dev-minor
+      - main
+    paths:
+      - 'py/**'
+      - '.github/workflows/**'
+      - 'tests/**'
+  workflow_dispatch:
+
+jobs:
+  package-install-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install package and test import
+        run: |
+          cd py
+          pip install -e .
+          python -c "from r2r import R2RClient; print('Import successful!')"
+
+      - name: Check for import errors
+        if: failure()
+        run: |
+          echo "::error::Package installation or import test failed."
+          exit 1
+
+  integration-test-azure-openai:
+    needs: package-install-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      AZURE_API_KEY: ${{ secrets.AZURE_API_KEY }}
+      AZURE_API_BASE: ${{ secrets.AZURE_API_BASE }}
+      AZURE_API_VERSION: ${{ secrets.AZURE_API_VERSION }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      TELEMETRY_ENABLED: 'false'
+      R2R_POSTGRES_HOST: localhost
+      R2R_POSTGRES_DBNAME: postgres
+      R2R_POSTGRES_PORT: '5432'
+      R2R_POSTGRES_PASSWORD: postgres
+      R2R_POSTGRES_USER: postgres
+      R2R_PROJECT_NAME: r2r_default
+      PYTHONUNBUFFERED: '1'
+      PYTEST_ADDOPTS: '--color=yes'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Set up Python and install dependencies
+        uses: ./.github/actions/setup-python-light
+        with:
+          os: ubuntu-latest
+          python-version: '3.12'
+
+      - name: Setup and start PostgreSQL
+        uses: ./.github/actions/setup-postgres-ext
+        with:
+          os: ubuntu-latest
+
+      - name: Verify PostgreSQL and Vector Extension
+        run: |
+          pg_isready -h localhost -p 5432
+          sudo -u postgres psql -c "\dx vector;"
+
+      - name: Start R2R Light server
+        uses: ./.github/actions/start-r2r-light
+        id: start-server
+
+      - name: Wait for server to be ready
+        run: |
+          timeout=300  # 5 minutes timeout
+          while ! curl -s http://localhost:7272/health > /dev/null; do
+            if [ $timeout -le 0 ]; then
+              echo "Server failed to start within timeout"
+              exit 1
+            fi
+            echo "Waiting for server to be ready..."
+            sleep 5
+            timeout=$((timeout - 5))
+          done
+
+      - name: Run R2R Light Python Integration Test
+        run: |
+          cd py && uv run pytest tests/unit \
+            --verbose \
+            --capture=no \
+            --log-cli-level=INFO
+
+      - name: Check for test failures
+        if: failure()
+        run: |
+          echo "::error::Integration tests failed. Check the test results artifact for details."
+          exit 1
+
+  integration-test-gemini:
+    needs: package-install-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      AZURE_API_KEY: ${{ secrets.AZURE_API_KEY }}
+      AZURE_API_BASE: ${{ secrets.AZURE_API_BASE }}
+      AZURE_API_VERSION: ${{ secrets.AZURE_API_VERSION }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      TELEMETRY_ENABLED: 'false'
+      R2R_POSTGRES_HOST: localhost
+      R2R_POSTGRES_DBNAME: postgres
+      R2R_POSTGRES_PORT: '5432'
+      R2R_POSTGRES_PASSWORD: postgres
+      R2R_POSTGRES_USER: postgres
+      R2R_PROJECT_NAME: r2r_default
+      PYTHONUNBUFFERED: '1'
+      PYTEST_ADDOPTS: '--color=yes'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Set up Python and install dependencies
+        uses: ./.github/actions/setup-python-light
+        with:
+          os: ubuntu-latest
+          python-version: '3.12'
+
+      - name: Setup and start PostgreSQL
+        uses: ./.github/actions/setup-postgres-ext
+        with:
+          os: ubuntu-latest
+
+      - name: Verify PostgreSQL and Vector Extension
+        run: |
+          pg_isready -h localhost -p 5432
+          sudo -u postgres psql -c "\dx vector;"
+
+      - name: Start R2R Light server with Gemini config
+        uses: ./.github/actions/start-r2r-light
+        id: start-server
+        with:
+          config-name: gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Wait for server to be ready
+        run: |
+          timeout=300  # 5 minutes timeout
+          while ! curl -s http://localhost:7272/health > /dev/null; do
+            if [ $timeout -le 0 ]; then
+              echo "Server failed to start within timeout"
+              exit 1
+            fi
+            echo "Waiting for server to be ready..."
+            sleep 5
+            timeout=$((timeout - 5))
+          done
+
+      - name: Run R2R Light Python Integration Test
+        run: |
+          cd py && uv run pytest tests/unit \
+            --verbose \
+            --capture=no \
+            --log-cli-level=INFO
+
+      - name: Check for test failures
+        if: failure()
+        run: |
+          echo "::error::Gemini integration tests failed. Check the test results artifact for details."
+          exit 1
+
+  integration-test-azure-openai-full:
+    needs: integration-test-azure-openai
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test-group:
+        - name: "agent"
+          path: "tests/integration/test_agent.py"
+        # - name: "base"
+        #   path: "tests/integration/test_base.py"
+        - name: "chunks"
+          path: "tests/integration/test_chunks.py"
+        - name: "collections"
+          path: "tests/integration/test_collections.py"
+        - name: "collections_users_interaction"
+          path: "tests/integration/test_collections_users_interaction.py"
+        - name: "conversations"
+          path: "tests/integration/test_conversations.py"
+        - name: "documents"
+          path: "tests/integration/test_documents.py"
+        - name: "filters"
+          path: "tests/integration/test_filters.py"
+        - name: "graphs"
+          path: "tests/integration/test_graphs.py"
+        - name: "indices"
+          path: "tests/integration/test_indices.py"
+        - name: "ingestion"
+          path: "tests/integration/test_ingestion.py"
+        - name: "retrieval"
+          path: "tests/integration/test_retrieval.py"
+        - name: "retrieval_advanced"
+          path: "tests/integration/test_retrieval_advanced.py"
+        # - name: "system"
+        #   path: "tests/integration/test_system.py"
+        - name: "users"
+          path: "tests/integration/test_users.py"
+    timeout-minutes: 20
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      AZURE_API_KEY: ${{ secrets.AZURE_API_KEY }}
+      AZURE_API_BASE: ${{ secrets.AZURE_API_BASE }}
+      AZURE_API_VERSION: ${{ secrets.AZURE_API_VERSION }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      TELEMETRY_ENABLED: 'false'
+      R2R_POSTGRES_HOST: localhost
+      R2R_POSTGRES_DBNAME: postgres
+      R2R_POSTGRES_PORT: '5432'
+      R2R_POSTGRES_PASSWORD: postgres
+      R2R_POSTGRES_USER: postgres
+      R2R_PROJECT_NAME: r2r_default
+      PYTHONUNBUFFERED: '1'
+      PYTEST_ADDOPTS: '--color=yes'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Set up Python and install dependencies
+        uses: ./.github/actions/setup-python-light
+        with:
+          os: ubuntu-latest
+          python-version: '3.12'
+
+      - name: Setup and start PostgreSQL
+        uses: ./.github/actions/setup-postgres-ext
+        with:
+          os: ubuntu-latest
+
+      - name: Verify PostgreSQL and Vector Extension
+        run: |
+          pg_isready -h localhost -p 5432
+          sudo -u postgres psql -c "\dx vector;"
+
+      - name: Start R2R Light server
+        uses: ./.github/actions/start-r2r-light
+        id: start-server
+
+      - name: Wait for server to be ready
+        run: |
+          timeout=300  # 5 minutes timeout
+          while ! curl -s http://localhost:7272/health > /dev/null; do
+            if [ $timeout -le 0 ]; then
+              echo "Server failed to start within timeout"
+              exit 1
+            fi
+            echo "Waiting for server to be ready..."
+            sleep 5
+            timeout=$((timeout - 5))
+          done
+
+      - name: Run R2R Integration Test - ${{ matrix.test-group.name }}
+        run: |
+          cd py && uv run pytest ${{ matrix.test-group.path }} \
+            --verbose \
+            --capture=no \
+            --log-cli-level=INFO
+
+      - name: Check for test failures
+        if: failure()
+        run: |
+          echo "::error::Integration tests failed. Check the test results artifact for details."
+          exit 1

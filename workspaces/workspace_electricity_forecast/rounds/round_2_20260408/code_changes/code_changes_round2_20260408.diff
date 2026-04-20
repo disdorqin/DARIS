@@ -1,0 +1,48 @@
+Round 2 Code Changes
+====================
+
+This file summarizes the code changes that were applied for the multivariate / heterogeneous feature forecasting round.
+
+1) 5_code_base/optimized/power_models/common.py
+- Added FEATURE_PROFILES for baseline, temporal, graph, patch, and xgboost feature layouts.
+- Added time context features, auxiliary column selection, and build_feature_matrix().
+- Extended make_dataset_bundle() with feature_profile selection.
+- Expanded compute_metrics() to return MAE, RMSE, SMAPE, WAPE, and R2.
+- Kept physics_postprocess() for bounded post-processing.
+
+2) 5_code_base/optimized/power_models/xgboost_model.py
+- Switched to feature_profile="xgboost".
+- Reduced the sequence length and simplified XGBoost hyperparameters for runtime stability.
+- Added GPU-aware fitting with CPU fallback.
+
+3) 5_code_base/optimized/power_models/timesnet_model.py
+- Switched to feature_profile="temporal".
+- Kept the TimesNetLite backbone but adjusted device selection and training settings.
+- Preserved physics-aware penalty and post-processing.
+
+4) 5_code_base/optimized/power_models/mtgnn_model.py
+- Switched to feature_profile="graph".
+- Kept correlation-based adjacency construction and physics-aware training.
+- Updated the optimized hidden dimension and device selection.
+
+5) 5_code_base/optimized/power_models/patchtst_model.py
+- Added PatchTSTLite with patch tokenization, positional embedding, and a Transformer encoder.
+- Switched to feature_profile="patch".
+- Added a dedicated train_eval_patchtst() path with physics-aware training.
+
+6) 6_experiment_execution/pipeline/run_round_fixed_pipeline.py
+- Expanded the evaluation pipeline from three models to four models by adding PatchTST.
+- Kept baseline vs optimized comparisons for XGBoost, TimesNet, MTGNN, and PatchTST.
+- Limited evaluation to tail(3000) rows to keep the round execution stable.
+- Exported round_fixed_metrics.json and FINAL_RESEARCH_REPORT_FIXED_ROUND.md.
+
+7) 2_agent_system/1_research_manager/run.py
+- Added round archive handling via _round_archive_dir() and _write_round_archive().
+- Added round_summary.md generation and standardized round artifact naming.
+- Reduced the demo slice to tail(1500) for faster validation.
+
+8) .vscode/tasks.json
+- Kept the round workflow tasks for the second round.
+
+9) tools/run_round2.cmd
+- Added a local Windows wrapper that launches the round-2 research flow and redirects the execution log to report/round2_run.log.

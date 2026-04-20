@@ -1,0 +1,1 @@
+﻿7eb86f80544f429a96857ad539739abbef305cbc	refs/heads/dev_electricity_forecast

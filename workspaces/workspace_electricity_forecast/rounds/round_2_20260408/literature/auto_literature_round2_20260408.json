@@ -1,0 +1,284 @@
+{
+  "timestamp": "2026-04-08T09:40:14.853627",
+  "round": 2,
+  "date": "20260408",
+  "keywords": [
+    "multivariate time series forecasting feature engineering",
+    "multi-source data fusion forecasting",
+    "heterogeneous data fusion forecasting",
+    "multimodal time series forecasting attention",
+    "electricity load forecasting weather feature fusion",
+    "feature selection time series prediction",
+    "feature interaction forecasting",
+    "graph-based multivariate forecasting"
+  ],
+  "papers": [
+    {
+      "title": "TIC-FusionNet: A multimodal deep learning framework with temporal decomposition and attention-based fusion for time series forecasting",
+      "doi": "10.1371/journal.pone.0333379",
+      "year": 2025,
+      "url": "https://doi.org/10.1371/journal.pone.0333379",
+      "authors": [
+        "Liyu Chen",
+        "Xiangwei Fan"
+      ],
+      "abstract": "We propose TIC-FusionNet , a trend-aware multimodal deep learning framework for time series forecasting with integrated visual signal analysis, aimed at addressing the limitations of unimodal and short-range dependency models in noisy financial environments. The architecture combines Exponential Moving Average (EMA) decomposition for denoising and trend extraction, a lightweight Linear Transformer for efficient long-sequence temporal modeling, and a spatial–channel CNN with CBAM attention to capture morphological patterns from candlestick chart images. A gated fusion mechanism adaptively integrates numerical and visual modalities based on context relevance, enabling dynamic feature weighting under varying market conditions. We evaluate TIC-FusionNet on six real-world stock datasets, including four major Chinese and U.S. companies—Amazon, Tesla, Kweichow Moutai, Ping An Insurance, China Vanke—and Apple—covering diverse market sectors and volatility patterns. The model is compared against a broad range of baselines, including statistical models (ARIMA), classical machine learning methods (Random Forest, SVR), recurrent and convolutional neural networks (LSTM, TCN, CNN-only), and recent Transformer-based architectures (Informer, Autoformer, Crossformer, iTransformer). Experimental results demonstrate that TIC-FusionNet achieves consistently superior predictive accuracy and generalization, outperforming state-of-the-art baselines across all datasets. Extensive ablation studies verify the critical role of each architectural component, while attention-based interpretability analysis highlights the dominant technical indicators under different volatility regimes. These findings not only confirm the effectiveness of multimodal integration in capturing complementary temporal–visual cues, but also provide valuable insights into model decision-making. The proposed framework offers a robust, scalable, and interpretable solution for multimodal temporal prediction tasks, with strong potential for deployment in intelligent forecasting, sensor fusion, and risk-aware decision-making systems.",
+      "source": "Crossref",
+      "keyword": "multimodal time series forecasting attention",
+      "method": "Attention-based feature weighting"
+    },
+    {
+      "title": "Spatial‐Temporal Feature Fusion Network for Short‐Term Photovoltaic Forecasting Utilising Multi‐Source Heterogeneous Data",
+      "doi": "10.1049/rpg2.70209",
+      "year": 2026,
+      "url": "https://doi.org/10.1049/rpg2.70209",
+      "authors": [
+        "Ping Yang",
+        "Zhuolin Zhong",
+        "Yingxuan Sun",
+        "Yuxuan Lin"
+      ],
+      "abstract": "ABSTRACT Accurate short‐term photovoltaic (PV) power forecasting plays a key role in mitigating challenges from PV's intermittent, stochastic output — for example, grid frequency fluctuations — thereby ensuring grid stability and optimising renewable energy scheduling. However, modelling multi‐source heterogeneous data and extracting spatial‐temporal features remains challenging. To address this, we proposed a novel deep hybrid model integrating self‐attention enhanced convolutional block attention modules (SCBAM), temporal convolutional networks (TCN) and U‐net (UNet)‐based feature fusion; this model is abbreviated as SCTU. It processes multi‐grid/single‐grid numerical weather prediction (NWP) data, alongside historical power data, via five parallel branches (tailored for spatial/temporal extraction). We evaluated SCTU on two Desert Knowledge Australia Solar Centre stations. Results show it outperforms benchmarks: normalised root mean square error (NRMSE) 3.985%/5.791% and coefficient of determination ( R 2 ) 0.9509/0.9397 on eco‐kinetics (EK‐PV) and service station (SS‐PV), respectively. Across sunny/overcast/rainy, SCTU maintains lower NRMSE (EK‐PV 3.432%–6.766%, SS‐PV 5.331%–7.246%) than benchmarks. Ablation studies confirm the importance of SCBAM, UNet and multi‐grid input in enhancing accuracy. SCTU exhibits strong robustness (rainy‐day NRMSE: EK‐PV 6.766%, SS‐PV 7.246%, lower than TCN, respectively) and generalisation (EK‐PV/SS‐PV datasets: R 2 0.9509/0.9397, NRMSE 3.985%/5.791%). Notably, it relies on high‐resolution NWP — delays or reduced extreme‐weather accuracy may lower performance — and its generalisation to high‐latitude regions needs validation.",
+      "source": "Crossref",
+      "keyword": "heterogeneous data fusion forecasting",
+      "method": "Attention-based feature weighting"
+    },
+    {
+      "title": "Exploring Causality in Feature Selection for Multivariate Time Series Forecasting",
+      "doi": "10.2139/ssrn.4736990",
+      "year": 2024,
+      "url": "https://doi.org/10.2139/ssrn.4736990",
+      "authors": [
+        "Patrícia Oliveira Lucas",
+        "Frederico Gadelha Guimarães",
+        "Eduardo Mendes"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Feature selection / filtering"
+    },
+    {
+      "title": "LAD-Net:Cross-channel linear attention with deep feature decomposition network for multivariate time series forecasting",
+      "doi": "10.2139/ssrn.5451107",
+      "year": 2025,
+      "url": "https://doi.org/10.2139/ssrn.5451107",
+      "authors": [
+        "Shiming Fan",
+        "Hua Wang",
+        "Fan Zhang"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Attention-based feature weighting"
+    },
+    {
+      "title": "Multi-source Data Fusion-based Grid-level Load Forecasting",
+      "doi": "10.21203/rs.3.rs-5399298/v1",
+      "year": 2024,
+      "url": "https://doi.org/10.21203/rs.3.rs-5399298/v1",
+      "authors": [
+        "Hai Ye",
+        "Xiaobi Teng",
+        "Bingbing Song",
+        "Kaiming Zou",
+        "Moyan Zhu"
+      ],
+      "abstract": "Abstract Grid-level dispatching is generally based on the accumulation of independent load forecasting data from provincial and municipal dispatch centers. However, the differences in economic development levels and the frequency of forecasting result updates among provinces and cities lead to certain limitations in the direct accumulation method, affecting the accuracy of the integrated forecasting results. To address this, this paper proposes a short-term load forecasting method for the power grid based on the i-Transformer model. First, the dataset is constructed through data preprocessing and feature engineering, followed by training and optimizing the model parameters. Further, considering the differences in forecasting results reported by provincial dispatch centers, principal component analysis is used to determine the weights of provinces and cities, thereby effectively integrating the forecasting data from different provinces and cities through weighting. The case study shows that the i-Transformer outperforms traditional statistical and machine learning algorithms on multiple evaluation metrics, and the integration method has considerable potential in handling multi-source heterogeneous data and improving forecasting accuracy. This paper provides a new means of load forecasting result integration for power grid dispatch centers, ensuring the safe, high-quality, and economical operation of the power system.",
+      "source": "Crossref",
+      "keyword": "multi-source data fusion forecasting",
+      "method": "Feature engineering / handcrafted features"
+    },
+    {
+      "title": "Vttnet: Multi-Component Decomposition and Feature Fusion Network for Enhanced Short-Term Electricity Load Forecasting",
+      "doi": "10.2139/ssrn.5189248",
+      "year": 2025,
+      "url": "https://doi.org/10.2139/ssrn.5189248",
+      "authors": [
+        "Ningning Hu",
+        "Lanmei Cong",
+        "Guangyuan Pan",
+        "Zhaohui Zhang",
+        "Ziyue Han"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Multi-source data fusion"
+    },
+    {
+      "title": "Deep Learning Fusion Model Based Electricity Load Forecasting for Extreme Weather",
+      "doi": "10.54097/njhzax84",
+      "year": 2025,
+      "url": "https://doi.org/10.54097/njhzax84",
+      "authors": [
+        "Peiyu Li",
+        "Chenchen Dai"
+      ],
+      "abstract": "Aiming at the problem of insufficient accuracy of power load forecasting in extreme weather, a spatio-temporally aligned database is constructed based on the multi-source data (including 15-minute-level load profiles, 0.25°×0.25° gridded meteorological data, and EM-DAT standard disaster records) for the provincial power grids in the years 2015-2023. Fifteen key indicators are screened out by the random forest algorithm, and the hybrid LSTM-XGBoost model is innovatively proposed and dynamically weighted and optimised by Lasso regression. Tests show that the RMSE of the model is controlled in the range of 2.49~3.16 under typhoon weather, and the accuracy is improved by more than 45% compared with a single model. In the extreme high temperature event in North China in 2023, the prediction error of the model 6 hours in advance is only 4.7%. The technique has been validated in actual grid operation, providing reliable decision support for extreme weather power dispatch with important engineering application value.",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Multi-source data fusion"
+    },
+    {
+      "title": "Feature Engineering in Time Series Forecasting",
+      "doi": "10.14293/pr2199.002316.v1",
+      "year": 2025,
+      "url": "https://doi.org/10.14293/pr2199.002316.v1",
+      "authors": [
+        "Subrata Karmaker"
+      ],
+      "abstract": "Feature engineering is a crucial element in Time Series Forecasting.Features can be designed to capture how patterns, trends, and seasonalityevolve over time. The following sections introduce practical techniquesinspired by calendar information and Fourier terms: lag features, rollingand seasonal window aggregations, exponentially weighted moving averages,and temporal embeddings. It also shows common issues arising,such as data leakage, and clarifies why well-defined forecast horizons areso important. Finally, an experimental illustration using German electricityload data demonstrates the importance of Feature Engineering inforecasting performance on real-world time series. The aim is to give anintuitive and accessible overview that helps practitioners turn time seriesinto richer, more informative inputs for their forecasting models.",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Feature engineering / handcrafted features"
+    },
+    {
+      "title": "Statistical Forecasting of Short-term Electricity Load Using a Meteorological Feature-driven Deep Learning Fusion Framework",
+      "doi": "10.1109/ceepe64987.2025.11034044",
+      "year": 2025,
+      "url": "https://doi.org/10.1109/ceepe64987.2025.11034044",
+      "authors": [
+        "Simeng Zhang",
+        "Houqing Zhang",
+        "Yangcheng Hu"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Multi-source data fusion"
+    },
+    {
+      "title": "Statistically Validated Multi-Horizon Electricity Load Forecasting with Weather-Augmented Machine Learning under Walk-Forward Evaluation",
+      "doi": "10.21203/rs.3.rs-9285801/v1",
+      "year": 2026,
+      "url": "https://doi.org/10.21203/rs.3.rs-9285801/v1",
+      "authors": [
+        "Meherab Hossain Shafin"
+      ],
+      "abstract": "Abstract Short-term electricity load forecasting is essential for maintaining grid reliability, supporting generation scheduling, and enabling efficient operation of modern energy systems. This study develops a weather-augmented multi-horizon forecasting framework for electricity demand prediction using hourly load observations from the ENTSO-E Transparency Platform combined with meteorological data obtained from the NASA POWER dataset. Four forecasting approaches are evaluated within a unified benchmarking framework: Seasonal Naïve persistence, SARIMAX, Gradient Boosting Regression (GBR), and a weather-augmented GBR variant incorporating exogenous meteorological covariates. In addition, the probabilistic DeepAR neural forecasting model implemented using GluonTS is included as a distributional reference model for uncertainty-aware comparison. Forecast performance is assessed across three operationally relevant prediction horizons (t + 1, t + 24, and t + 168) using an expanding-window rolling-origin walk-forward validation strategy. The feature set includes calendar encodings, autoregressive lag features, rolling demand statistics, and wind-related meteorological indicators. Results demonstrate that Gradient Boosting models consistently outperform statistical and persistence baselines across all forecasting horizons. Horizon-specific Diebold–Mariano tests further indicate that weather augmentation provides statistically significant improvements primarily at longer prediction intervals. Across 17 walk-forward evaluation folds, the best-performing configuration achieved a mean RMSE of 88.44 MW (± 29.62) and a mean MAE of 66.69 MW. Probabilistic evaluation produced empirical 80% prediction interval coverage of 0.759, indicating moderate under-calibration relative to nominal uncertainty levels. These findings highlight the effectiveness of feature-driven ensemble methods for structured electricity demand forecasting and demonstrate the value of statistically validated multi-horizon benchmarking frameworks for operational load prediction under limited-data conditions.",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Forecasting model with multivariate features"
+    },
+    {
+      "title": "VTTnet: Multi-component decomposition and feature fusion network for enhanced short-term electricity load forecasting",
+      "doi": "10.1016/j.epsr.2025.111876",
+      "year": 2025,
+      "url": "https://doi.org/10.1016/j.epsr.2025.111876",
+      "authors": [
+        "Ningning Hu",
+        "Lanmei Cong",
+        "Guangyuan Pan",
+        "Zhaohui Zhang",
+        "Ziyue Han"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "electricity load forecasting weather feature fusion",
+      "method": "Multi-source data fusion"
+    },
+    {
+      "title": "Empirical analysis of time series using feature selection algorithms",
+      "doi": "10.5194/egusphere-egu21-6697",
+      "year": 2021,
+      "url": "https://doi.org/10.5194/egusphere-egu21-6697",
+      "authors": [
+        "Mikhail Kanevski"
+      ],
+      "abstract": "&lt;p&gt;Nowadays a wide range of methods and tools to study and forecast time series is available. An important problem in forecasting concerns embedding of time series, i.e. construction of a high dimensional space where forecasting problem is considered as a regression task. There are several basic linear and nonlinear approaches of constructing such space by defining an optimal delay vector using different theoretical concepts. Another way is to consider this space as an input feature space &amp;#8211; IFS, and to apply machine learning feature selection (FS) algorithms to optimize IFS according to the problem under study (analysis, modelling or forecasting). Such approach is an empirical one: it is based on data and depends on the FS algorithms applied. In machine learning features are generally classified as relevant, redundant and irrelevant. It gives a reach possibility to perform advanced multivariate time series exploration and development of interpretable predictive models.&lt;/p&gt;&lt;p&gt;Therefore, in the present research different FS algorithms are used to analyze fundamental properties of time series from empirical point of view. Linear and nonlinear simulated time series are studied in detail to understand the advantages and drawbacks of the proposed approach. Real data case studies deal with air pollution and wind speed times series. Preliminary results are quite promising and more research is in progress.&lt;/p&gt;",
+      "source": "Crossref",
+      "keyword": "feature selection time series prediction",
+      "method": "Feature selection / filtering"
+    },
+    {
+      "title": "Hybrid Optimal Time Series Modeling for Cryptocurrency Price Prediction: Feature Selection, Structure and Hyperparameter Optimization",
+      "doi": "10.17798/bitlisfen.1479725",
+      "year": 2024,
+      "url": "https://doi.org/10.17798/bitlisfen.1479725",
+      "authors": [
+        "Mehmet Akif Bülbül"
+      ],
+      "abstract": "The prime aim of the research is to forecast the future value of bitcoin that is commonly known as pioneer of the Cryptocurrency market by constructing hybrid structure over the time series. In this perspective, two separate hybrid structures were created by using Artificial Neural Network (ANN) together with Genetic Algorithm (GA) and Particle Swarm Optimization Algorithm (PSO). By using the hybrid structures created, both the network model and the hyper parameters in the network structure, together with the time intervals of the daily closing prices and how many data should be taken retrospectively, were optimized. Employing the created GA-ANN (DCP1) and PSO-ANN (DCP2) hybrid structures and the 721-day Bitcoin series, the goal of accurately predicting the values that Bitcoin will receive has been achieved. According to the comparative results obtained in line with the stated objectives and targets, it has been determined that the structure obtained with the DCP1 hybrid model has a success rate of 99% and 97.54% in training and validation, respectively. It should also, be underlined that the DCP1 model showed 47% better results than the DCP2 hybrid model. With the proposed hybrid structure, the network parameters and network model that should be used in the ANN network structure are optimized in order to obtain more efficient results in cryptocurrency price forecasting, while optimizing which input data should be used in terms of frequency and closing price to be chosen.",
+      "source": "Crossref",
+      "keyword": "feature selection time series prediction",
+      "method": "Feature selection / filtering"
+    },
+    {
+      "title": "Multivariate Time Series Forecasting and Feature Engineering",
+      "doi": "10.1109/icatc68823.2025.11407500",
+      "year": 2025,
+      "url": "https://doi.org/10.1109/icatc68823.2025.11407500",
+      "authors": [
+        "Akalanka Siriwaradana",
+        "Rasika Rajapaksha",
+        "Charaka Premarathne"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Feature engineering / handcrafted features"
+    },
+    {
+      "title": "TRED: Exponential Feature Decomposition Three-Channel Networks for Multivariate Time Series Forecasting",
+      "doi": "10.2139/ssrn.5605553",
+      "year": 2025,
+      "url": "https://doi.org/10.2139/ssrn.5605553",
+      "authors": [
+        "Shiming Fan",
+        "Hua Wang",
+        "Fan Zhang"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Multi-scale decomposition / trend-residual separation"
+    },
+    {
+      "title": "TFEformer: Temporal Feature Enhanced Transformer for Multivariate Time Series Forecasting",
+      "doi": "10.1109/access.2024.3480953",
+      "year": 2024,
+      "url": "https://doi.org/10.1109/access.2024.3480953",
+      "authors": [
+        "Chenhao Ying",
+        "Jiangang Lu"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Transformer-based sequence fusion"
+    },
+    {
+      "title": "TFE-NET: Time and Feature focus Embedding Network for Multivariate-to-Multivariate Time Series Forecasting",
+      "doi": "10.1109/icaiic57133.2023.10066984",
+      "year": 2023,
+      "url": "https://doi.org/10.1109/icaiic57133.2023.10066984",
+      "authors": [
+        "Seungchan Roh",
+        "Yonggon Jung",
+        "Jun-Geol Baek"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Forecasting model with multivariate features"
+    },
+    {
+      "title": "A Multi-Scale and Spatio-Temporal Feature Hybrid Network for Forecasting on Multivariate Time Series Data",
+      "doi": "10.2139/ssrn.5185492",
+      "year": 2025,
+      "url": "https://doi.org/10.2139/ssrn.5185492",
+      "authors": [
+        "Wentao Jiang",
+        "Ming Zhao",
+        "Hongbo Li",
+        "Liling Zeng"
+      ],
+      "abstract": "",
+      "source": "Crossref",
+      "keyword": "multivariate time series forecasting feature engineering",
+      "method": "Forecasting model with multivariate features"
+    }
+  ]
+}

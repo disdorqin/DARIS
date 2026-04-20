@@ -1,0 +1,15 @@
+:root {
+	--sl-color-accent-low: #0e363e;
+	--sl-color-accent: #22d3ee;
+	--sl-color-accent-high: #b8f0fa;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #eeeeee;
+	--sl-color-gray-2: #c2c2c2;
+	--sl-color-gray-3: #8b8b8b;
+	--sl-color-gray-4: #585858;
+	--sl-color-gray-5: #383838;
+	--sl-color-gray-6: #272727;
+	--sl-color-black: #181818;
+	--sl-font: 'Inter', system-ui, sans-serif;
+	--sl-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}

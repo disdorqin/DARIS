@@ -1,0 +1,240 @@
+{
+  "timestamp": "2026-04-08T09:35:58.532895",
+  "keywords": [
+    "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+    "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试 time series forecasting",
+    "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试 graph neural network"
+  ],
+  "target_limit": 10,
+  "batch_size": 10,
+  "rate_limit_policy": {
+    "semantic_scholar_spacing_seconds": 2.5,
+    "semantic_scholar_backoff_seconds": [
+      5,
+      10,
+      20
+    ],
+    "max_retries": 3
+  },
+  "source_stats": {
+    "semantic_scholar": {
+      "queries": 1,
+      "papers": 0,
+      "failures": 0,
+      "rate_limit_hits": 3
+    },
+    "crossref": {
+      "queries": 1,
+      "papers": 10,
+      "failures": 0,
+      "rate_limit_hits": 0
+    },
+    "arxiv": {
+      "queries": 0,
+      "papers": 0,
+      "failures": 0,
+      "rate_limit_hits": 0
+    }
+  },
+  "papers": [
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "多模态数据融合在计算机智能检测中的特征提取方法研究",
+      "method": "crossref retrieval result",
+      "doi": "10.64216/3080-1508.25.02.019",
+      "year": 0,
+      "venue": "工程技术论坛",
+      "url": "https://doi.org/10.64216/3080-1508.25.02.019",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.64216/3080-1508.25.02.019"
+      ],
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "基于多源数据融合的建筑能源使用与碳排放预测模型构建",
+      "method": "crossref retrieval result",
+      "doi": "10.31706/jees25090246",
+      "year": 0,
+      "venue": "Journal of Environment and Energy Systems",
+      "url": "https://doi.org/10.31706/jees25090246",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.31706/jees25090246"
+      ],
+      "authors": [],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "新型基础测绘中多源异构数据融合与集成方法探",
+      "method": "crossref retrieval result",
+      "doi": "10.64216/3080-1508.25.06.038",
+      "year": 0,
+      "venue": "工程技术论坛",
+      "url": "https://doi.org/10.64216/3080-1508.25.06.038",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.64216/3080-1508.25.06.038"
+      ],
+      "authors": [
+        "王永 胡广志"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "多源数据融合技术在高速公路工程测量中的应用探索",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2811-0609-0502-23",
+      "year": 0,
+      "venue": "工程施工新技术",
+      "url": "https://doi.org/10.37155/2811-0609-0502-23",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2811-0609-0502-23"
+      ],
+      "authors": [
+        "孙泽达"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "水利测量中多源数据融合技术研究",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2811-0609-0412-57",
+      "year": 0,
+      "venue": "工程施工新技术",
+      "url": "https://doi.org/10.37155/2811-0609-0412-57",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2811-0609-0412-57"
+      ],
+      "authors": [
+        "袁瑞辰",
+        "李振林"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "基于多数据源的采煤沉陷区早期识别及地面形变特征监测",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2811-0609-0404-76",
+      "year": 0,
+      "venue": "工程施工新技术",
+      "url": "https://doi.org/10.37155/2811-0609-0404-76",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2811-0609-0404-76"
+      ],
+      "authors": [
+        "张国强"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "多源异构数据融合的新能源配电项目技术经济决策树构建",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2972-4333-0311-36",
+      "year": 0,
+      "venue": "工程技术创新与发展",
+      "url": "https://doi.org/10.37155/2972-4333-0311-36",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2972-4333-0311-36"
+      ],
+      "authors": [
+        "骆佳伟"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "基于多特征融合的电厂输煤设备状态检测研究",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/3041-0827-0102-44",
+      "year": 0,
+      "venue": "工程技术与质量管理",
+      "url": "https://doi.org/10.37155/3041-0827-0102-44",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/3041-0827-0102-44"
+      ],
+      "authors": [
+        "王小兵",
+        "韩学文"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "河道测绘中多源数据融合技术的应用与展望",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2717-5251-0802-49",
+      "year": 0,
+      "venue": "水利电力技术与应用",
+      "url": "https://doi.org/10.37155/2717-5251-0802-49",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2717-5251-0802-49"
+      ],
+      "authors": [
+        "单萌蕾"
+      ],
+      "abstract": ""
+    },
+    {
+      "keyword": "多源异构数据预测、多特征时序预测、多变量特征工程、多源数据融合、电力预测多特征利用，重点抓取当前可公开检索到的相关文献，提炼多特征利用与多源融合方法，提出多源异构数据融合+多特征工程优化策略，并修改XGBoost、TimesNet、MTGNN、PatchTST四模型代码完成全量测试",
+      "source": "crossref",
+      "title": "棉花质量检测中的多模态数据融合方法探讨",
+      "method": "crossref retrieval result",
+      "doi": "10.37155/2717-5316-0614-32",
+      "year": 0,
+      "venue": "工程学研究与实用",
+      "url": "https://doi.org/10.37155/2717-5316-0614-32",
+      "pdf_url": "",
+      "pdf_path": "",
+      "download_status": "metadata_only",
+      "all_urls": [
+        "https://doi.org/10.37155/2717-5316-0614-32"
+      ],
+      "authors": [
+        "扈玉璞",
+        "卫 莉"
+      ],
+      "abstract": ""
+    }
+  ]
+}
